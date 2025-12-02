@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Topic1_Classes/Topic1_Classes.csproj" Id="62a601fa-efcb-4531-9cb7-0452c60ccbcf" />
   <Project Path="Topic2_Interfaces/Topic2_Interfaces.csproj" Id="b73d36af-66c1-4dd8-acd4-d94006910381" />
+  <Project Path="Topic3_Polymorphism/Topic3_Polymorphism.csproj" Id="9c687b11-80eb-46f8-bdb0-2b763ae565a6" />
 </Solution>
