@@ -2,4 +2,6 @@
   <Project Path="Topic1_Classes/Topic1_Classes.csproj" Id="62a601fa-efcb-4531-9cb7-0452c60ccbcf" />
   <Project Path="Topic2_Interfaces/Topic2_Interfaces.csproj" Id="b73d36af-66c1-4dd8-acd4-d94006910381" />
   <Project Path="Topic3_Polymorphism/Topic3_Polymorphism.csproj" Id="9c687b11-80eb-46f8-bdb0-2b763ae565a6" />
+  <Project Path="Topic4_Collections/Topic4_Collections.csproj" Id="35ad3a31-5705-46ea-ba9b-a840f6234e23" />
+  <Project Path="Topic4_DetailedCollections/Topic4_DetailedCollections.csproj" Id="ebaa3372-1631-445b-b0d7-4f1fbf3a3824" />
 </Solution>
