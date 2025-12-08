@@ -5,4 +5,7 @@
   <Project Path="Topic4_Collections/Topic4_Collections.csproj" Id="35ad3a31-5705-46ea-ba9b-a840f6234e23" />
   <Project Path="Topic4_DetailedCollections/Topic4_DetailedCollections.csproj" Id="ebaa3372-1631-445b-b0d7-4f1fbf3a3824" />
   <Project Path="Topic5_LINQ/Topic5_LINQ.csproj" Id="08b3a12e-7946-4129-b555-d0d16249dcc2" />
+  <Project Path="Topic6_Generics/Topic6_Generics.csproj" Id="63f51021-ed77-4aae-a878-2e97a9b4e937" />
+  <Project Path="Topic7_Exceptions/Topic7_Exceptions.csproj" Id="d815742d-1833-4ad8-b903-b2521cffe5b1" />
+  <Project Path="Topic8_ValueRefTypes/Topic8_ValueRefTypes.csproj" Id="54e0f49f-e285-49b1-8044-137fb57d374e" />
 </Solution>

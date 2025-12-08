@@ -65,3 +65,36 @@ Console.WriteLine("\n--- 4. ПРОВЕРКА (Any) ---");
 
 bool hasHiddenDivs = elements.Any(el => !el.Displayed && el.TagName == "div");
 Console.WriteLine($"Есть скрытые дивы? {hasHiddenDivs}");
+
+
+// Способ А: Сначала отфильтровать (Where), потом посчитать (Count)
+// Читается: "Взять элементы, ГДЕ текст равен пустоте, и вернуть их количество"
+int emptyCount1 = elements.Where(el => el.Text == "").Count();
+
+// Способ Б: Сразу посчитать с условием (Более короткий и правильный)
+// Читается: "Посчитать элементы, у которых текст равен пустоте"
+int emptyCount2 = elements.Count(el => el.Text == "");
+
+Console.WriteLine($"Пустых элементов (способ 1): {emptyCount1}");
+Console.WriteLine($"Пустых элементов (способ 2): {emptyCount2}");
+
+// ПРОФЕССИОНАЛЬНЫЙ НЮАНС:
+// Вместо el.Text == "" лучше использовать string.IsNullOrEmpty(el.Text)
+// Это спасет, если Text будет равен null (а не просто пустой строке).
+int emptyCountPro = elements.Count(el => string.IsNullOrEmpty(el.Text));
+
+List<string> myArr = new List<string>
+{
+    "Toyota",
+    "BMW",
+    "Toyota",
+    "Honda"
+};
+
+// Pseudocode:
+// - Distinct returns IEnumerable<string>, which Console.WriteLine won't format.
+// - Convert the enumerable to a readable string via string.Join(", ", ...).
+// - Print the joined result.
+
+Console.WriteLine(string.Join(", ", myArr.Distinct()));
+Console.WriteLine(string.Join(", ", myArr));
