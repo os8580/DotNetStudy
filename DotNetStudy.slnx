@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Topic10_DateTime/Topic10_DateTime.csproj" Id="672be06f-fb74-4562-aebb-238d9fe682ae" />
   <Project Path="Topic1_Classes/Topic1_Classes.csproj" Id="62a601fa-efcb-4531-9cb7-0452c60ccbcf" />
   <Project Path="Topic2_Interfaces/Topic2_Interfaces.csproj" Id="b73d36af-66c1-4dd8-acd4-d94006910381" />
   <Project Path="Topic3_Polymorphism/Topic3_Polymorphism.csproj" Id="9c687b11-80eb-46f8-bdb0-2b763ae565a6" />
@@ -8,4 +9,5 @@
   <Project Path="Topic6_Generics/Topic6_Generics.csproj" Id="63f51021-ed77-4aae-a878-2e97a9b4e937" />
   <Project Path="Topic7_Exceptions/Topic7_Exceptions.csproj" Id="d815742d-1833-4ad8-b903-b2521cffe5b1" />
   <Project Path="Topic8_ValueRefTypes/Topic8_ValueRefTypes.csproj" Id="54e0f49f-e285-49b1-8044-137fb57d374e" />
+  <Project Path="Topic9_NullOperators/Topic9_NullOperators.csproj" Id="2441022f-7d84-42df-9ebc-f6bdc4215a0b" />
 </Solution>
