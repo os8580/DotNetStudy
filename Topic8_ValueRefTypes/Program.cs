@@ -1,7 +1,9 @@
-﻿// ==========================================
+﻿using System.Threading.Tasks;
+using Topic8_ValueRefTypes;
+
+// ==========================================
 // 1. VALUE TYPES (Независимость)
 // ==========================================
-using Topic8_ValueRefTypes;
 
 Console.WriteLine("--- 1. Значимые типы (int) ---");
 int a = 10;
@@ -73,3 +75,53 @@ s2 = "World"; // Тут создается НОВАЯ строка в памят
 Console.WriteLine($"S1: {s1}"); // Hello
 Console.WriteLine($"S2: {s2}"); // World
                                 // На собеседовании отвечай: "String - ссылочный тип, но иммутабельный, поэтому при изменении создается новый объект".
+
+
+Console.WriteLine("--- Значимые vs Ссылочные типы ---");
+
+int a2 = 5;
+int b2 = a2; // копия
+b2 = 10;
+Console.WriteLine($"a={a2}, b={b2} (значимые типы копируются)");
+
+var user11 = new Topic8_ValueRefTypes.User { Name = "Ivan" };
+var user22 = user11; // копируется ссылка
+user22.Name = "Petr";
+Console.WriteLine($"user1.Name={user11.Name}, user2.Name={user22.Name} (ссылочные - копируется ссылка)");
+
+Console.WriteLine("\n--- ref и out ---");
+
+void IncrementRef(ref int value) { value++; }
+void InitOut(out int value) { value = 42; }
+
+int val = 1;
+IncrementRef(ref val);
+Console.WriteLine($"Значение после ref: {val}");
+
+int outVal;
+InitOut(out outVal);
+Console.WriteLine($"Значение после out: {outVal}");
+
+Console.WriteLine("\n--- Пример race condition и lock ---");
+
+int counter = 0;
+object locker = new object();
+
+var tasks = new Task[5];
+for (int i = 0; i < tasks.Length; i++)
+{
+    tasks[i] = Task.Run(() =>
+    {
+        for (int j = 0; j < 1000; j++)
+        {
+            // Без lock возможна гонка
+            lock (locker)
+            {
+                counter++;
+            }
+        }
+    });
+}
+
+Task.WaitAll(tasks);
+Console.WriteLine($"Ожидаем 5000, получили: {counter}");

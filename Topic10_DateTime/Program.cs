@@ -72,3 +72,6 @@ else
 {
     Console.WriteLine($"[FAIL] Дата не совпадает! На сайте: {parsedDate}, Сегодня: {DateTime.Today}");
 }
+
+// Вызов дополнительного демо
+Topic10_DateTime.DateTimeOffsetDemo.Run();

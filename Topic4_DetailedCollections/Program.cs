@@ -14,9 +14,6 @@
             // Изменить можно (заменить "Engine" на "Motor")
             staticCategories[0] = "Motor";
 
-            // Добавить НЕЛЬЗЯ. Это вызовет ошибку компиляции или рантайма, если пытаться хакнуть.
-            // staticCategories.Add("Oil"); // <-- Такого метода нет у массива!
-
             Console.WriteLine($"[Array] Категория 1: {staticCategories[0]} (Длина: {staticCategories.Length})");
 
 
@@ -74,7 +71,74 @@
             PrintAllItems(staticCategories); // Передали массив
             PrintAllItems(cart);             // Передали список
 
-            Console.ReadKey();
+
+            // ==========================================
+            // 5. QUEUE (ОЧЕРЕДЬ)
+            // ==========================================
+            // Сценарий: Обработка заявок. FIFO (Первый пришёл - первый вышел).
+            Queue<string> requestQueue = new Queue<string>();
+
+            requestQueue.Enqueue("Заявка от клиента #1");
+            requestQueue.Enqueue("Заявка от клиента #2");
+            requestQueue.Enqueue("Заявка от клиента #3");
+
+            Console.WriteLine($"[Queue] Количество заявок в очереди: {requestQueue.Count}");
+            while (requestQueue.Count > 0)
+            {
+                Console.WriteLine($"Обрабатываем: {requestQueue.Dequeue()}");
+            }
+
+
+            // ==========================================
+            // 6. STACK (СТЕК)
+            // ==========================================
+            // Сценарий: Отмена действий. Последний штрих - отмена.
+            Stack<string> actionStack = new Stack<string>();
+
+            actionStack.Push("Добавить товар в корзину");
+            actionStack.Push("Удалить товар из корзины");
+            actionStack.Push("Изменить количество товара");
+
+            Console.WriteLine($"[Stack] Количество действий в стеке: {actionStack.Count}");
+            while (actionStack.Count > 0)
+            {
+                Console.WriteLine($"Отмена: {actionStack.Pop()}");
+            }
+
+
+            // ==========================================
+            // 7. HASHSET (ХЭШ-НАБОР)
+            // ==========================================
+            // Сценарий: Уникальные теги для товара.
+            HashSet<string> tags = new HashSet<string>();
+
+            tags.Add("Распродажа");
+            tags.Add("Новинка");
+            tags.Add("Хит продаж");
+            tags.Add("Распродажа"); // Игнор, так как дубликат
+
+            Console.WriteLine($"[HashSet] Количество уникальных тегов: {tags.Count}");
+            foreach (var tag in tags)
+            {
+                Console.WriteLine($" - {tag}");
+            }
+
+
+            // ==========================================
+            // 8. SORTEDLIST (СОРТИРОВАННЫЙ СПИСОК)
+            // ==========================================
+            // Сценарий: Хранение конфигураций. Имя -> Значение.
+            SortedList<string, string> configuration = new SortedList<string, string>();
+
+            configuration.Add("База_данных", "SQLExpress");
+            configuration.Add("Порт", "1433");
+            configuration.Add("Пользователь", "admin");
+
+            Console.WriteLine($"[SortedList] Количество конфигураций: {configuration.Count}");
+            foreach (var item in configuration)
+            {
+                Console.WriteLine($" - {item.Key}: {item.Value}");
+            }
         }
 
         // Этот метод принимает "Что угодно, что можно перебрать"

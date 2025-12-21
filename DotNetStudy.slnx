@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="TextFile1.txt" />
+  </Folder>
   <Project Path="Topic10_DateTime/Topic10_DateTime.csproj" Id="672be06f-fb74-4562-aebb-238d9fe682ae" />
   <Project Path="Topic1_Classes/Topic1_Classes.csproj" Id="62a601fa-efcb-4531-9cb7-0452c60ccbcf" />
   <Project Path="Topic2_Interfaces/Topic2_Interfaces.csproj" Id="b73d36af-66c1-4dd8-acd4-d94006910381" />
