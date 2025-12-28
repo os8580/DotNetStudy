@@ -1,6 +1,6 @@
---- Topic11: Basics demo — primitive types and common operations ---
+ï»¿--- Topic11: Basics demo â€” primitive types and common operations ---
 
-int: 42, double: 3.14, bool: True, char: ß
+int: 42, double: 3.14, bool: True, char: Ð¯
 raw string (with spaces): ' Hello, Topic11! '
 
 inferred (var) type value: 100

@@ -1,62 +1,62 @@
-# Topic10 — DateTime и TimeSpan (Полный курс для начинающих)
+п»ї# Topic10 вЂ” DateTime Рё TimeSpan (РџРѕР»РЅС‹Р№ РєСѓСЂСЃ РґР»СЏ РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-## Цель
-Понять, как работать с датами, временем и интервалами времени в C#. После прочтения вы сможете правильно парсить, форматировать и сравнивать даты в автотестах.
+## Р¦РµР»СЊ
+РџРѕРЅСЏС‚СЊ, РєР°Рє СЂР°Р±РѕС‚Р°С‚СЊ СЃ РґР°С‚Р°РјРё, РІСЂРµРјРµРЅРµРј Рё РёРЅС‚РµСЂРІР°Р»Р°РјРё РІСЂРµРјРµРЅРё РІ C#. РџРѕСЃР»Рµ РїСЂРѕС‡С‚РµРЅРёСЏ РІС‹ СЃРјРѕР¶РµС‚Рµ РїСЂР°РІРёР»СЊРЅРѕ РїР°СЂСЃРёС‚СЊ, С„РѕСЂРјР°С‚РёСЂРѕРІР°С‚СЊ Рё СЃСЂР°РІРЅРёРІР°С‚СЊ РґР°С‚С‹ РІ Р°РІС‚РѕС‚РµСЃС‚Р°С….
 
 ---
 
-## 1. Что такое DateTime? (Для самых начинающих)
+## 1. Р§С‚Рѕ С‚Р°РєРѕРµ DateTime? (Р”Р»СЏ СЃР°РјС‹С… РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-### Аналогия
+### РђРЅР°Р»РѕРіРёСЏ
 ```
-DateTime = точный момент времени в истории
-"15 марта 2024, 14:30:45" — это конкретный момент
+DateTime = С‚РѕС‡РЅС‹Р№ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё РІ РёСЃС‚РѕСЂРёРё
+"15 РјР°СЂС‚Р° 2024, 14:30:45" вЂ” СЌС‚Рѕ РєРѕРЅРєСЂРµС‚РЅС‹Р№ РјРѕРјРµРЅС‚
 
-TimeSpan = интервал времени
-"2 часа", "5 дней", "3 часа 30 минут" — это длительность
+TimeSpan = РёРЅС‚РµСЂРІР°Р» РІСЂРµРјРµРЅРё
+"2 С‡Р°СЃР°", "5 РґРЅРµР№", "3 С‡Р°СЃР° 30 РјРёРЅСѓС‚" вЂ” СЌС‚Рѕ РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ
 ```
 
-### В программировании:
+### Р’ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРё:
 
 ```csharp
-// DateTime — конкретный момент времени
-DateTime now = DateTime.Now;              // Текущая дата и время
+// DateTime вЂ” РєРѕРЅРєСЂРµС‚РЅС‹Р№ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё
+DateTime now = DateTime.Now;              // РўРµРєСѓС‰Р°СЏ РґР°С‚Р° Рё РІСЂРµРјСЏ
 Console.WriteLine(now);                   // 15.03.2024 14:30:45
 
-// TimeSpan — интервал времени
-TimeSpan duration = TimeSpan.FromHours(2);  // 2 часа
+// TimeSpan вЂ” РёРЅС‚РµСЂРІР°Р» РІСЂРµРјРµРЅРё
+TimeSpan duration = TimeSpan.FromHours(2);  // 2 С‡Р°СЃР°
 Console.WriteLine(duration);              // 02:00:00
 ```
 
 ---
 
-## 2. DateTime — Создание и использование
+## 2. DateTime вЂ” РЎРѕР·РґР°РЅРёРµ Рё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 
-### Способы создания
+### РЎРїРѕСЃРѕР±С‹ СЃРѕР·РґР°РЅРёСЏ
 
 ```csharp
-// Текущая дата и время (локальное время компьютера)
+// РўРµРєСѓС‰Р°СЏ РґР°С‚Р° Рё РІСЂРµРјСЏ (Р»РѕРєР°Р»СЊРЅРѕРµ РІСЂРµРјСЏ РєРѕРјРїСЊСЋС‚РµСЂР°)
 DateTime now = DateTime.Now;
 Console.WriteLine(now);  // 15.03.2024 14:30:45
 
-// Текущая дата и время (UTC — универсальное время)
+// РўРµРєСѓС‰Р°СЏ РґР°С‚Р° Рё РІСЂРµРјСЏ (UTC вЂ” СѓРЅРёРІРµСЂСЃР°Р»СЊРЅРѕРµ РІСЂРµРјСЏ)
 DateTime utcNow = DateTime.UtcNow;
-Console.WriteLine(utcNow);  // 15.03.2024 11:30:45 (может отличаться)
+Console.WriteLine(utcNow);  // 15.03.2024 11:30:45 (РјРѕР¶РµС‚ РѕС‚Р»РёС‡Р°С‚СЊСЃСЏ)
 
-// Сегодняшняя дата (время = 00:00:00)
+// РЎРµРіРѕРґРЅСЏС€РЅСЏСЏ РґР°С‚Р° (РІСЂРµРјСЏ = 00:00:00)
 DateTime today = DateTime.Today;
 Console.WriteLine(today);  // 15.03.2024 00:00:00
 
-// Конкретный момент времени
-DateTime specificDate = new DateTime(2024, 3, 15);              // 15 марта 2024
-DateTime specificDateWithTime = new DateTime(2024, 3, 15, 14, 30, 45);  // 15 марта, 14:30:45
+// РљРѕРЅРєСЂРµС‚РЅС‹Р№ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё
+DateTime specificDate = new DateTime(2024, 3, 15);              // 15 РјР°СЂС‚Р° 2024
+DateTime specificDateWithTime = new DateTime(2024, 3, 15, 14, 30, 45);  // 15 РјР°СЂС‚Р°, 14:30:45
 
-// Парсинг из строки
+// РџР°СЂСЃРёРЅРі РёР· СЃС‚СЂРѕРєРё
 DateTime parsed = DateTime.Parse("15.03.2024 14:30:45");
 Console.WriteLine(parsed);  // 15.03.2024 14:30:45
 ```
 
-### Свойства DateTime
+### РЎРІРѕР№СЃС‚РІР° DateTime
 
 ```csharp
 DateTime dt = new DateTime(2024, 3, 15, 14, 30, 45);
@@ -67,107 +67,107 @@ Console.WriteLine(dt.Day);         // 15
 Console.WriteLine(dt.Hour);        // 14
 Console.WriteLine(dt.Minute);      // 30
 Console.WriteLine(dt.Second);      // 45
-Console.WriteLine(dt.DayOfWeek);   // Friday (пятница)
-Console.WriteLine(dt.DayOfYear);   // 75 (день года)
+Console.WriteLine(dt.DayOfWeek);   // Friday (РїСЏС‚РЅРёС†Р°)
+Console.WriteLine(dt.DayOfYear);   // 75 (РґРµРЅСЊ РіРѕРґР°)
 ```
 
-### Арифметика с DateTime (ВАЖНО: DateTime неизменяемый!)
+### РђСЂРёС„РјРµС‚РёРєР° СЃ DateTime (Р’РђР–РќРћ: DateTime РЅРµРёР·РјРµРЅСЏРµРјС‹Р№!)
 
 ```csharp
 DateTime date = new DateTime(2024, 3, 15, 14, 30, 45);
 
-// Add методы возвращают НОВЫЙ DateTime!
-DateTime tomorrow = date.AddDays(1);        // 16 марта
-DateTime nextHour = date.AddHours(1);       // 14:30 + 1 час = 15:30
-DateTime nextWeek = date.AddDays(7);        // На неделю позже
+// Add РјРµС‚РѕРґС‹ РІРѕР·РІСЂР°С‰Р°СЋС‚ РќРћР’Р«Р™ DateTime!
+DateTime tomorrow = date.AddDays(1);        // 16 РјР°СЂС‚Р°
+DateTime nextHour = date.AddHours(1);       // 14:30 + 1 С‡Р°СЃ = 15:30
+DateTime nextWeek = date.AddDays(7);        // РќР° РЅРµРґРµР»СЋ РїРѕР·Р¶Рµ
 
-// Исходный date НЕ изменился!
+// РСЃС…РѕРґРЅС‹Р№ date РќР• РёР·РјРµРЅРёР»СЃСЏ!
 Console.WriteLine(date);      // 15.03.2024 14:30:45
 Console.WriteLine(tomorrow);  // 16.03.2024 14:30:45
 
-// ? Ошибка новичков: забывают присвоить результат
+// ? РћС€РёР±РєР° РЅРѕРІРёС‡РєРѕРІ: Р·Р°Р±С‹РІР°СЋС‚ РїСЂРёСЃРІРѕРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚
 DateTime startDate = DateTime.Now;
-startDate.AddDays(1);  // ? Это ничего не сделает!
-Console.WriteLine(startDate);  // Старая дата!
+startDate.AddDays(1);  // ? Р­С‚Рѕ РЅРёС‡РµРіРѕ РЅРµ СЃРґРµР»Р°РµС‚!
+Console.WriteLine(startDate);  // РЎС‚Р°СЂР°СЏ РґР°С‚Р°!
 
-// ? Правильно
-startDate = startDate.AddDays(1);  // Присваиваем результат
+// ? РџСЂР°РІРёР»СЊРЅРѕ
+startDate = startDate.AddDays(1);  // РџСЂРёСЃРІР°РёРІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚
 ```
 
 ---
 
-## 3. Форматирование DateTime (как выглядит дата)
+## 3. Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ DateTime (РєР°Рє РІС‹РіР»СЏРґРёС‚ РґР°С‚Р°)
 
-### Стандартные форматы
+### РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ С„РѕСЂРјР°С‚С‹
 
 ```csharp
 DateTime dt = new DateTime(2024, 3, 15, 14, 30, 45);
 
-// Короткая дата
+// РљРѕСЂРѕС‚РєР°СЏ РґР°С‚Р°
 Console.WriteLine(dt.ToString("d"));  // 15.03.2024
 
-// Длинная дата
-Console.WriteLine(dt.ToString("D"));  // пятница, 15 марта 2024
+// Р”Р»РёРЅРЅР°СЏ РґР°С‚Р°
+Console.WriteLine(dt.ToString("D"));  // РїСЏС‚РЅРёС†Р°, 15 РјР°СЂС‚Р° 2024
 
-// Короткое время
+// РљРѕСЂРѕС‚РєРѕРµ РІСЂРµРјСЏ
 Console.WriteLine(dt.ToString("t"));  // 14:30
 
-// Полное время
+// РџРѕР»РЅРѕРµ РІСЂРµРјСЏ
 Console.WriteLine(dt.ToString("T"));  // 14:30:45
 
-// Дата и время
+// Р”Р°С‚Р° Рё РІСЂРµРјСЏ
 Console.WriteLine(dt.ToString("g"));  // 15.03.2024 14:30
 
-// ISO формат (универсальный)
+// ISO С„РѕСЂРјР°С‚ (СѓРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№)
 Console.WriteLine(dt.ToString("O"));  // 2024-03-15T14:30:45.0000000
 ```
 
-### Пользовательские форматы
+### РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ С„РѕСЂРјР°С‚С‹
 
 ```csharp
 DateTime dt = new DateTime(2024, 3, 15, 14, 30, 45);
 
-// Формат: DD.MM.YYYY HH:mm:ss
+// Р¤РѕСЂРјР°С‚: DD.MM.YYYY HH:mm:ss
 Console.WriteLine(dt.ToString("dd.MM.yyyy HH:mm:ss"));  // 15.03.2024 14:30:45
 
-// Формат: MM/DD/YYYY (американский)
+// Р¤РѕСЂРјР°С‚: MM/DD/YYYY (Р°РјРµСЂРёРєР°РЅСЃРєРёР№)
 Console.WriteLine(dt.ToString("MM/dd/yyyy"));  // 03/15/2024
 
-// Формат: MMMM d, yyyy (длинное название месяца)
+// Р¤РѕСЂРјР°С‚: MMMM d, yyyy (РґР»РёРЅРЅРѕРµ РЅР°Р·РІР°РЅРёРµ РјРµСЃСЏС†Р°)
 Console.WriteLine(dt.ToString("MMMM d, yyyy"));  // March 15, 2024
 
-// Формат: yyyy-MM-dd (ISO для баз данных)
+// Р¤РѕСЂРјР°С‚: yyyy-MM-dd (ISO РґР»СЏ Р±Р°Р· РґР°РЅРЅС‹С…)
 Console.WriteLine(dt.ToString("yyyy-MM-dd"));  // 2024-03-15
 
-// Часто используемые символы форматирования:
-// d = день (одна цифра) ? 5
-// dd = день (две цифры) ? 05
-// M = месяц (одна цифра) ? 3
-// MM = месяц (две цифры) ? 03
-// MMM = название месяца (коротко) ? Mar
-// MMMM = название месяца (полное) ? March
-// yy = год (две цифры) ? 24
-// yyyy = год (четыре цифры) ? 2024
-// H = час (24-часовой) ? 14
-// HH = час (24-часовой, две цифры) ? 14
-// m = минута (одна цифра) ? 5
-// mm = минута (две цифры) ? 05
-// s = секунда ? 45
-// ss = секунда (две цифры) ? 45
+// Р§Р°СЃС‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЃРёРјРІРѕР»С‹ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ:
+// d = РґРµРЅСЊ (РѕРґРЅР° С†РёС„СЂР°) ? 5
+// dd = РґРµРЅСЊ (РґРІРµ С†РёС„СЂС‹) ? 05
+// M = РјРµСЃСЏС† (РѕРґРЅР° С†РёС„СЂР°) ? 3
+// MM = РјРµСЃСЏС† (РґРІРµ С†РёС„СЂС‹) ? 03
+// MMM = РЅР°Р·РІР°РЅРёРµ РјРµСЃСЏС†Р° (РєРѕСЂРѕС‚РєРѕ) ? Mar
+// MMMM = РЅР°Р·РІР°РЅРёРµ РјРµСЃСЏС†Р° (РїРѕР»РЅРѕРµ) ? March
+// yy = РіРѕРґ (РґРІРµ С†РёС„СЂС‹) ? 24
+// yyyy = РіРѕРґ (С‡РµС‚С‹СЂРµ С†РёС„СЂС‹) ? 2024
+// H = С‡Р°СЃ (24-С‡Р°СЃРѕРІРѕР№) ? 14
+// HH = С‡Р°СЃ (24-С‡Р°СЃРѕРІРѕР№, РґРІРµ С†РёС„СЂС‹) ? 14
+// m = РјРёРЅСѓС‚Р° (РѕРґРЅР° С†РёС„СЂР°) ? 5
+// mm = РјРёРЅСѓС‚Р° (РґРІРµ С†РёС„СЂС‹) ? 05
+// s = СЃРµРєСѓРЅРґР° ? 45
+// ss = СЃРµРєСѓРЅРґР° (РґРІРµ С†РёС„СЂС‹) ? 45
 ```
 
 ---
 
-## 4. Парсинг DateTime (как превратить строку в DateTime)
+## 4. РџР°СЂСЃРёРЅРі DateTime (РєР°Рє РїСЂРµРІСЂР°С‚РёС‚СЊ СЃС‚СЂРѕРєСѓ РІ DateTime)
 
-### Простой парсинг
+### РџСЂРѕСЃС‚РѕР№ РїР°СЂСЃРёРЅРі
 
 ```csharp
-// Parse — если уверены в формате (может выбросить исключение)
+// Parse вЂ” РµСЃР»Рё СѓРІРµСЂРµРЅС‹ РІ С„РѕСЂРјР°С‚Рµ (РјРѕР¶РµС‚ РІС‹Р±СЂРѕСЃРёС‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ)
 DateTime dt1 = DateTime.Parse("15.03.2024 14:30:45");
 Console.WriteLine(dt1);  // 15.03.2024 14:30:45
 
-// TryParse — безопаснее (не выбросит исключение)
+// TryParse вЂ” Р±РµР·РѕРїР°СЃРЅРµРµ (РЅРµ РІС‹Р±СЂРѕСЃРёС‚ РёСЃРєР»СЋС‡РµРЅРёРµ)
 bool success = DateTime.TryParse("15.03.2024 14:30:45", out DateTime dt2);
 if (success)
 {
@@ -175,30 +175,30 @@ if (success)
 }
 else
 {
-    Console.WriteLine("Не удалось распарсить дату");
+    Console.WriteLine("РќРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РґР°С‚Сѓ");
 }
 
-// ? Если парсинг не удался с Parse
-// DateTime dt3 = DateTime.Parse("неправильная дата");  // ?? Исключение!
+// ? Р•СЃР»Рё РїР°СЂСЃРёРЅРі РЅРµ СѓРґР°Р»СЃСЏ СЃ Parse
+// DateTime dt3 = DateTime.Parse("РЅРµРїСЂР°РІРёР»СЊРЅР°СЏ РґР°С‚Р°");  // ?? РСЃРєР»СЋС‡РµРЅРёРµ!
 
-// ? С TryParse просто false
-bool ok = DateTime.TryParse("неправильная дата", out DateTime dt3);  // ok = false
+// ? РЎ TryParse РїСЂРѕСЃС‚Рѕ false
+bool ok = DateTime.TryParse("РЅРµРїСЂР°РІРёР»СЊРЅР°СЏ РґР°С‚Р°", out DateTime dt3);  // ok = false
 ```
 
-### ParseExact и TryParseExact (для точных форматов)
+### ParseExact Рё TryParseExact (РґР»СЏ С‚РѕС‡РЅС‹С… С„РѕСЂРјР°С‚РѕРІ)
 
 ```csharp
-// Когда вы ТОЧНО знаете формат данных (например, с веб-сайта)
+// РљРѕРіРґР° РІС‹ РўРћР§РќРћ Р·РЅР°РµС‚Рµ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С… (РЅР°РїСЂРёРјРµСЂ, СЃ РІРµР±-СЃР°Р№С‚Р°)
 string dateString = "15-03-2024";
 
-// Нужно указать ТОЧНЫЙ формат
+// РќСѓР¶РЅРѕ СѓРєР°Р·Р°С‚СЊ РўРћР§РќР«Р™ С„РѕСЂРјР°С‚
 string format = "dd-MM-yyyy";
 
-// ParseExact — если уверены
+// ParseExact вЂ” РµСЃР»Рё СѓРІРµСЂРµРЅС‹
 DateTime dt = DateTime.ParseExact(dateString, format, System.Globalization.CultureInfo.InvariantCulture);
 Console.WriteLine(dt);  // 15.03.2024 00:00:00
 
-// TryParseExact — безопаснее
+// TryParseExact вЂ” Р±РµР·РѕРїР°СЃРЅРµРµ
 bool success = DateTime.TryParseExact(dateString, format, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dt2);
 if (success)
 {
@@ -206,68 +206,68 @@ if (success)
 }
 ```
 
-### Реальный пример для QA
+### Р РµР°Р»СЊРЅС‹Р№ РїСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
-// На веб-сайте дата в формате: "2024-03-15"
+// РќР° РІРµР±-СЃР°Р№С‚Рµ РґР°С‚Р° РІ С„РѕСЂРјР°С‚Рµ: "2024-03-15"
 string dateFromWebsite = "2024-03-15";
 
-// Мы парсим её в DateTime
+// РњС‹ РїР°СЂСЃРёРј РµС‘ РІ DateTime
 string format = "yyyy-MM-dd";
 bool success = DateTime.TryParseExact(dateFromWebsite, format, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime parsedDate);
 
 if (success)
 {
-    // Сравниваем с ожидаемой датой
+    // РЎСЂР°РІРЅРёРІР°РµРј СЃ РѕР¶РёРґР°РµРјРѕР№ РґР°С‚РѕР№
     DateTime expectedDate = new DateTime(2024, 3, 15);
-    if (parsedDate.Date == expectedDate.Date)  // .Date убирает время
+    if (parsedDate.Date == expectedDate.Date)  // .Date СѓР±РёСЂР°РµС‚ РІСЂРµРјСЏ
     {
-        Console.WriteLine("? Дата совпадает!");
+        Console.WriteLine("? Р”Р°С‚Р° СЃРѕРІРїР°РґР°РµС‚!");
     }
 }
 ```
 
 ---
 
-## 5. Сравнение DateTime
+## 5. РЎСЂР°РІРЅРµРЅРёРµ DateTime
 
-### Простое сравнение
+### РџСЂРѕСЃС‚РѕРµ СЃСЂР°РІРЅРµРЅРёРµ
 
 ```csharp
 DateTime date1 = new DateTime(2024, 3, 15);
 DateTime date2 = new DateTime(2024, 3, 16);
 DateTime date3 = new DateTime(2024, 3, 15);
 
-// Равенство
-Console.WriteLine(date1 == date3);  // true (одинаковые даты)
+// Р Р°РІРµРЅСЃС‚РІРѕ
+Console.WriteLine(date1 == date3);  // true (РѕРґРёРЅР°РєРѕРІС‹Рµ РґР°С‚С‹)
 Console.WriteLine(date1 == date2);  // false
 
-// Не равенство
+// РќРµ СЂР°РІРµРЅСЃС‚РІРѕ
 Console.WriteLine(date1 != date2);  // true
 
-// Меньше / больше
-Console.WriteLine(date1 < date2);   // true (15 марта раньше 16 марта)
+// РњРµРЅСЊС€Рµ / Р±РѕР»СЊС€Рµ
+Console.WriteLine(date1 < date2);   // true (15 РјР°СЂС‚Р° СЂР°РЅСЊС€Рµ 16 РјР°СЂС‚Р°)
 Console.WriteLine(date1 > date2);   // false
 Console.WriteLine(date1 <= date3);  // true
 Console.WriteLine(date1 >= date3);  // true
 ```
 
-### Сравнение только по дате (без времени)
+### РЎСЂР°РІРЅРµРЅРёРµ С‚РѕР»СЊРєРѕ РїРѕ РґР°С‚Рµ (Р±РµР· РІСЂРµРјРµРЅРё)
 
 ```csharp
 DateTime dt1 = new DateTime(2024, 3, 15, 10, 30, 0);
 DateTime dt2 = new DateTime(2024, 3, 15, 14, 45, 0);
 DateTime dt3 = new DateTime(2024, 3, 16, 10, 30, 0);
 
-// ? Без .Date (сравнивает дату И время)
-Console.WriteLine(dt1 == dt2);  // false (разное время)
+// ? Р‘РµР· .Date (СЃСЂР°РІРЅРёРІР°РµС‚ РґР°С‚Сѓ Р РІСЂРµРјСЏ)
+Console.WriteLine(dt1 == dt2);  // false (СЂР°Р·РЅРѕРµ РІСЂРµРјСЏ)
 
-// ? С .Date (сравнивает только дату)
-Console.WriteLine(dt1.Date == dt2.Date);  // true (одна дата)
-Console.WriteLine(dt1.Date == dt3.Date);  // false (разные даты)
+// ? РЎ .Date (СЃСЂР°РІРЅРёРІР°РµС‚ С‚РѕР»СЊРєРѕ РґР°С‚Сѓ)
+Console.WriteLine(dt1.Date == dt2.Date);  // true (РѕРґРЅР° РґР°С‚Р°)
+Console.WriteLine(dt1.Date == dt3.Date);  // false (СЂР°Р·РЅС‹Рµ РґР°С‚С‹)
 ```
 
-### Сравнение с сегодня
+### РЎСЂР°РІРЅРµРЅРёРµ СЃ СЃРµРіРѕРґРЅСЏ
 
 ```csharp
 DateTime eventDate = new DateTime(2024, 3, 15);
@@ -275,144 +275,144 @@ DateTime today = DateTime.Today;
 
 if (eventDate < today)
 {
-    Console.WriteLine("Событие в прошлом");
+    Console.WriteLine("РЎРѕР±С‹С‚РёРµ РІ РїСЂРѕС€Р»РѕРј");
 }
 else if (eventDate > today)
 {
-    Console.WriteLine("Событие в будущем");
+    Console.WriteLine("РЎРѕР±С‹С‚РёРµ РІ Р±СѓРґСѓС‰РµРј");
 }
 else
 {
-    Console.WriteLine("Событие сегодня");
+    Console.WriteLine("РЎРѕР±С‹С‚РёРµ СЃРµРіРѕРґРЅСЏ");
 }
 ```
 
 ---
 
-## 6. DateTime.Kind и TimeZone (часовые пояса)
+## 6. DateTime.Kind Рё TimeZone (С‡Р°СЃРѕРІС‹Рµ РїРѕСЏСЃР°)
 
-### Проблема: какое время имеется в виду?
+### РџСЂРѕР±Р»РµРјР°: РєР°РєРѕРµ РІСЂРµРјСЏ РёРјРµРµС‚СЃСЏ РІ РІРёРґСѓ?
 
 ```
-DateTime.Now = 15.03.2024 14:30 (локальное время, например, московское)
-DateTime.UtcNow = 15.03.2024 11:30 (UTC, отличается на 3 часа)
+DateTime.Now = 15.03.2024 14:30 (Р»РѕРєР°Р»СЊРЅРѕРµ РІСЂРµРјСЏ, РЅР°РїСЂРёРјРµСЂ, РјРѕСЃРєРѕРІСЃРєРѕРµ)
+DateTime.UtcNow = 15.03.2024 11:30 (UTC, РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РЅР° 3 С‡Р°СЃР°)
 
-Они показывают ОДИНАКОВЫЙ момент времени!
-Но в разных часовых поясах!
+РћРЅРё РїРѕРєР°Р·С‹РІР°СЋС‚ РћР”РРќРђРљРћР’Р«Р™ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё!
+РќРѕ РІ СЂР°Р·РЅС‹С… С‡Р°СЃРѕРІС‹С… РїРѕСЏСЃР°С…!
 ```
 
-### DateTimeKind (указатель на часовой пояс)
+### DateTimeKind (СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С‡Р°СЃРѕРІРѕР№ РїРѕСЏСЃ)
 
 ```csharp
-// Локальное время
+// Р›РѕРєР°Р»СЊРЅРѕРµ РІСЂРµРјСЏ
 DateTime local = new DateTime(2024, 3, 15, 14, 30, 0, DateTimeKind.Local);
 Console.WriteLine(local.Kind);  // Local
 
-// UTC время
+// UTC РІСЂРµРјСЏ
 DateTime utc = new DateTime(2024, 3, 15, 11, 30, 0, DateTimeKind.Utc);
 Console.WriteLine(utc.Kind);  // Utc
 
-// Неопределенное (мы не знаем, какой часовой пояс)
+// РќРµРѕРїСЂРµРґРµР»РµРЅРЅРѕРµ (РјС‹ РЅРµ Р·РЅР°РµРј, РєР°РєРѕР№ С‡Р°СЃРѕРІРѕР№ РїРѕСЏСЃ)
 DateTime unspecified = new DateTime(2024, 3, 15, 14, 30, 0, DateTimeKind.Unspecified);
 Console.WriteLine(unspecified.Kind);  // Unspecified
 
-// Правило для распределенных систем:
-// Всегда передавайте время в UTC!
-// На клиенте преобразуйте в локальное время для отображения
+// РџСЂР°РІРёР»Рѕ РґР»СЏ СЂР°СЃРїСЂРµРґРµР»РµРЅРЅС‹С… СЃРёСЃС‚РµРј:
+// Р’СЃРµРіРґР° РїРµСЂРµРґР°РІР°Р№С‚Рµ РІСЂРµРјСЏ РІ UTC!
+// РќР° РєР»РёРµРЅС‚Рµ РїСЂРµРѕР±СЂР°Р·СѓР№С‚Рµ РІ Р»РѕРєР°Р»СЊРЅРѕРµ РІСЂРµРјСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
 ```
 
-### DateTimeOffset (DateTime с информацией о часовом поясе)
+### DateTimeOffset (DateTime СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ С‡Р°СЃРѕРІРѕРј РїРѕСЏСЃРµ)
 
 ```csharp
-// DateTime хранит только дату/время, но не знает пояс
-DateTime dt = DateTime.Now;  // 14:30 в Москве, но компилятор не знает про Москву
+// DateTime С…СЂР°РЅРёС‚ С‚РѕР»СЊРєРѕ РґР°С‚Сѓ/РІСЂРµРјСЏ, РЅРѕ РЅРµ Р·РЅР°РµС‚ РїРѕСЏСЃ
+DateTime dt = DateTime.Now;  // 14:30 РІ РњРѕСЃРєРІРµ, РЅРѕ РєРѕРјРїРёР»СЏС‚РѕСЂ РЅРµ Р·РЅР°РµС‚ РїСЂРѕ РњРѕСЃРєРІСѓ
 
-// DateTimeOffset хранит дату/время И смещение от UTC
+// DateTimeOffset С…СЂР°РЅРёС‚ РґР°С‚Сѓ/РІСЂРµРјСЏ Р СЃРјРµС‰РµРЅРёРµ РѕС‚ UTC
 DateTimeOffset dto = DateTimeOffset.Now;  // 14:30 +03:00
 Console.WriteLine(dto);  // 15.03.2024 14:30:00 +03:00
 
-// Преобразование между системами
+// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РјРµР¶РґСѓ СЃРёСЃС‚РµРјР°РјРё
 DateTime utcTime = DateTime.UtcNow;
-DateTimeOffset dtoFromUtc = new DateTimeOffset(utcTime, TimeSpan.Zero);  // UTC пояс
+DateTimeOffset dtoFromUtc = new DateTimeOffset(utcTime, TimeSpan.Zero);  // UTC РїРѕСЏСЃ
 DateTimeOffset dtoMoscow = new DateTimeOffset(DateTime.Now, TimeSpan.FromHours(3));  // +03:00
 
-// Преобразование DateTimeOffset в DateTime
+// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ DateTimeOffset РІ DateTime
 DateTime convertedDt = dto.DateTime;
 ```
 
-### Лучшая практика для QA
+### Р›СѓС‡С€Р°СЏ РїСЂР°РєС‚РёРєР° РґР»СЏ QA
 
 ```csharp
-// Сравнивайте даты в UTC для надежности
-DateTime webTime = DateTime.Parse("2024-03-15T14:30:00");  // Откуда-то с веб-сайта
+// РЎСЂР°РІРЅРёРІР°Р№С‚Рµ РґР°С‚С‹ РІ UTC РґР»СЏ РЅР°РґРµР¶РЅРѕСЃС‚Рё
+DateTime webTime = DateTime.Parse("2024-03-15T14:30:00");  // РћС‚РєСѓРґР°-С‚Рѕ СЃ РІРµР±-СЃР°Р№С‚Р°
 DateTime expectedTime = new DateTime(2024, 3, 15, 14, 30, 0);
 
-// ? Опасно: разные пояса
+// ? РћРїР°СЃРЅРѕ: СЂР°Р·РЅС‹Рµ РїРѕСЏСЃР°
 if (webTime == expectedTime) { }
 
-// ? Безопаснее: преобразуйте в UTC для сравнения
+// ? Р‘РµР·РѕРїР°СЃРЅРµРµ: РїСЂРµРѕР±СЂР°Р·СѓР№С‚Рµ РІ UTC РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ
 if (webTime.ToUniversalTime() == expectedTime.ToUniversalTime()) { }
 ```
 
 ---
 
-## 7. TimeSpan — Интервалы времени
+## 7. TimeSpan вЂ” РРЅС‚РµСЂРІР°Р»С‹ РІСЂРµРјРµРЅРё
 
-### Создание TimeSpan
+### РЎРѕР·РґР°РЅРёРµ TimeSpan
 
 ```csharp
-// Конкретное значение
-TimeSpan ts1 = new TimeSpan(2, 30, 45);  // 2 часа, 30 минут, 45 секунд
+// РљРѕРЅРєСЂРµС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+TimeSpan ts1 = new TimeSpan(2, 30, 45);  // 2 С‡Р°СЃР°, 30 РјРёРЅСѓС‚, 45 СЃРµРєСѓРЅРґ
 Console.WriteLine(ts1);  // 02:30:45
 
-// Из дней
-TimeSpan ts2 = TimeSpan.FromDays(5);     // 5 дней
+// РР· РґРЅРµР№
+TimeSpan ts2 = TimeSpan.FromDays(5);     // 5 РґРЅРµР№
 Console.WriteLine(ts2);  // 5.00:00:00
 
-// Из часов
-TimeSpan ts3 = TimeSpan.FromHours(2.5);  // 2.5 часа
+// РР· С‡Р°СЃРѕРІ
+TimeSpan ts3 = TimeSpan.FromHours(2.5);  // 2.5 С‡Р°СЃР°
 Console.WriteLine(ts3);  // 02:30:00
 
-// Из минут
-TimeSpan ts4 = TimeSpan.FromMinutes(90); // 90 минут
+// РР· РјРёРЅСѓС‚
+TimeSpan ts4 = TimeSpan.FromMinutes(90); // 90 РјРёРЅСѓС‚
 Console.WriteLine(ts4);  // 01:30:00
 
-// Из секунд
-TimeSpan ts5 = TimeSpan.FromSeconds(3600);  // 3600 секунд = 1 час
+// РР· СЃРµРєСѓРЅРґ
+TimeSpan ts5 = TimeSpan.FromSeconds(3600);  // 3600 СЃРµРєСѓРЅРґ = 1 С‡Р°СЃ
 Console.WriteLine(ts5);  // 01:00:00
 
-// Из миллисекунд
-TimeSpan ts6 = TimeSpan.FromMilliseconds(1000);  // 1000 мс = 1 сек
+// РР· РјРёР»Р»РёСЃРµРєСѓРЅРґ
+TimeSpan ts6 = TimeSpan.FromMilliseconds(1000);  // 1000 РјСЃ = 1 СЃРµРє
 Console.WriteLine(ts6);  // 00:00:01
 ```
 
-### Арифметика с TimeSpan
+### РђСЂРёС„РјРµС‚РёРєР° СЃ TimeSpan
 
 ```csharp
 TimeSpan duration1 = TimeSpan.FromHours(2);
 TimeSpan duration2 = TimeSpan.FromMinutes(30);
 
-// Сложение
-TimeSpan sum = duration1 + duration2;  // 2 часа + 30 минут = 2:30
+// РЎР»РѕР¶РµРЅРёРµ
+TimeSpan sum = duration1 + duration2;  // 2 С‡Р°СЃР° + 30 РјРёРЅСѓС‚ = 2:30
 Console.WriteLine(sum);  // 02:30:00
 
-// Вычитание
-TimeSpan diff = duration1 - duration2;  // 2 часа - 30 минут = 1:30
+// Р’С‹С‡РёС‚Р°РЅРёРµ
+TimeSpan diff = duration1 - duration2;  // 2 С‡Р°СЃР° - 30 РјРёРЅСѓС‚ = 1:30
 Console.WriteLine(diff);  // 01:30:00
 
-// Умножение
-TimeSpan doubled = duration1 * 2;  // 2 часа * 2 = 4 часа
+// РЈРјРЅРѕР¶РµРЅРёРµ
+TimeSpan doubled = duration1 * 2;  // 2 С‡Р°СЃР° * 2 = 4 С‡Р°СЃР°
 Console.WriteLine(doubled);  // 04:00:00
 
-// Деление
-TimeSpan halved = duration1 / 2;  // 2 часа / 2 = 1 час
+// Р”РµР»РµРЅРёРµ
+TimeSpan halved = duration1 / 2;  // 2 С‡Р°СЃР° / 2 = 1 С‡Р°СЃ
 Console.WriteLine(halved);  // 01:00:00
 ```
 
-### Извлечение компонентов
+### РР·РІР»РµС‡РµРЅРёРµ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
 
 ```csharp
-TimeSpan ts = new TimeSpan(3, 5, 30, 45);  // 3 дня, 5 часов, 30 минут, 45 секунд
+TimeSpan ts = new TimeSpan(3, 5, 30, 45);  // 3 РґРЅСЏ, 5 С‡Р°СЃРѕРІ, 30 РјРёРЅСѓС‚, 45 СЃРµРєСѓРЅРґ
 
 Console.WriteLine(ts.Days);         // 3
 Console.WriteLine(ts.Hours);        // 5
@@ -420,83 +420,83 @@ Console.WriteLine(ts.Minutes);      // 30
 Console.WriteLine(ts.Seconds);      // 45
 Console.WriteLine(ts.Milliseconds); // 0
 
-// Общее количество
-Console.WriteLine(ts.TotalDays);    // 3.23... (дней)
-Console.WriteLine(ts.TotalHours);   // 77.51... (часов)
-Console.WriteLine(ts.TotalMinutes); // 4650.75 (минут)
-Console.WriteLine(ts.TotalSeconds); // 279045 (секунд)
+// РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ
+Console.WriteLine(ts.TotalDays);    // 3.23... (РґРЅРµР№)
+Console.WriteLine(ts.TotalHours);   // 77.51... (С‡Р°СЃРѕРІ)
+Console.WriteLine(ts.TotalMinutes); // 4650.75 (РјРёРЅСѓС‚)
+Console.WriteLine(ts.TotalSeconds); // 279045 (СЃРµРєСѓРЅРґ)
 ```
 
 ---
 
-## 8. Практический пример: Измерение производительности
+## 8. РџСЂР°РєС‚РёС‡РµСЃРєРёР№ РїСЂРёРјРµСЂ: РР·РјРµСЂРµРЅРёРµ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё
 
-### С DateTime (неточно)
+### РЎ DateTime (РЅРµС‚РѕС‡РЅРѕ)
 
 ```csharp
 DateTime start = DateTime.Now;
-// Какой-то код...
-System.Threading.Thread.Sleep(2000);  // Ждем 2 секунды
+// РљР°РєРѕР№-С‚Рѕ РєРѕРґ...
+System.Threading.Thread.Sleep(2000);  // Р–РґРµРј 2 СЃРµРєСѓРЅРґС‹
 DateTime end = DateTime.Now;
 
 TimeSpan elapsed = end - start;
-Console.WriteLine($"Прошло: {elapsed.TotalSeconds} секунд");  // ~2 секунды
+Console.WriteLine($"РџСЂРѕС€Р»Рѕ: {elapsed.TotalSeconds} СЃРµРєСѓРЅРґ");  // ~2 СЃРµРєСѓРЅРґС‹
 ```
 
-### С Stopwatch (рекомендуется)
+### РЎ Stopwatch (СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ)
 
 ```csharp
 using System.Diagnostics;
 
 Stopwatch sw = Stopwatch.StartNew();
 
-// Какой-то код...
-System.Threading.Thread.Sleep(2000);  // Ждем 2 секунды
+// РљР°РєРѕР№-С‚Рѕ РєРѕРґ...
+System.Threading.Thread.Sleep(2000);  // Р–РґРµРј 2 СЃРµРєСѓРЅРґС‹
 
 sw.Stop();
 
-Console.WriteLine($"Прошло: {sw.ElapsedMilliseconds} мс");    // ~2000
-Console.WriteLine($"Прошло: {sw.Elapsed.TotalSeconds} секунд");  // ~2
+Console.WriteLine($"РџСЂРѕС€Р»Рѕ: {sw.ElapsedMilliseconds} РјСЃ");    // ~2000
+Console.WriteLine($"РџСЂРѕС€Р»Рѕ: {sw.Elapsed.TotalSeconds} СЃРµРєСѓРЅРґ");  // ~2
 
-// Stopwatch точнее для измерения производительности!
+// Stopwatch С‚РѕС‡РЅРµРµ РґР»СЏ РёР·РјРµСЂРµРЅРёСЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё!
 ```
 
-### Пример для QA: проверка скорости загрузки
+### РџСЂРёРјРµСЂ РґР»СЏ QA: РїСЂРѕРІРµСЂРєР° СЃРєРѕСЂРѕСЃС‚Рё Р·Р°РіСЂСѓР·РєРё
 
 ```csharp
 Stopwatch sw = Stopwatch.StartNew();
 
-// Загружаем страницу
+// Р—Р°РіСЂСѓР¶Р°РµРј СЃС‚СЂР°РЅРёС†Сѓ
 // driver.Navigate().GoToUrl("https://example.com");
 
 sw.Stop();
 
 TimeSpan loadTime = sw.Elapsed;
 
-// Проверяем, что страница загрузилась за разумное время
+// РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЃС‚СЂР°РЅРёС†Р° Р·Р°РіСЂСѓР·РёР»Р°СЃСЊ Р·Р° СЂР°Р·СѓРјРЅРѕРµ РІСЂРµРјСЏ
 if (loadTime < TimeSpan.FromSeconds(5))
 {
-    Console.WriteLine("? Страница загрузилась быстро");
+    Console.WriteLine("? РЎС‚СЂР°РЅРёС†Р° Р·Р°РіСЂСѓР·РёР»Р°СЃСЊ Р±С‹СЃС‚СЂРѕ");
 }
 else
 {
-    Console.WriteLine("? Страница загружается медленно!");
+    Console.WriteLine("? РЎС‚СЂР°РЅРёС†Р° Р·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ РјРµРґР»РµРЅРЅРѕ!");
 }
 ```
 
 ---
 
-## 9. Практический пример для QA
+## 9. РџСЂР°РєС‚РёС‡РµСЃРєРёР№ РїСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
 public class DateValidationTest
 {
     public void TestPageDate()
     {
-        // Предположим, на странице написана дата: "2024-03-15"
+        // РџСЂРµРґРїРѕР»РѕР¶РёРј, РЅР° СЃС‚СЂР°РЅРёС†Рµ РЅР°РїРёСЃР°РЅР° РґР°С‚Р°: "2024-03-15"
         string dateFromPage = "2024-03-15";
         
-        // Парсим в нужном формате
+        // РџР°СЂСЃРёРј РІ РЅСѓР¶РЅРѕРј С„РѕСЂРјР°С‚Рµ
         bool parsed = DateTime.TryParseExact(
             dateFromPage, 
             "yyyy-MM-dd", 
@@ -507,35 +507,35 @@ public class DateValidationTest
         
         if (!parsed)
         {
-            Console.WriteLine("Ошибка: не удалось распарсить дату");
+            Console.WriteLine("РћС€РёР±РєР°: РЅРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°СЂСЃРёС‚СЊ РґР°С‚Сѓ");
             return;
         }
         
-        // Проверяем, что это сегодня (сравниваем только даты, не время)
+        // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЌС‚Рѕ СЃРµРіРѕРґРЅСЏ (СЃСЂР°РІРЅРёРІР°РµРј С‚РѕР»СЊРєРѕ РґР°С‚С‹, РЅРµ РІСЂРµРјСЏ)
         if (pageDate.Date == DateTime.Today)
         {
-            Console.WriteLine("? Дата на странице = сегодня");
+            Console.WriteLine("? Р”Р°С‚Р° РЅР° СЃС‚СЂР°РЅРёС†Рµ = СЃРµРіРѕРґРЅСЏ");
         }
         else
         {
-            Console.WriteLine("? Дата не совпадает");
+            Console.WriteLine("? Р”Р°С‚Р° РЅРµ СЃРѕРІРїР°РґР°РµС‚");
         }
     }
     
     public void TestEventDate()
     {
-        DateTime eventDate = new DateTime(2024, 4, 15);  // 15 апреля
+        DateTime eventDate = new DateTime(2024, 4, 15);  // 15 Р°РїСЂРµР»СЏ
         DateTime today = DateTime.Today;
         
         TimeSpan daysUntilEvent = eventDate - today;
         
         if (daysUntilEvent.TotalDays > 0)
         {
-            Console.WriteLine($"До события осталось {daysUntilEvent.Days} дней");
+            Console.WriteLine($"Р”Рѕ СЃРѕР±С‹С‚РёСЏ РѕСЃС‚Р°Р»РѕСЃСЊ {daysUntilEvent.Days} РґРЅРµР№");
         }
         else
         {
-            Console.WriteLine("Событие уже прошло");
+            Console.WriteLine("РЎРѕР±С‹С‚РёРµ СѓР¶Рµ РїСЂРѕС€Р»Рѕ");
         }
     }
     
@@ -543,15 +543,15 @@ public class DateValidationTest
     {
         Stopwatch sw = Stopwatch.StartNew();
         
-        // Здесь был бы код загрузки страницы
+        // Р—РґРµСЃСЊ Р±С‹Р» Р±С‹ РєРѕРґ Р·Р°РіСЂСѓР·РєРё СЃС‚СЂР°РЅРёС†С‹
         System.Threading.Thread.Sleep(2000);
         
         sw.Stop();
         
-        // Проверяем, что загрузилась быстро
+        // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ Р·Р°РіСЂСѓР·РёР»Р°СЃСЊ Р±С‹СЃС‚СЂРѕ
         if (sw.Elapsed < TimeSpan.FromSeconds(5))
         {
-            Console.WriteLine("? Страница загрузилась быстро");
+            Console.WriteLine("? РЎС‚СЂР°РЅРёС†Р° Р·Р°РіСЂСѓР·РёР»Р°СЃСЊ Р±С‹СЃС‚СЂРѕ");
         }
     }
 }
@@ -559,84 +559,84 @@ public class DateValidationTest
 
 ---
 
-## 10. Частые ошибки новичков
+## 10. Р§Р°СЃС‚С‹Рµ РѕС€РёР±РєРё РЅРѕРІРёС‡РєРѕРІ
 
-### ? Ошибка 1: Забыли, что DateTime неизменяемый
+### ? РћС€РёР±РєР° 1: Р—Р°Р±С‹Р»Рё, С‡С‚Рѕ DateTime РЅРµРёР·РјРµРЅСЏРµРјС‹Р№
 ```csharp
 DateTime date = new DateTime(2024, 3, 15);
-date.AddDays(1);  // ? Это ничего не изменяет!
-Console.WriteLine(date);  // 15.03.2024 (не изменилось!)
+date.AddDays(1);  // ? Р­С‚Рѕ РЅРёС‡РµРіРѕ РЅРµ РёР·РјРµРЅСЏРµС‚!
+Console.WriteLine(date);  // 15.03.2024 (РЅРµ РёР·РјРµРЅРёР»РѕСЃСЊ!)
 
-// ? Правильно
-date = date.AddDays(1);  // Присвойте результат
+// ? РџСЂР°РІРёР»СЊРЅРѕ
+date = date.AddDays(1);  // РџСЂРёСЃРІРѕР№С‚Рµ СЂРµР·СѓР»СЊС‚Р°С‚
 Console.WriteLine(date);  // 16.03.2024
 ```
 
-### ? Ошибка 2: Неправильный формат при парсинге
+### ? РћС€РёР±РєР° 2: РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ С„РѕСЂРјР°С‚ РїСЂРё РїР°СЂСЃРёРЅРіРµ
 ```csharp
-// ? Ошибка: строка в формате "dd.MM.yyyy", а мы указали другой
+// ? РћС€РёР±РєР°: СЃС‚СЂРѕРєР° РІ С„РѕСЂРјР°С‚Рµ "dd.MM.yyyy", Р° РјС‹ СѓРєР°Р·Р°Р»Рё РґСЂСѓРіРѕР№
 string dateString = "15.03.2024";
 DateTime dt = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-// ?? Исключение!
+// ?? РСЃРєР»СЋС‡РµРЅРёРµ!
 
-// ? Правильно
+// ? РџСЂР°РІРёР»СЊРЅРѕ
 DateTime dt = DateTime.ParseExact(dateString, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
 ```
 
-### ? Ошибка 3: Сравнение DateTime с разным временем
+### ? РћС€РёР±РєР° 3: РЎСЂР°РІРЅРµРЅРёРµ DateTime СЃ СЂР°Р·РЅС‹Рј РІСЂРµРјРµРЅРµРј
 ```csharp
 DateTime dt1 = new DateTime(2024, 3, 15, 10, 30, 0);
 DateTime dt2 = new DateTime(2024, 3, 15, 14, 45, 0);
 
-if (dt1 == dt2)  // ? false (разное время)
+if (dt1 == dt2)  // ? false (СЂР°Р·РЅРѕРµ РІСЂРµРјСЏ)
 {
-    // Не выполнится
+    // РќРµ РІС‹РїРѕР»РЅРёС‚СЃСЏ
 }
 
-// ? Если нужна только дата
-if (dt1.Date == dt2.Date)  // ? true (одна дата)
+// ? Р•СЃР»Рё РЅСѓР¶РЅР° С‚РѕР»СЊРєРѕ РґР°С‚Р°
+if (dt1.Date == dt2.Date)  // ? true (РѕРґРЅР° РґР°С‚Р°)
 {
-    // Выполнится!
+    // Р’С‹РїРѕР»РЅРёС‚СЃСЏ!
 }
 ```
 
-### ? Ошибка 4: Забыли .Date при сравнении дат
+### ? РћС€РёР±РєР° 4: Р—Р°Р±С‹Р»Рё .Date РїСЂРё СЃСЂР°РІРЅРµРЅРёРё РґР°С‚
 ```csharp
 DateTime today = DateTime.Today;  // 15.03.2024 00:00:00
 DateTime now = DateTime.Now;      // 15.03.2024 14:30:45
 
-if (today == now)  // ? false (разное время)
+if (today == now)  // ? false (СЂР°Р·РЅРѕРµ РІСЂРµРјСЏ)
 {
-    // Не выполнится
+    // РќРµ РІС‹РїРѕР»РЅРёС‚СЃСЏ
 }
 
 if (today.Date == now.Date)  // ? true
 {
-    // Выполнится!
+    // Р’С‹РїРѕР»РЅРёС‚СЃСЏ!
 }
 ```
 
 ---
 
-## 11. Лучшие практики
+## 11. Р›СѓС‡С€РёРµ РїСЂР°РєС‚РёРєРё
 
 ? **DO:**
-- Используйте `DateTime.UtcNow` для сохранения в БД
-- Используйте `TimeSpan.FromHours/Minutes/Seconds` для создания интервалов
-- Используйте `DateTime.TryParseExact` с `CultureInfo.InvariantCulture` для надежного парсинга
-- Сравнивайте только даты через `.Date` если время не важно
-- Используйте `Stopwatch` для измерения производительности
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `DateTime.UtcNow` РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ Р‘Р”
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `TimeSpan.FromHours/Minutes/Seconds` РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РёРЅС‚РµСЂРІР°Р»РѕРІ
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `DateTime.TryParseExact` СЃ `CultureInfo.InvariantCulture` РґР»СЏ РЅР°РґРµР¶РЅРѕРіРѕ РїР°СЂСЃРёРЅРіР°
+- РЎСЂР°РІРЅРёРІР°Р№С‚Рµ С‚РѕР»СЊРєРѕ РґР°С‚С‹ С‡РµСЂРµР· `.Date` РµСЃР»Рё РІСЂРµРјСЏ РЅРµ РІР°Р¶РЅРѕ
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `Stopwatch` РґР»СЏ РёР·РјРµСЂРµРЅРёСЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё
 
 ? **DON'T:**
-- Не забывайте, что DateTime неизменяемый (присваивайте результат)
-- Не сравнивайте DateTime без учета времени, если оно важно
-- Не игнорируйте часовые пояса в распределенных системах
-- Не используйте `DateTime.Parse` без проверки формата
-- Не используйте `string.Equals` для сравнения дат
+- РќРµ Р·Р°Р±С‹РІР°Р№С‚Рµ, С‡С‚Рѕ DateTime РЅРµРёР·РјРµРЅСЏРµРјС‹Р№ (РїСЂРёСЃРІР°РёРІР°Р№С‚Рµ СЂРµР·СѓР»СЊС‚Р°С‚)
+- РќРµ СЃСЂР°РІРЅРёРІР°Р№С‚Рµ DateTime Р±РµР· СѓС‡РµС‚Р° РІСЂРµРјРµРЅРё, РµСЃР»Рё РѕРЅРѕ РІР°Р¶РЅРѕ
+- РќРµ РёРіРЅРѕСЂРёСЂСѓР№С‚Рµ С‡Р°СЃРѕРІС‹Рµ РїРѕСЏСЃР° РІ СЂР°СЃРїСЂРµРґРµР»РµРЅРЅС‹С… СЃРёСЃС‚РµРјР°С…
+- РќРµ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ `DateTime.Parse` Р±РµР· РїСЂРѕРІРµСЂРєРё С„РѕСЂРјР°С‚Р°
+- РќРµ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ `string.Equals` РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ РґР°С‚
 
 ---
 
-## Файлы в проекте:
-- `Program.cs` — примеры работы с DateTime и TimeSpan
-- `DateTimeOffsetDemo.cs` — примеры работы с часовыми поясами
-- `PerformanceTest.cs` — примеры измерения производительности
+## Р¤Р°Р№Р»С‹ РІ РїСЂРѕРµРєС‚Рµ:
+- `Program.cs` вЂ” РїСЂРёРјРµСЂС‹ СЂР°Р±РѕС‚С‹ СЃ DateTime Рё TimeSpan
+- `DateTimeOffsetDemo.cs` вЂ” РїСЂРёРјРµСЂС‹ СЂР°Р±РѕС‚С‹ СЃ С‡Р°СЃРѕРІС‹РјРё РїРѕСЏСЃР°РјРё
+- `PerformanceTest.cs` вЂ” РїСЂРёРјРµСЂС‹ РёР·РјРµСЂРµРЅРёСЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё

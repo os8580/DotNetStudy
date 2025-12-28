@@ -1,34 +1,34 @@
-# Topic6 — Обобщения (Generics) (Полный курс для начинающих)
+п»ї# Topic6 вЂ” РћР±РѕР±С‰РµРЅРёСЏ (Generics) (РџРѕР»РЅС‹Р№ РєСѓСЂСЃ РґР»СЏ РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-## Цель
-Понять, как использовать обобщенные типы (Generics), почему они важны, и как с их помощью писать переиспользуемый код.
+## Р¦РµР»СЊ
+РџРѕРЅСЏС‚СЊ, РєР°Рє РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РѕР±РѕР±С‰РµРЅРЅС‹Рµ С‚РёРїС‹ (Generics), РїРѕС‡РµРјСѓ РѕРЅРё РІР°Р¶РЅС‹, Рё РєР°Рє СЃ РёС… РїРѕРјРѕС‰СЊСЋ РїРёСЃР°С‚СЊ РїРµСЂРµРёСЃРїРѕР»СЊР·СѓРµРјС‹Р№ РєРѕРґ.
 
 ---
 
-## 1. Что такое Generics? (Для самых начинающих)
+## 1. Р§С‚Рѕ С‚Р°РєРѕРµ Generics? (Р”Р»СЏ СЃР°РјС‹С… РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-### Аналогия из жизни
+### РђРЅР°Р»РѕРіРёСЏ РёР· Р¶РёР·РЅРё
 ```
-Коробка с надписью "КОРОБКА" может хранить что угодно:
-- Книги? Да!
-- Игрушки? Да!
-- Электроника? Да!
-- Но я не знаю, что там лежит, пока не открою!
+РљРѕСЂРѕР±РєР° СЃ РЅР°РґРїРёСЃСЊСЋ "РљРћР РћР‘РљРђ" РјРѕР¶РµС‚ С…СЂР°РЅРёС‚СЊ С‡С‚Рѕ СѓРіРѕРґРЅРѕ:
+- РљРЅРёРіРё? Р”Р°!
+- РРіСЂСѓС€РєРё? Р”Р°!
+- Р­Р»РµРєС‚СЂРѕРЅРёРєР°? Р”Р°!
+- РќРѕ СЏ РЅРµ Р·РЅР°СЋ, С‡С‚Рѕ С‚Р°Рј Р»РµР¶РёС‚, РїРѕРєР° РЅРµ РѕС‚РєСЂРѕСЋ!
 
-Обобщенная коробка <T> с ярлычком (String/int/User):
-- Коробка<int> хранит только целые числа
-- Коробка<string> хранит только строки
-- Я знаю, что там лежит, без открытия!
+РћР±РѕР±С‰РµРЅРЅР°СЏ РєРѕСЂРѕР±РєР° <T> СЃ СЏСЂР»С‹С‡РєРѕРј (String/int/User):
+- РљРѕСЂРѕР±РєР°<int> С…СЂР°РЅРёС‚ С‚РѕР»СЊРєРѕ С†РµР»С‹Рµ С‡РёСЃР»Р°
+- РљРѕСЂРѕР±РєР°<string> С…СЂР°РЅРёС‚ С‚РѕР»СЊРєРѕ СЃС‚СЂРѕРєРё
+- РЇ Р·РЅР°СЋ, С‡С‚Рѕ С‚Р°Рј Р»РµР¶РёС‚, Р±РµР· РѕС‚РєСЂС‹С‚РёСЏ!
 ```
 
-### В программировании:
-Generics позволяют писать код, который работает с **любой тип**, но **безопасно**.
+### Р’ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРё:
+Generics РїРѕР·РІРѕР»СЏСЋС‚ РїРёСЃР°С‚СЊ РєРѕРґ, РєРѕС‚РѕСЂС‹Р№ СЂР°Р±РѕС‚Р°РµС‚ СЃ **Р»СЋР±РѕР№ С‚РёРї**, РЅРѕ **Р±РµР·РѕРїР°СЃРЅРѕ**.
 
 ```csharp
-// БЕЗ Generics (опасно)
+// Р‘Р•Р— Generics (РѕРїР°СЃРЅРѕ)
 public class Container
 {
-    private object value;  // object может быть чем угодно!
+    private object value;  // object РјРѕР¶РµС‚ Р±С‹С‚СЊ С‡РµРј СѓРіРѕРґРЅРѕ!
     
     public void Set(object val) => value = val;
     public object Get() => value;
@@ -36,12 +36,12 @@ public class Container
 
 Container container = new Container();
 container.Set(42);
-int number = (int)container.Get();  // ? Нужно кастовать! Может упасть!
+int number = (int)container.Get();  // ? РќСѓР¶РЅРѕ РєР°СЃС‚РѕРІР°С‚СЊ! РњРѕР¶РµС‚ СѓРїР°СЃС‚СЊ!
 
 container.Set("Hello");
 int wrongCast = (int)container.Get();  // ?? InvalidCastException!
 
-// С Generics (безопасно)
+// РЎ Generics (Р±РµР·РѕРїР°СЃРЅРѕ)
 public class Container<T>
 {
     private T value;
@@ -52,21 +52,21 @@ public class Container<T>
 
 Container<int> intContainer = new Container<int>();
 intContainer.Set(42);
-int number = intContainer.Get();  // ? Безопасно, без каста
+int number = intContainer.Get();  // ? Р‘РµР·РѕРїР°СЃРЅРѕ, Р±РµР· РєР°СЃС‚Р°
 
 Container<string> stringContainer = new Container<string>();
 stringContainer.Set("Hello");
-string text = stringContainer.Get();  // ? Безопасно
+string text = stringContainer.Get();  // ? Р‘РµР·РѕРїР°СЃРЅРѕ
 ```
 
 ---
 
-## 2. Простые примеры Generics
+## 2. РџСЂРѕСЃС‚С‹Рµ РїСЂРёРјРµСЂС‹ Generics
 
-### Обобщенный класс
+### РћР±РѕР±С‰РµРЅРЅС‹Р№ РєР»Р°СЃСЃ
 
 ```csharp
-// Generic класс с параметром T
+// Generic РєР»Р°СЃСЃ СЃ РїР°СЂР°РјРµС‚СЂРѕРј T
 public class Box<T>
 {
     private T content;
@@ -87,7 +87,7 @@ public class Box<T>
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 var intBox = new Box<int>();
 intBox.Put(100);
 Console.WriteLine(intBox.Get());  // 100
@@ -101,12 +101,12 @@ userBox.Put(new User { Name = "Alice" });
 Console.WriteLine(userBox.Get().Name);  // Alice
 ```
 
-### Обобщенный метод
+### РћР±РѕР±С‰РµРЅРЅС‹Р№ РјРµС‚РѕРґ
 
 ```csharp
 public class Utility
 {
-    // Generic метод
+    // Generic РјРµС‚РѕРґ
     public static void PrintArray<T>(T[] array)
     {
         foreach (T item in array)
@@ -115,7 +115,7 @@ public class Utility
         }
     }
     
-    // Swap два элемента
+    // Swap РґРІР° СЌР»РµРјРµРЅС‚Р°
     public static void Swap<T>(ref T a, ref T b)
     {
         T temp = a;
@@ -124,7 +124,7 @@ public class Utility
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 int[] intArray = { 1, 2, 3 };
 Utility.PrintArray(intArray);
 
@@ -138,31 +138,31 @@ Console.WriteLine($"{x}, {y}");  // 10, 5
 
 ---
 
-## 3. Ограничения (Constraints)
+## 3. РћРіСЂР°РЅРёС‡РµРЅРёСЏ (Constraints)
 
-Иногда нужно ограничить, какие типы можно использовать:
+РРЅРѕРіРґР° РЅСѓР¶РЅРѕ РѕРіСЂР°РЅРёС‡РёС‚СЊ, РєР°РєРёРµ С‚РёРїС‹ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ:
 
-### where T : class (только классы)
+### where T : class (С‚РѕР»СЊРєРѕ РєР»Р°СЃСЃС‹)
 
 ```csharp
-public class Repository<T> where T : class  // T должен быть классом
+public class Repository<T> where T : class  // T РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РєР»Р°СЃСЃРѕРј
 {
     private List<T> items = new List<T>();
     
     public void Add(T item) => items.Add(item);
 }
 
-// ? OK — User это класс
+// ? OK вЂ” User СЌС‚Рѕ РєР»Р°СЃСЃ
 Repository<User> userRepo = new Repository<User>();
 
-// ? Ошибка — int это struct (значимый тип)
+// ? РћС€РёР±РєР° вЂ” int СЌС‚Рѕ struct (Р·РЅР°С‡РёРјС‹Р№ С‚РёРї)
 // Repository<int> intRepo = new Repository<int>();
 ```
 
-### where T : struct (только структуры)
+### where T : struct (С‚РѕР»СЊРєРѕ СЃС‚СЂСѓРєС‚СѓСЂС‹)
 
 ```csharp
-public class Validator<T> where T : struct  // T должен быть struct
+public class Validator<T> where T : struct  // T РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ struct
 {
     public bool IsValid(T value)
     {
@@ -170,56 +170,56 @@ public class Validator<T> where T : struct  // T должен быть struct
     }
 }
 
-// ? OK — int это struct
+// ? OK вЂ” int СЌС‚Рѕ struct
 Validator<int> intValidator = new Validator<int>();
 
-// ? Ошибка — User это класс
+// ? РћС€РёР±РєР° вЂ” User СЌС‚Рѕ РєР»Р°СЃСЃ
 // Validator<User> userValidator = new Validator<User>();
 ```
 
-### where T : new() (должен иметь конструктор без параметров)
+### where T : new() (РґРѕР»Р¶РµРЅ РёРјРµС‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ)
 
 ```csharp
-public class Factory<T> where T : new()  // T должен иметь new()
+public class Factory<T> where T : new()  // T РґРѕР»Р¶РµРЅ РёРјРµС‚СЊ new()
 {
     public T Create()
     {
-        return new T();  // Можем вызвать конструктор
+        return new T();  // РњРѕР¶РµРј РІС‹Р·РІР°С‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     }
 }
 
 public class MyClass { }
 
-// ? OK — MyClass имеет конструктор без параметров
+// ? OK вЂ” MyClass РёРјРµРµС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 Factory<MyClass> factory = new Factory<MyClass>();
 MyClass instance = factory.Create();
 
-// ? Ошибка — User требует параметр в конструкторе
+// ? РћС€РёР±РєР° вЂ” User С‚СЂРµР±СѓРµС‚ РїР°СЂР°РјРµС‚СЂ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ
 // public class User { public User(string name) { } }
 // Factory<User> userFactory = new Factory<User>();
 ```
 
-### where T : BaseType (наследует от типа)
+### where T : BaseType (РЅР°СЃР»РµРґСѓРµС‚ РѕС‚ С‚РёРїР°)
 
 ```csharp
 public class Animal { }
 public class Dog : Animal { }
 
-public class AnimalCage<T> where T : Animal  // T должен быть Animal или его наследником
+public class AnimalCage<T> where T : Animal  // T РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Animal РёР»Рё РµРіРѕ РЅР°СЃР»РµРґРЅРёРєРѕРј
 {
     private List<T> animals = new List<T>();
     
     public void Add(T animal) => animals.Add(animal);
 }
 
-// ? OK — Dog наследует от Animal
+// ? OK вЂ” Dog РЅР°СЃР»РµРґСѓРµС‚ РѕС‚ Animal
 AnimalCage<Dog> dogCage = new AnimalCage<Dog>();
 
-// ? Ошибка — string не наследует от Animal
+// ? РћС€РёР±РєР° вЂ” string РЅРµ РЅР°СЃР»РµРґСѓРµС‚ РѕС‚ Animal
 // AnimalCage<string> stringCage = new AnimalCage<string>();
 ```
 
-### where T : IInterface (реализует интерфейс)
+### where T : IInterface (СЂРµР°Р»РёР·СѓРµС‚ РёРЅС‚РµСЂС„РµР№СЃ)
 
 ```csharp
 public interface ILoggable
@@ -233,7 +233,7 @@ public class Logger
     {
         foreach (var item in items)
         {
-            item.Log();  // ? Знаем, что есть метод Log()
+            item.Log();  // ? Р—РЅР°РµРј, С‡С‚Рѕ РµСЃС‚СЊ РјРµС‚РѕРґ Log()
         }
     }
 }
@@ -250,12 +250,12 @@ List<User> users = new List<User> { new User { Name = "Alice" } };
 logger.LogItems(users);
 ```
 
-### Несколько ограничений
+### РќРµСЃРєРѕР»СЊРєРѕ РѕРіСЂР°РЅРёС‡РµРЅРёР№
 
 ```csharp
 public class Repository<T> 
     where T : class 
-    where T : IEntity  // T должен быть классом И реализовывать IEntity
+    where T : IEntity  // T РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РєР»Р°СЃСЃРѕРј Р СЂРµР°Р»РёР·РѕРІС‹РІР°С‚СЊ IEntity
 {
     // ...
 }
@@ -263,16 +263,16 @@ public class Repository<T>
 
 ---
 
-## 4. Практический пример: Generic Repository
+## 4. РџСЂР°РєС‚РёС‡РµСЃРєРёР№ РїСЂРёРјРµСЂ: Generic Repository
 
 ```csharp
-// Интерфейс для базовых сущностей
+// РРЅС‚РµСЂС„РµР№СЃ РґР»СЏ Р±Р°Р·РѕРІС‹С… СЃСѓС‰РЅРѕСЃС‚РµР№
 public interface IEntity
 {
     int Id { get; set; }
 }
 
-// Модель данных
+// РњРѕРґРµР»СЊ РґР°РЅРЅС‹С…
 public class User : IEntity
 {
     public int Id { get; set; }
@@ -311,7 +311,7 @@ public class Repository<T> where T : class, IEntity
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 Repository<User> userRepo = new Repository<User>();
 
 userRepo.Add(new User { Id = 1, Name = "Alice" });
@@ -325,23 +325,23 @@ userRepo.Remove(1);
 
 ---
 
-## 5. Generic List, Dictionary и другие коллекции
+## 5. Generic List, Dictionary Рё РґСЂСѓРіРёРµ РєРѕР»Р»РµРєС†РёРё
 
-Уже знаете, что List, Dictionary — это Generic типы!
+РЈР¶Рµ Р·РЅР°РµС‚Рµ, С‡С‚Рѕ List, Dictionary вЂ” СЌС‚Рѕ Generic С‚РёРїС‹!
 
 ```csharp
-// List<T> — Generic список
+// List<T> вЂ” Generic СЃРїРёСЃРѕРє
 List<int> numbers = new List<int> { 1, 2, 3 };
 
-// Dictionary<TKey, TValue> — Generic словарь
+// Dictionary<TKey, TValue> вЂ” Generic СЃР»РѕРІР°СЂСЊ
 Dictionary<string, int> ages = new Dictionary<string, int>
 {
     { "Alice", 30 },
     { "Bob", 25 }
 };
 
-// Можно создавать свои Generic коллекции
-public class Stack<T>  // Generic стек
+// РњРѕР¶РЅРѕ СЃРѕР·РґР°РІР°С‚СЊ СЃРІРѕРё Generic РєРѕР»Р»РµРєС†РёРё
+public class Stack<T>  // Generic СЃС‚РµРє
 {
     private List<T> items = new List<T>();
     
@@ -353,7 +353,7 @@ public class Stack<T>  // Generic стек
 
 ---
 
-## 6. Covariance и Contravariance (продвинутая тема)
+## 6. Covariance Рё Contravariance (РїСЂРѕРґРІРёРЅСѓС‚Р°СЏ С‚РµРјР°)
 
 ### Covariance (out T)
 
@@ -368,10 +368,10 @@ public class StringProducer : IProducer<string>
     public string Produce() => "Hello";
 }
 
-// ? Covariance: IProducer<string> можно присвоить IProducer<object>
+// ? Covariance: IProducer<string> РјРѕР¶РЅРѕ РїСЂРёСЃРІРѕРёС‚СЊ IProducer<object>
 IProducer<object> producer = new StringProducer();
 
-// Это работает потому что out гарантирует, что T только возвращается, не принимается
+// Р­С‚Рѕ СЂР°Р±РѕС‚Р°РµС‚ РїРѕС‚РѕРјСѓ С‡С‚Рѕ out РіР°СЂР°РЅС‚РёСЂСѓРµС‚, С‡С‚Рѕ T С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ, РЅРµ РїСЂРёРЅРёРјР°РµС‚СЃСЏ
 ```
 
 ### Contravariance (in T)
@@ -387,26 +387,26 @@ public class ObjectConsumer : IConsumer<object>
     public void Consume(object item) => Console.WriteLine(item);
 }
 
-// ? Contravariance: IConsumer<object> можно присвоить IConsumer<string>
+// ? Contravariance: IConsumer<object> РјРѕР¶РЅРѕ РїСЂРёСЃРІРѕРёС‚СЊ IConsumer<string>
 IConsumer<string> consumer = new ObjectConsumer();
-consumer.Consume("Hello");  // Работает!
+consumer.Consume("Hello");  // Р Р°Р±РѕС‚Р°РµС‚!
 ```
 
 ---
 
-## 7. Частые ошибки новичков
+## 7. Р§Р°СЃС‚С‹Рµ РѕС€РёР±РєРё РЅРѕРІРёС‡РєРѕРІ
 
-### ? Ошибка 1: Забыли where T : new()
+### ? РћС€РёР±РєР° 1: Р—Р°Р±С‹Р»Рё where T : new()
 ```csharp
 public class Factory<T>
 {
     public T Create()
     {
-        return new T();  // ? Ошибка! T может не иметь конструктора
+        return new T();  // ? РћС€РёР±РєР°! T РјРѕР¶РµС‚ РЅРµ РёРјРµС‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
     }
 }
 
-// ? Правильно
+// ? РџСЂР°РІРёР»СЊРЅРѕ
 public class Factory<T> where T : new()
 {
     public T Create()
@@ -416,35 +416,35 @@ public class Factory<T> where T : new()
 }
 ```
 
-### ? Ошибка 2: Использование object вместо Generic
+### ? РћС€РёР±РєР° 2: РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ object РІРјРµСЃС‚Рѕ Generic
 ```csharp
 public class Container
 {
-    private object value;  // ? Потеря типобезопасности
+    private object value;  // ? РџРѕС‚РµСЂСЏ С‚РёРїРѕР±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё
     
     public void Set(object val) => value = val;
     public object Get() => value;
 }
 
-// ? Правильно
+// ? РџСЂР°РІРёР»СЊРЅРѕ
 public class Container<T>
 {
-    private T value;  // ? Типобезопасно
+    private T value;  // ? РўРёРїРѕР±РµР·РѕРїР°СЃРЅРѕ
     
     public void Set(T val) => value = val;
     public T Get() => value;
 }
 ```
 
-### ? Ошибка 3: Слишком широкое ограничение
+### ? РћС€РёР±РєР° 3: РЎР»РёС€РєРѕРј С€РёСЂРѕРєРѕРµ РѕРіСЂР°РЅРёС‡РµРЅРёРµ
 ```csharp
-// ? Слишком общий Repository
+// ? РЎР»РёС€РєРѕРј РѕР±С‰РёР№ Repository
 public class Repository<T> where T : class
 {
-    // Проблема: не знаем, есть ли Id или другие свойства
+    // РџСЂРѕР±Р»РµРјР°: РЅРµ Р·РЅР°РµРј, РµСЃС‚СЊ Р»Рё Id РёР»Рё РґСЂСѓРіРёРµ СЃРІРѕР№СЃС‚РІР°
 }
 
-// ? Правильно — требуем IEntity
+// ? РџСЂР°РІРёР»СЊРЅРѕ вЂ” С‚СЂРµР±СѓРµРј IEntity
 public class Repository<T> where T : class, IEntity
 {
     public T GetById(int id) { /*...*/ }
@@ -453,24 +453,24 @@ public class Repository<T> where T : class, IEntity
 
 ---
 
-## 8. Лучшие практики
+## 8. Р›СѓС‡С€РёРµ РїСЂР°РєС‚РёРєРё
 
 ? **DO:**
-- Используйте Generics для написания переиспользуемого кода
-- Указывайте осмысленные ограничения (constraints)
-- Используйте Generic типы из System.Collections.Generic
-- Читайте Generic параметры как переменные типов
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ Generics РґР»СЏ РЅР°РїРёСЃР°РЅРёСЏ РїРµСЂРµРёСЃРїРѕР»СЊР·СѓРµРјРѕРіРѕ РєРѕРґР°
+- РЈРєР°Р·С‹РІР°Р№С‚Рµ РѕСЃРјС‹СЃР»РµРЅРЅС‹Рµ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ (constraints)
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ Generic С‚РёРїС‹ РёР· System.Collections.Generic
+- Р§РёС‚Р°Р№С‚Рµ Generic РїР°СЂР°РјРµС‚СЂС‹ РєР°Рє РїРµСЂРµРјРµРЅРЅС‹Рµ С‚РёРїРѕРІ
 
 ? **DON'T:**
-- Не используйте object если можно использовать Generic
-- Не создавайте слишком сложные Generic типы для новичков
-- Не забывайте про constraints когда нужно гарантировать свойства
-- Не смешивайте Generic и non-generic версии одного класса
+- РќРµ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ object РµСЃР»Рё РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Generic
+- РќРµ СЃРѕР·РґР°РІР°Р№С‚Рµ СЃР»РёС€РєРѕРј СЃР»РѕР¶РЅС‹Рµ Generic С‚РёРїС‹ РґР»СЏ РЅРѕРІРёС‡РєРѕРІ
+- РќРµ Р·Р°Р±С‹РІР°Р№С‚Рµ РїСЂРѕ constraints РєРѕРіРґР° РЅСѓР¶РЅРѕ РіР°СЂР°РЅС‚РёСЂРѕРІР°С‚СЊ СЃРІРѕР№СЃС‚РІР°
+- РќРµ СЃРјРµС€РёРІР°Р№С‚Рµ Generic Рё non-generic РІРµСЂСЃРёРё РѕРґРЅРѕРіРѕ РєР»Р°СЃСЃР°
 
 ---
 
-## Файлы в проекте:
-- `GenericBox.cs` — простой Generic класс
-- `Repository.cs` — Generic Repository для работы с данными
-- `Factory.cs` — Generic Factory для создания объектов
-- `Program.cs` — примеры использования
+## Р¤Р°Р№Р»С‹ РІ РїСЂРѕРµРєС‚Рµ:
+- `GenericBox.cs` вЂ” РїСЂРѕСЃС‚РѕР№ Generic РєР»Р°СЃСЃ
+- `Repository.cs` вЂ” Generic Repository РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґР°РЅРЅС‹РјРё
+- `Factory.cs` вЂ” Generic Factory РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚РѕРІ
+- `Program.cs` вЂ” РїСЂРёРјРµСЂС‹ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ

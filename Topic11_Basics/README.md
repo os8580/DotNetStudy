@@ -1,60 +1,60 @@
-# Topic11 — Основы программирования (полный обзор и восстановление памяти)
+п»ї# Topic11 вЂ” РћСЃРЅРѕРІС‹ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЏ (РїРѕР»РЅС‹Р№ РѕР±Р·РѕСЂ Рё РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°РјСЏС‚Рё)
 
-## Цель
-Вспомнить и закрепить все основные концепции C#, которые вы изучили в Topics 1-10. Этот файл — путеводитель и шпаргалка для новичка.
-
----
-
-## Содержание
-
-1. [Основные типы данных](#1-основные-типы-данных)
-2. [Работа со строками](#2-работа-со-строками)
-3. [Операторы и управление потоком](#3-операторы-и-управление-потоком)
-4. [Классы и объекты](#4-классы-и-объекты)
-5. [Наследование и полиморфизм](#5-наследование-и-полиморфизм)
-6. [Интерфейсы и DI](#6-интерфейсы-и-di)
-7. [Коллекции и LINQ](#7-коллекции-и-linq)
-8. [Обобщения (Generics)](#8-обобщения-generics)
-9. [Исключения и ресурсы](#9-исключения-и-ресурсы)
-10. [Значимые и ссылочные типы](#10-значимые-и-ссылочные-типы)
-11. [Null-операторы](#11-null-операторы)
-12. [DateTime и TimeSpan](#12-datetime-и-timespan)
-13. [Лучшие практики и принципы](#13-лучшие-практики-и-принципы)
+## Р¦РµР»СЊ
+Р’СЃРїРѕРјРЅРёС‚СЊ Рё Р·Р°РєСЂРµРїРёС‚СЊ РІСЃРµ РѕСЃРЅРѕРІРЅС‹Рµ РєРѕРЅС†РµРїС†РёРё C#, РєРѕС‚РѕСЂС‹Рµ РІС‹ РёР·СѓС‡РёР»Рё РІ Topics 1-10. Р­С‚РѕС‚ С„Р°Р№Р» вЂ” РїСѓС‚РµРІРѕРґРёС‚РµР»СЊ Рё С€РїР°СЂРіР°Р»РєР° РґР»СЏ РЅРѕРІРёС‡РєР°.
 
 ---
 
-## 1. Основные типы данных
+## РЎРѕРґРµСЂР¶Р°РЅРёРµ
 
-### Встроенные типы
+1. [РћСЃРЅРѕРІРЅС‹Рµ С‚РёРїС‹ РґР°РЅРЅС‹С…](#1-РѕСЃРЅРѕРІРЅС‹Рµ-С‚РёРїС‹-РґР°РЅРЅС‹С…)
+2. [Р Р°Р±РѕС‚Р° СЃРѕ СЃС‚СЂРѕРєР°РјРё](#2-СЂР°Р±РѕС‚Р°-СЃРѕ-СЃС‚СЂРѕРєР°РјРё)
+3. [РћРїРµСЂР°С‚РѕСЂС‹ Рё СѓРїСЂР°РІР»РµРЅРёРµ РїРѕС‚РѕРєРѕРј](#3-РѕРїРµСЂР°С‚РѕСЂС‹-Рё-СѓРїСЂР°РІР»РµРЅРёРµ-РїРѕС‚РѕРєРѕРј)
+4. [РљР»Р°СЃСЃС‹ Рё РѕР±СЉРµРєС‚С‹](#4-РєР»Р°СЃСЃС‹-Рё-РѕР±СЉРµРєС‚С‹)
+5. [РќР°СЃР»РµРґРѕРІР°РЅРёРµ Рё РїРѕР»РёРјРѕСЂС„РёР·Рј](#5-РЅР°СЃР»РµРґРѕРІР°РЅРёРµ-Рё-РїРѕР»РёРјРѕСЂС„РёР·Рј)
+6. [РРЅС‚РµСЂС„РµР№СЃС‹ Рё DI](#6-РёРЅС‚РµСЂС„РµР№СЃС‹-Рё-di)
+7. [РљРѕР»Р»РµРєС†РёРё Рё LINQ](#7-РєРѕР»Р»РµРєС†РёРё-Рё-linq)
+8. [РћР±РѕР±С‰РµРЅРёСЏ (Generics)](#8-РѕР±РѕР±С‰РµРЅРёСЏ-generics)
+9. [РСЃРєР»СЋС‡РµРЅРёСЏ Рё СЂРµСЃСѓСЂСЃС‹](#9-РёСЃРєР»СЋС‡РµРЅРёСЏ-Рё-СЂРµСЃСѓСЂСЃС‹)
+10. [Р—РЅР°С‡РёРјС‹Рµ Рё СЃСЃС‹Р»РѕС‡РЅС‹Рµ С‚РёРїС‹](#10-Р·РЅР°С‡РёРјС‹Рµ-Рё-СЃСЃС‹Р»РѕС‡РЅС‹Рµ-С‚РёРїС‹)
+11. [Null-РѕРїРµСЂР°С‚РѕСЂС‹](#11-null-РѕРїРµСЂР°С‚РѕСЂС‹)
+12. [DateTime Рё TimeSpan](#12-datetime-Рё-timespan)
+13. [Р›СѓС‡С€РёРµ РїСЂР°РєС‚РёРєРё Рё РїСЂРёРЅС†РёРїС‹](#13-Р»СѓС‡С€РёРµ-РїСЂР°РєС‚РёРєРё-Рё-РїСЂРёРЅС†РёРїС‹)
+
+---
+
+## 1. РћСЃРЅРѕРІРЅС‹Рµ С‚РёРїС‹ РґР°РЅРЅС‹С…
+
+### Р’СЃС‚СЂРѕРµРЅРЅС‹Рµ С‚РёРїС‹
 
 ```csharp
-// Целые числа
-int age = 25;              // -2.1 млрд до 2.1 млрд
-long bigNumber = 9999999999;  // Очень большие числа
+// Р¦РµР»С‹Рµ С‡РёСЃР»Р°
+int age = 25;              // -2.1 РјР»СЂРґ РґРѕ 2.1 РјР»СЂРґ
+long bigNumber = 9999999999;  // РћС‡РµРЅСЊ Р±РѕР»СЊС€РёРµ С‡РёСЃР»Р°
 
-// Дробные числа
-double price = 19.99;      // Точность ~15 цифр
-decimal money = 19.99m;    // Точность для денег (28 цифр)
+// Р”СЂРѕР±РЅС‹Рµ С‡РёСЃР»Р°
+double price = 19.99;      // РўРѕС‡РЅРѕСЃС‚СЊ ~15 С†РёС„СЂ
+decimal money = 19.99m;    // РўРѕС‡РЅРѕСЃС‚СЊ РґР»СЏ РґРµРЅРµРі (28 С†РёС„СЂ)
 
-// Логические значения
+// Р›РѕРіРёС‡РµСЃРєРёРµ Р·РЅР°С‡РµРЅРёСЏ
 bool isActive = true;
 bool isDeleted = false;
 
-// Символы
+// РЎРёРјРІРѕР»С‹
 char letter = 'A';
 
-// Строки
+// РЎС‚СЂРѕРєРё
 string name = "Alice";
 
-// Дата и время
+// Р”Р°С‚Р° Рё РІСЂРµРјСЏ
 DateTime now = DateTime.Now;
 TimeSpan duration = TimeSpan.FromHours(2);
 ```
 
-### Классы vs Структуры
+### РљР»Р°СЃСЃС‹ vs РЎС‚СЂСѓРєС‚СѓСЂС‹
 
 ```csharp
-// class — ссылочный тип (на HEAP), может быть null
+// class вЂ” СЃСЃС‹Р»РѕС‡РЅС‹Р№ С‚РёРї (РЅР° HEAP), РјРѕР¶РµС‚ Р±С‹С‚СЊ null
 public class User
 {
     public string Name { get; set; }
@@ -63,131 +63,131 @@ public class User
 User user1 = null;  // ? OK
 User user2 = new User();
 
-// struct — значимый тип (на STACK), не может быть null (но может быть int?)
+// struct вЂ” Р·РЅР°С‡РёРјС‹Р№ С‚РёРї (РЅР° STACK), РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null (РЅРѕ РјРѕР¶РµС‚ Р±С‹С‚СЊ int?)
 public struct Point
 {
     public int X { get; set; }
     public int Y { get; set; }
 }
 
-Point p1 = new Point();  // Всегда инициализирован
+Point p1 = new Point();  // Р’СЃРµРіРґР° РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ
 Point? p2 = null;  // ? Nullable struct
 
-// Правило: использутй class по умолчанию, struct для малых данных
+// РџСЂР°РІРёР»Рѕ: РёСЃРїРѕР»СЊР·СѓС‚Р№ class РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ, struct РґР»СЏ РјР°Р»С‹С… РґР°РЅРЅС‹С…
 ```
 
-### object и var
+### object Рё var
 
 ```csharp
-// object — базовый тип для всего в .NET
-object anything = 42;     // Может быть int
-object something = "text"; // Может быть string
+// object вЂ” Р±Р°Р·РѕРІС‹Р№ С‚РёРї РґР»СЏ РІСЃРµРіРѕ РІ .NET
+object anything = 42;     // РњРѕР¶РµС‚ Р±С‹С‚СЊ int
+object something = "text"; // РњРѕР¶РµС‚ Р±С‹С‚СЊ string
 
-// var — автоматический вывод типа (из контекста)
-var number = 42;      // Компилятор определит: это int
-var text = "hello";   // Это string
+// var вЂ” Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РІС‹РІРѕРґ С‚РёРїР° (РёР· РєРѕРЅС‚РµРєСЃС‚Р°)
+var number = 42;      // РљРѕРјРїРёР»СЏС‚РѕСЂ РѕРїСЂРµРґРµР»РёС‚: СЌС‚Рѕ int
+var text = "hello";   // Р­С‚Рѕ string
 
-// ? var только для локальных переменных, не для параметров/свойств
-var collection = new List<int>();  // Это List<int>
+// ? var С‚РѕР»СЊРєРѕ РґР»СЏ Р»РѕРєР°Р»СЊРЅС‹С… РїРµСЂРµРјРµРЅРЅС‹С…, РЅРµ РґР»СЏ РїР°СЂР°РјРµС‚СЂРѕРІ/СЃРІРѕР№СЃС‚РІ
+var collection = new List<int>();  // Р­С‚Рѕ List<int>
 ```
 
 ---
 
-## 2. Работа со строками
+## 2. Р Р°Р±РѕС‚Р° СЃРѕ СЃС‚СЂРѕРєР°РјРё
 
-### Основные методы
+### РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹
 
 ```csharp
 string text = "Hello, World!";
 
-// Длина
+// Р”Р»РёРЅР°
 int length = text.Length;  // 13
 
-// Преобразование
+// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ
 string upper = text.ToUpper();      // "HELLO, WORLD!"
 string lower = text.ToLower();      // "hello, world!"
 
-// Поиск
+// РџРѕРёСЃРє
 bool contains = text.Contains("World");      // true
 int index = text.IndexOf("World");           // 7
 bool startsWith = text.StartsWith("Hello");  // true
 bool endsWith = text.EndsWith("!");          // true
 
-// Извлечение части
+// РР·РІР»РµС‡РµРЅРёРµ С‡Р°СЃС‚Рё
 string sub = text.Substring(0, 5);  // "Hello"
 
-// Замена
+// Р—Р°РјРµРЅР°
 string replaced = text.Replace("World", "C#");  // "Hello, C#!"
 
-// Разделение на части
+// Р Р°Р·РґРµР»РµРЅРёРµ РЅР° С‡Р°СЃС‚Рё
 string[] parts = "a,b,c".Split(',');  // { "a", "b", "c" }
 
-// Удаление пробелов
+// РЈРґР°Р»РµРЅРёРµ РїСЂРѕР±РµР»РѕРІ
 string trimmed = "  hello  ".Trim();  // "hello"
 ```
 
-### Форматирование и интерполяция
+### Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ Рё РёРЅС‚РµСЂРїРѕР»СЏС†РёСЏ
 
 ```csharp
 string name = "Alice";
 int age = 30;
 
-// Интерполяция (рекомендуется)
-string greeting = $"Привет, {name}! Тебе {age} лет";
+// РРЅС‚РµСЂРїРѕР»СЏС†РёСЏ (СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ)
+string greeting = $"РџСЂРёРІРµС‚, {name}! РўРµР±Рµ {age} Р»РµС‚";
 
-// Форматирование
-string formatted = string.Format("Привет, {0}! Тебе {1} лет", name, age);
+// Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ
+string formatted = string.Format("РџСЂРёРІРµС‚, {0}! РўРµР±Рµ {1} Р»РµС‚", name, age);
 
-// С форматом
+// РЎ С„РѕСЂРјР°С‚РѕРј
 decimal price = 19.99m;
-string priceText = $"Цена: {price:C}";  // Цена: 19,99 ?
-string percentage = $"Прогресс: {0.75:P}";  // Прогресс: 75,00 %
+string priceText = $"Р¦РµРЅР°: {price:C}";  // Р¦РµРЅР°: 19,99 ?
+string percentage = $"РџСЂРѕРіСЂРµСЃСЃ: {0.75:P}";  // РџСЂРѕРіСЂРµСЃСЃ: 75,00 %
 ```
 
-### StringBuilder для частых изменений
+### StringBuilder РґР»СЏ С‡Р°СЃС‚С‹С… РёР·РјРµРЅРµРЅРёР№
 
 ```csharp
-// ? Неэффективно (строка неизменяемая!)
+// ? РќРµСЌС„С„РµРєС‚РёРІРЅРѕ (СЃС‚СЂРѕРєР° РЅРµРёР·РјРµРЅСЏРµРјР°СЏ!)
 string result = "";
 for (int i = 0; i < 1000; i++)
 {
-    result += i + ", ";  // Создает новую строку 1000 раз!
+    result += i + ", ";  // РЎРѕР·РґР°РµС‚ РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ 1000 СЂР°Р·!
 }
 
-// ? Эффективно
+// ? Р­С„С„РµРєС‚РёРІРЅРѕ
 var sb = new StringBuilder();
 for (int i = 0; i < 1000; i++)
 {
-    sb.Append(i).Append(", ");  // Модифицирует существующий буфер
+    sb.Append(i).Append(", ");  // РњРѕРґРёС„РёС†РёСЂСѓРµС‚ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ Р±СѓС„РµСЂ
 }
 string result = sb.ToString();
 ```
 
-### Проверка пустых строк
+### РџСЂРѕРІРµСЂРєР° РїСѓСЃС‚С‹С… СЃС‚СЂРѕРє
 
 ```csharp
 string text = null;
 string empty = "";
 string whitespace = "   ";
 
-// Проверка на null или пустую
-if (string.IsNullOrEmpty(text))  // true если null или ""
+// РџСЂРѕРІРµСЂРєР° РЅР° null РёР»Рё РїСѓСЃС‚СѓСЋ
+if (string.IsNullOrEmpty(text))  // true РµСЃР»Рё null РёР»Рё ""
 {
-    Console.WriteLine("Текст пустой");
+    Console.WriteLine("РўРµРєСЃС‚ РїСѓСЃС‚РѕР№");
 }
 
-// Проверка на null, пустую или только пробелы
-if (string.IsNullOrWhiteSpace(whitespace))  // true если null, "", или только пробелы
+// РџСЂРѕРІРµСЂРєР° РЅР° null, РїСѓСЃС‚СѓСЋ РёР»Рё С‚РѕР»СЊРєРѕ РїСЂРѕР±РµР»С‹
+if (string.IsNullOrWhiteSpace(whitespace))  // true РµСЃР»Рё null, "", РёР»Рё С‚РѕР»СЊРєРѕ РїСЂРѕР±РµР»С‹
 {
-    Console.WriteLine("Текст не содержит символов");
+    Console.WriteLine("РўРµРєСЃС‚ РЅРµ СЃРѕРґРµСЂР¶РёС‚ СЃРёРјРІРѕР»РѕРІ");
 }
 ```
 
 ---
 
-## 3. Операторы и управление потоком
+## 3. РћРїРµСЂР°С‚РѕСЂС‹ Рё СѓРїСЂР°РІР»РµРЅРёРµ РїРѕС‚РѕРєРѕРј
 
-### Условные операторы
+### РЈСЃР»РѕРІРЅС‹Рµ РѕРїРµСЂР°С‚РѕСЂС‹
 
 ```csharp
 int age = 18;
@@ -195,65 +195,65 @@ int age = 18;
 // if-else
 if (age >= 18)
 {
-    Console.WriteLine("Совершеннолетний");
+    Console.WriteLine("РЎРѕРІРµСЂС€РµРЅРЅРѕР»РµС‚РЅРёР№");
 }
 else if (age >= 13)
 {
-    Console.WriteLine("Подросток");
+    Console.WriteLine("РџРѕРґСЂРѕСЃС‚РѕРє");
 }
 else
 {
-    Console.WriteLine("Ребенок");
+    Console.WriteLine("Р РµР±РµРЅРѕРє");
 }
 
-// Тернарный оператор (краткий if-else)
-string category = age >= 18 ? "Взрослый" : "Не взрослый";
+// РўРµСЂРЅР°СЂРЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ (РєСЂР°С‚РєРёР№ if-else)
+string category = age >= 18 ? "Р’Р·СЂРѕСЃР»С‹Р№" : "РќРµ РІР·СЂРѕСЃР»С‹Р№";
 
-// switch (для многих вариантов)
+// switch (РґР»СЏ РјРЅРѕРіРёС… РІР°СЂРёР°РЅС‚РѕРІ)
 string day = "Monday";
 string message = day switch
 {
-    "Monday" => "Начало недели",
-    "Friday" => "Почти выходные!",
-    "Saturday" or "Sunday" => "Выходной!",
-    _ => "Обычный день"
+    "Monday" => "РќР°С‡Р°Р»Рѕ РЅРµРґРµР»Рё",
+    "Friday" => "РџРѕС‡С‚Рё РІС‹С…РѕРґРЅС‹Рµ!",
+    "Saturday" or "Sunday" => "Р’С‹С…РѕРґРЅРѕР№!",
+    _ => "РћР±С‹С‡РЅС‹Р№ РґРµРЅСЊ"
 };
 ```
 
-### Логические операторы
+### Р›РѕРіРёС‡РµСЃРєРёРµ РѕРїРµСЂР°С‚РѕСЂС‹
 
 ```csharp
 bool a = true;
 bool b = false;
 
-Console.WriteLine(a && b);   // AND: false (оба должны быть true)
-Console.WriteLine(a || b);   // OR: true (хотя бы один true)
-Console.WriteLine(!a);       // NOT: false (инверсия)
+Console.WriteLine(a && b);   // AND: false (РѕР±Р° РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ true)
+Console.WriteLine(a || b);   // OR: true (С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ true)
+Console.WriteLine(!a);       // NOT: false (РёРЅРІРµСЂСЃРёСЏ)
 
-// Практический пример
-if (age >= 18 && hasLicense)  // Оба условия должны быть true
+// РџСЂР°РєС‚РёС‡РµСЃРєРёР№ РїСЂРёРјРµСЂ
+if (age >= 18 && hasLicense)  // РћР±Р° СѓСЃР»РѕРІРёСЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ true
 {
-    Console.WriteLine("Можно водить");
+    Console.WriteLine("РњРѕР¶РЅРѕ РІРѕРґРёС‚СЊ");
 }
 ```
 
-### Циклы
+### Р¦РёРєР»С‹
 
 ```csharp
-// for — когда знаем количество итераций
+// for вЂ” РєРѕРіРґР° Р·РЅР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РёС‚РµСЂР°С†РёР№
 for (int i = 0; i < 5; i++)
 {
     Console.WriteLine(i);  // 0, 1, 2, 3, 4
 }
 
-// foreach — для итерации по коллекции
+// foreach вЂ” РґР»СЏ РёС‚РµСЂР°С†РёРё РїРѕ РєРѕР»Р»РµРєС†РёРё
 int[] numbers = { 1, 2, 3, 4, 5 };
 foreach (int number in numbers)
 {
     Console.WriteLine(number);
 }
 
-// while — пока условие истинно
+// while вЂ” РїРѕРєР° СѓСЃР»РѕРІРёРµ РёСЃС‚РёРЅРЅРѕ
 int count = 0;
 while (count < 5)
 {
@@ -261,7 +261,7 @@ while (count < 5)
     count++;
 }
 
-// do-while — выполнится хотя бы один раз
+// do-while вЂ” РІС‹РїРѕР»РЅРёС‚СЃСЏ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЂР°Р·
 int x = 0;
 do
 {
@@ -269,122 +269,122 @@ do
     x++;
 } while (x < 5);
 
-// break и continue
+// break Рё continue
 for (int i = 0; i < 10; i++)
 {
     if (i == 3)
-        break;  // Выйти из цикла
+        break;  // Р’С‹Р№С‚Рё РёР· С†РёРєР»Р°
     if (i == 1)
-        continue;  // Пропустить итерацию
+        continue;  // РџСЂРѕРїСѓСЃС‚РёС‚СЊ РёС‚РµСЂР°С†РёСЋ
     Console.WriteLine(i);  // 0, 2
 }
 ```
 
 ---
 
-## 4. Классы и объекты
+## 4. РљР»Р°СЃСЃС‹ Рё РѕР±СЉРµРєС‚С‹
 
-### Создание класса
+### РЎРѕР·РґР°РЅРёРµ РєР»Р°СЃСЃР°
 
 ```csharp
 public class User
 {
-    // Поля (данные)
+    // РџРѕР»СЏ (РґР°РЅРЅС‹Рµ)
     public string Name;
-    private int age;  // private — только этот класс видит
+    private int age;  // private вЂ” С‚РѕР»СЊРєРѕ СЌС‚РѕС‚ РєР»Р°СЃСЃ РІРёРґРёС‚
     
-    // Свойства (управляемый доступ)
+    // РЎРІРѕР№СЃС‚РІР° (СѓРїСЂР°РІР»СЏРµРјС‹Р№ РґРѕСЃС‚СѓРї)
     public int Age 
     { 
         get { return age; }
-        set { age = value >= 0 ? value : 0; }  // Валидация
+        set { age = value >= 0 ? value : 0; }  // Р’Р°Р»РёРґР°С†РёСЏ
     }
     
-    // Конструктор (инициализация)
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ (РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ)
     public User(string name, int age)
     {
         Name = name;
         Age = age;
     }
     
-    // Метод (действие)
+    // РњРµС‚РѕРґ (РґРµР№СЃС‚РІРёРµ)
     public void PrintInfo()
     {
-        Console.WriteLine($"{Name}, {Age} лет");
+        Console.WriteLine($"{Name}, {Age} Р»РµС‚");
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 User user = new User("Alice", 30);
-user.PrintInfo();  // Alice, 30 лет
+user.PrintInfo();  // Alice, 30 Р»РµС‚
 ```
 
-### Модификаторы доступа
+### РњРѕРґРёС„РёРєР°С‚РѕСЂС‹ РґРѕСЃС‚СѓРїР°
 
 ```csharp
 public class Example
 {
-    public string Public { get; set; }       // Везде
-    private string Private { get; set; }     // Только этот класс
-    protected string Protected { get; set; } // Этот класс и наследники
-    internal string Internal { get; set; }   // В этой сборке
+    public string Public { get; set; }       // Р’РµР·РґРµ
+    private string Private { get; set; }     // РўРѕР»СЊРєРѕ СЌС‚РѕС‚ РєР»Р°СЃСЃ
+    protected string Protected { get; set; } // Р­С‚РѕС‚ РєР»Р°СЃСЃ Рё РЅР°СЃР»РµРґРЅРёРєРё
+    internal string Internal { get; set; }   // Р’ СЌС‚РѕР№ СЃР±РѕСЂРєРµ
 }
 ```
 
-### Перегрузка методов (Overloading)
+### РџРµСЂРµРіСЂСѓР·РєР° РјРµС‚РѕРґРѕРІ (Overloading)
 
 ```csharp
 public class Math
 {
-    // Одна версия для int
+    // РћРґРЅР° РІРµСЂСЃРёСЏ РґР»СЏ int
     public static int Add(int a, int b)
     {
         return a + b;
     }
     
-    // Другая версия для double
+    // Р”СЂСѓРіР°СЏ РІРµСЂСЃРёСЏ РґР»СЏ double
     public static double Add(double a, double b)
     {
         return a + b;
     }
 }
 
-Math.Add(5, 3);      // Вызовет первую версию (int)
-Math.Add(5.5, 3.5);  // Вызовет вторую версию (double)
+Math.Add(5, 3);      // Р’С‹Р·РѕРІРµС‚ РїРµСЂРІСѓСЋ РІРµСЂСЃРёСЋ (int)
+Math.Add(5.5, 3.5);  // Р’С‹Р·РѕРІРµС‚ РІС‚РѕСЂСѓСЋ РІРµСЂСЃРёСЋ (double)
 ```
 
-### Static (статические члены)
+### Static (СЃС‚Р°С‚РёС‡РµСЃРєРёРµ С‡Р»РµРЅС‹)
 
 ```csharp
 public class Counter
 {
-    public static int Total = 0;  // Один на все объекты!
-    public int Value = 0;         // У каждого объекта свой
+    public static int Total = 0;  // РћРґРёРЅ РЅР° РІСЃРµ РѕР±СЉРµРєС‚С‹!
+    public int Value = 0;         // РЈ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° СЃРІРѕР№
     
     public Counter()
     {
-        Total++;  // Увеличиваем общий счетчик
+        Total++;  // РЈРІРµР»РёС‡РёРІР°РµРј РѕР±С‰РёР№ СЃС‡РµС‚С‡РёРє
     }
 }
 
 Counter c1 = new Counter();
 Counter c2 = new Counter();
 
-Console.WriteLine(Counter.Total);  // 2 (всех объектов)
-Console.WriteLine(c1.Value);       // 0 (отдельный)
-Console.WriteLine(c2.Value);       // 0 (отдельный)
+Console.WriteLine(Counter.Total);  // 2 (РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ)
+Console.WriteLine(c1.Value);       // 0 (РѕС‚РґРµР»СЊРЅС‹Р№)
+Console.WriteLine(c2.Value);       // 0 (РѕС‚РґРµР»СЊРЅС‹Р№)
 
-// ? Минус: Static сложно тестировать, избегайте!
+// ? РњРёРЅСѓСЃ: Static СЃР»РѕР¶РЅРѕ С‚РµСЃС‚РёСЂРѕРІР°С‚СЊ, РёР·Р±РµРіР°Р№С‚Рµ!
 ```
 
 ---
 
-## 5. Наследование и полиморфизм
+## 5. РќР°СЃР»РµРґРѕРІР°РЅРёРµ Рё РїРѕР»РёРјРѕСЂС„РёР·Рј
 
-### Наследование от класса
+### РќР°СЃР»РµРґРѕРІР°РЅРёРµ РѕС‚ РєР»Р°СЃСЃР°
 
 ```csharp
-// Базовый класс
+// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ
 public class Animal
 {
     public string Name { get; set; }
@@ -395,7 +395,7 @@ public class Animal
     }
 }
 
-// Класс-наследник
+// РљР»Р°СЃСЃ-РЅР°СЃР»РµРґРЅРёРє
 public class Dog : Animal
 {
     public override void MakeSound()
@@ -404,21 +404,21 @@ public class Dog : Animal
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 Animal dog = new Dog { Name = "Rex" };
-dog.MakeSound();  // Woof! (вызовет переопределенный метод)
+dog.MakeSound();  // Woof! (РІС‹Р·РѕРІРµС‚ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РјРµС‚РѕРґ)
 ```
 
-### abstract (абстрактные классы)
+### abstract (Р°Р±СЃС‚СЂР°РєС‚РЅС‹Рµ РєР»Р°СЃСЃС‹)
 
 ```csharp
-// Нельзя создать напрямую
+// РќРµР»СЊР·СЏ СЃРѕР·РґР°С‚СЊ РЅР°РїСЂСЏРјСѓСЋ
 public abstract class Shape
 {
-    public abstract double GetArea();  // Должен быть реализован
+    public abstract double GetArea();  // Р”РѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅ
 }
 
-// Реализуем
+// Р РµР°Р»РёР·СѓРµРј
 public class Circle : Shape
 {
     public double Radius { get; set; }
@@ -430,29 +430,29 @@ public class Circle : Shape
 }
 
 // ? Circle c = new Circle();  // OK
-// ? Shape s = new Shape();    // Ошибка! abstract нельзя создать
+// ? Shape s = new Shape();    // РћС€РёР±РєР°! abstract РЅРµР»СЊР·СЏ СЃРѕР·РґР°С‚СЊ
 ```
 
 ---
 
-## 6. Интерфейсы и DI
+## 6. РРЅС‚РµСЂС„РµР№СЃС‹ Рё DI
 
-### Интерфейсы
+### РРЅС‚РµСЂС„РµР№СЃС‹
 
 ```csharp
-// Контракт (что должно быть)
+// РљРѕРЅС‚СЂР°РєС‚ (С‡С‚Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ)
 public interface IRepository
 {
     void Save(User user);
     User GetById(int id);
 }
 
-// Реализация
+// Р РµР°Р»РёР·Р°С†РёСЏ
 public class UserRepository : IRepository
 {
     public void Save(User user)
     {
-        Console.WriteLine($"Сохранили {user.Name}");
+        Console.WriteLine($"РЎРѕС…СЂР°РЅРёР»Рё {user.Name}");
     }
     
     public User GetById(int id)
@@ -461,7 +461,7 @@ public class UserRepository : IRepository
     }
 }
 
-// Использование через интерфейс
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ С‡РµСЂРµР· РёРЅС‚РµСЂС„РµР№СЃ
 IRepository repo = new UserRepository();
 repo.Save(new User("Bob", 25));
 ```
@@ -469,12 +469,12 @@ repo.Save(new User("Bob", 25));
 ### Dependency Injection
 
 ```csharp
-// Сервис зависит от интерфейса, а не от конкретного класса
+// РЎРµСЂРІРёСЃ Р·Р°РІРёСЃРёС‚ РѕС‚ РёРЅС‚РµСЂС„РµР№СЃР°, Р° РЅРµ РѕС‚ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РєР»Р°СЃСЃР°
 public class UserService
 {
     private IRepository repository;
     
-    // Передаем через конструктор (DI)
+    // РџРµСЂРµРґР°РµРј С‡РµСЂРµР· РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ (DI)
     public UserService(IRepository repository)
     {
         this.repository = repository;
@@ -487,7 +487,7 @@ public class UserService
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 IRepository repo = new UserRepository();
 UserService service = new UserService(repo);
 service.CreateUser("Alice", 30);
@@ -495,17 +495,17 @@ service.CreateUser("Alice", 30);
 
 ---
 
-## 7. Коллекции и LINQ
+## 7. РљРѕР»Р»РµРєС†РёРё Рё LINQ
 
-### Основные коллекции
+### РћСЃРЅРѕРІРЅС‹Рµ РєРѕР»Р»РµРєС†РёРё
 
 ```csharp
-// List<T> — динамический массив
+// List<T> вЂ” РґРёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
 List<int> numbers = new List<int> { 1, 2, 3 };
 numbers.Add(4);
 numbers.Remove(1);
 
-// Dictionary<K,V> — ключ-значение
+// Dictionary<K,V> вЂ” РєР»СЋС‡-Р·РЅР°С‡РµРЅРёРµ
 Dictionary<string, int> ages = new Dictionary<string, int>
 {
     { "Alice", 30 },
@@ -514,15 +514,15 @@ Dictionary<string, int> ages = new Dictionary<string, int>
 ages["Charlie"] = 35;
 int age = ages["Alice"];  // 30
 
-// HashSet<T> — уникальные значения
+// HashSet<T> вЂ” СѓРЅРёРєР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 HashSet<int> unique = new HashSet<int> { 1, 2, 2, 3 };  // { 1, 2, 3 }
 
-// Queue<T> — очередь (FIFO)
+// Queue<T> вЂ” РѕС‡РµСЂРµРґСЊ (FIFO)
 Queue<string> queue = new Queue<string>();
 queue.Enqueue("Alice");
 string first = queue.Dequeue();  // "Alice"
 
-// Stack<T> — стек (LIFO)
+// Stack<T> вЂ” СЃС‚РµРє (LIFO)
 Stack<string> stack = new Stack<string>();
 stack.Push("Alice");
 string last = stack.Pop();  // "Alice"
@@ -533,41 +533,41 @@ string last = stack.Pop();  // "Alice"
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-// Where — фильтрация
+// Where вЂ” С„РёР»СЊС‚СЂР°С†РёСЏ
 var evens = numbers.Where(n => n % 2 == 0);  // { 2, 4, 6, 8, 10 }
 
-// Select — трансформация
+// Select вЂ” С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёСЏ
 var doubled = numbers.Select(n => n * 2);  // { 2, 4, 6, 8, ... }
 
-// OrderBy — сортировка
+// OrderBy вЂ” СЃРѕСЂС‚РёСЂРѕРІРєР°
 var sorted = numbers.OrderByDescending(n => n);  // { 10, 9, 8, ... }
 
-// GroupBy — группировка
-var grouped = numbers.GroupBy(n => n % 2);  // Четные и нечетные
+// GroupBy вЂ” РіСЂСѓРїРїРёСЂРѕРІРєР°
+var grouped = numbers.GroupBy(n => n % 2);  // Р§РµС‚РЅС‹Рµ Рё РЅРµС‡РµС‚РЅС‹Рµ
 
-// Take/Skip — пагинация
+// Take/Skip вЂ” РїР°РіРёРЅР°С†РёСЏ
 var page1 = numbers.Take(3);           // { 1, 2, 3 }
 var page2 = numbers.Skip(3).Take(3);   // { 4, 5, 6 }
 
-// FirstOrDefault — первый или null
+// FirstOrDefault вЂ” РїРµСЂРІС‹Р№ РёР»Рё null
 int first = numbers.FirstOrDefault(n => n > 5);  // 6
 
-// Any/All — проверки
+// Any/All вЂ” РїСЂРѕРІРµСЂРєРё
 bool hasEven = numbers.Any(n => n % 2 == 0);      // true
 bool allPositive = numbers.All(n => n > 0);       // true
 
-// Материализация (выполнение)
-List<int> result = numbers.Where(n => n > 5).ToList();  // Теперь это List
+// РњР°С‚РµСЂРёР°Р»РёР·Р°С†РёСЏ (РІС‹РїРѕР»РЅРµРЅРёРµ)
+List<int> result = numbers.Where(n => n > 5).ToList();  // РўРµРїРµСЂСЊ СЌС‚Рѕ List
 ```
 
 ---
 
-## 8. Обобщения (Generics)
+## 8. РћР±РѕР±С‰РµРЅРёСЏ (Generics)
 
-### Простые примеры
+### РџСЂРѕСЃС‚С‹Рµ РїСЂРёРјРµСЂС‹
 
 ```csharp
-// Generic класс
+// Generic РєР»Р°СЃСЃ
 public class Container<T>
 {
     private T value;
@@ -576,7 +576,7 @@ public class Container<T>
     public T Get() => value;
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 Container<int> intContainer = new Container<int>();
 intContainer.Set(42);
 int number = intContainer.Get();  // 42
@@ -586,16 +586,16 @@ stringContainer.Set("Hello");
 string text = stringContainer.Get();  // "Hello"
 ```
 
-### Generic с ограничениями
+### Generic СЃ РѕРіСЂР°РЅРёС‡РµРЅРёСЏРјРё
 
 ```csharp
-// T должен быть классом
+// T РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РєР»Р°СЃСЃРѕРј
 public class Repository<T> where T : class
 {
     public void Add(T item) { }
 }
 
-// T должен реализовывать интерфейс
+// T РґРѕР»Р¶РµРЅ СЂРµР°Р»РёР·РѕРІС‹РІР°С‚СЊ РёРЅС‚РµСЂС„РµР№СЃ
 public class Logger<T> where T : ILoggable
 {
     public void LogItem(T item)
@@ -604,7 +604,7 @@ public class Logger<T> where T : ILoggable
     }
 }
 
-// T должен иметь конструктор без параметров
+// T РґРѕР»Р¶РµРЅ РёРјРµС‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 public class Factory<T> where T : new()
 {
     public T Create() => new T();
@@ -613,30 +613,30 @@ public class Factory<T> where T : new()
 
 ---
 
-## 9. Исключения и ресурсы
+## 9. РСЃРєР»СЋС‡РµРЅРёСЏ Рё СЂРµСЃСѓСЂСЃС‹
 
 ### Try-Catch-Finally
 
 ```csharp
 try
 {
-    int result = 10 / int.Parse("0");  // Ошибка!
+    int result = 10 / int.Parse("0");  // РћС€РёР±РєР°!
 }
 catch (DivideByZeroException ex)
 {
-    Console.WriteLine("Нельзя делить на ноль");
+    Console.WriteLine("РќРµР»СЊР·СЏ РґРµР»РёС‚СЊ РЅР° РЅРѕР»СЊ");
 }
 catch (FormatException ex)
 {
-    Console.WriteLine("Неправильный формат");
+    Console.WriteLine("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ С„РѕСЂРјР°С‚");
 }
 finally
 {
-    Console.WriteLine("Это выполнится ВСЕГДА");
+    Console.WriteLine("Р­С‚Рѕ РІС‹РїРѕР»РЅРёС‚СЃСЏ Р’РЎР•Р“Р”Рђ");
 }
 ```
 
-### IDisposable и using
+### IDisposable Рё using
 
 ```csharp
 public class FileHandler : IDisposable
@@ -646,17 +646,17 @@ public class FileHandler : IDisposable
     public void Dispose()
     {
         reader?.Close();
-        Console.WriteLine("Ресурс освобожден");
+        Console.WriteLine("Р РµСЃСѓСЂСЃ РѕСЃРІРѕР±РѕР¶РґРµРЅ");
     }
 }
 
-// using гарантирует вызов Dispose()
+// using РіР°СЂР°РЅС‚РёСЂСѓРµС‚ РІС‹Р·РѕРІ Dispose()
 using var handler = new FileHandler();
-// Используем handler
-// После выхода из блока вызовется Dispose()
+// РСЃРїРѕР»СЊР·СѓРµРј handler
+// РџРѕСЃР»Рµ РІС‹С…РѕРґР° РёР· Р±Р»РѕРєР° РІС‹Р·РѕРІРµС‚СЃСЏ Dispose()
 ```
 
-### Пользовательские исключения
+### РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ РёСЃРєР»СЋС‡РµРЅРёСЏ
 
 ```csharp
 public class InvalidUsernameException : Exception
@@ -664,18 +664,18 @@ public class InvalidUsernameException : Exception
     public InvalidUsernameException(string message) : base(message) { }
 }
 
-// Использование
-throw new InvalidUsernameException("Username не может быть пустым");
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
+throw new InvalidUsernameException("Username РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј");
 ```
 
 ---
 
-## 10. Значимые и ссылочные типы
+## 10. Р—РЅР°С‡РёРјС‹Рµ Рё СЃСЃС‹Р»РѕС‡РЅС‹Рµ С‚РёРїС‹
 
-### Разница
+### Р Р°Р·РЅРёС†Р°
 
 ```csharp
-// Значимый (Value) — struct, int, double, bool
+// Р—РЅР°С‡РёРјС‹Р№ (Value) вЂ” struct, int, double, bool
 struct Point
 {
     public int X { get; set; }
@@ -683,30 +683,30 @@ struct Point
 }
 
 Point p1 = new Point { X = 10, Y = 20 };
-Point p2 = p1;  // Копируется VALUE
+Point p2 = p1;  // РљРѕРїРёСЂСѓРµС‚СЃСЏ VALUE
 p2.X = 100;
 
-Console.WriteLine(p1.X);  // 10 (не изменилось)
+Console.WriteLine(p1.X);  // 10 (РЅРµ РёР·РјРµРЅРёР»РѕСЃСЊ)
 Console.WriteLine(p2.X);  // 100
 
-// Ссылочный (Reference) — class, string
+// РЎСЃС‹Р»РѕС‡РЅС‹Р№ (Reference) вЂ” class, string
 class User
 {
     public string Name { get; set; }
 }
 
 User u1 = new User { Name = "Alice" };
-User u2 = u1;  // Копируется ССЫЛКА
+User u2 = u1;  // РљРѕРїРёСЂСѓРµС‚СЃСЏ РЎРЎР«Р›РљРђ
 u2.Name = "Bob";
 
-Console.WriteLine(u1.Name);  // "Bob" (изменилось!)
+Console.WriteLine(u1.Name);  // "Bob" (РёР·РјРµРЅРёР»РѕСЃСЊ!)
 Console.WriteLine(u2.Name);  // "Bob"
 ```
 
-### ref и out
+### ref Рё out
 
 ```csharp
-// ref — передача по ссылке
+// ref вЂ” РїРµСЂРµРґР°С‡Р° РїРѕ СЃСЃС‹Р»РєРµ
 void Increment(ref int x)
 {
     x++;
@@ -716,7 +716,7 @@ int number = 5;
 Increment(ref number);
 Console.WriteLine(number);  // 6
 
-// out — выходной параметр
+// out вЂ” РІС‹С…РѕРґРЅРѕР№ РїР°СЂР°РјРµС‚СЂ
 void Divide(int a, int b, out int quotient, out int remainder)
 {
     quotient = a / b;
@@ -724,26 +724,26 @@ void Divide(int a, int b, out int quotient, out int remainder)
 }
 
 Divide(10, 3, out int q, out int r);
-Console.WriteLine($"{q} остаток {r}");  // 3 остаток 1
+Console.WriteLine($"{q} РѕСЃС‚Р°С‚РѕРє {r}");  // 3 РѕСЃС‚Р°С‚РѕРє 1
 ```
 
-### Nullable типы
+### Nullable С‚РёРїС‹
 
 ```csharp
-int? age = null;  // Может быть null
+int? age = null;  // РњРѕР¶РµС‚ Р±С‹С‚СЊ null
 
 if (age.HasValue)
 {
-    Console.WriteLine($"Возраст: {age.Value}");
+    Console.WriteLine($"Р’РѕР·СЂР°СЃС‚: {age.Value}");
 }
 
-// Значение по умолчанию
-int actualAge = age ?? 0;  // Если null, то 0
+// Р—РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+int actualAge = age ?? 0;  // Р•СЃР»Рё null, С‚Рѕ 0
 ```
 
 ---
 
-## 11. Null-операторы
+## 11. Null-РѕРїРµСЂР°С‚РѕСЂС‹
 
 ### Null-conditional (?.
 
@@ -752,8 +752,8 @@ int actualAge = age ?? 0;  // Если null, то 0
 ```csharp
 User user = null;
 
-// Безопасно
-string name = user?.Name;  // null (не выбросит исключение)
+// Р‘РµР·РѕРїР°СЃРЅРѕ
+string name = user?.Name;  // null (РЅРµ РІС‹Р±СЂРѕСЃРёС‚ РёСЃРєР»СЋС‡РµРЅРёРµ)
 
 User user2 = new User { Name = "Alice" };
 name = user2?.Name;  // "Alice"
@@ -764,7 +764,7 @@ name = user2?.Name;  // "Alice"
 ```csharp
 string text = null;
 
-// Значение по умолчанию
+// Р—РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 string display = text ?? "Unknown";  // "Unknown"
 
 string text2 = "Hello";
@@ -776,97 +776,97 @@ display = text2 ?? "Unknown";  // "Hello"
 ```csharp
 List<string> items = null;
 
-// Инициализируем если null
+// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РµСЃР»Рё null
 items ??= new List<string>();
 items.Add("item1");
 ```
 
 ---
 
-## 12. DateTime и TimeSpan
+## 12. DateTime Рё TimeSpan
 
 ### DateTime
 
 ```csharp
-// Текущая дата и время
+// РўРµРєСѓС‰Р°СЏ РґР°С‚Р° Рё РІСЂРµРјСЏ
 DateTime now = DateTime.Now;
 DateTime today = DateTime.Today;
 
-// Конкретный момент
+// РљРѕРЅРєСЂРµС‚РЅС‹Р№ РјРѕРјРµРЅС‚
 DateTime date = new DateTime(2024, 3, 15, 14, 30, 0);
 
-// Арифметика (возвращает НОВЫЙ DateTime)
+// РђСЂРёС„РјРµС‚РёРєР° (РІРѕР·РІСЂР°С‰Р°РµС‚ РќРћР’Р«Р™ DateTime)
 DateTime tomorrow = date.AddDays(1);
 DateTime nextHour = date.AddHours(1);
 
-// Форматирование
+// Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ
 string formatted = date.ToString("dd.MM.yyyy HH:mm:ss");
 
-// Парсинг
+// РџР°СЂСЃРёРЅРі
 DateTime parsed = DateTime.Parse("15.03.2024");
 bool success = DateTime.TryParseExact("2024-03-15", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dt);
 
-// Сравнение
+// РЎСЂР°РІРЅРµРЅРёРµ
 if (tomorrow > today)
 {
-    Console.WriteLine("Завтра позже, чем сегодня");
+    Console.WriteLine("Р—Р°РІС‚СЂР° РїРѕР·Р¶Рµ, С‡РµРј СЃРµРіРѕРґРЅСЏ");
 }
 
-// Только дата (без времени)
+// РўРѕР»СЊРєРѕ РґР°С‚Р° (Р±РµР· РІСЂРµРјРµРЅРё)
 if (date.Date == today)
 {
-    Console.WriteLine("Одинаковые даты");
+    Console.WriteLine("РћРґРёРЅР°РєРѕРІС‹Рµ РґР°С‚С‹");
 }
 ```
 
 ### TimeSpan
 
 ```csharp
-// Создание
+// РЎРѕР·РґР°РЅРёРµ
 TimeSpan duration = new TimeSpan(2, 30, 45);  // 2:30:45
 TimeSpan twoHours = TimeSpan.FromHours(2);
 TimeSpan fiveDays = TimeSpan.FromDays(5);
 
-// Компоненты
+// РљРѕРјРїРѕРЅРµРЅС‚С‹
 Console.WriteLine(duration.Hours);     // 2
 Console.WriteLine(duration.TotalHours);  // 2.5125
 
-// Арифметика
+// РђСЂРёС„РјРµС‚РёРєР°
 TimeSpan sum = TimeSpan.FromHours(2) + TimeSpan.FromMinutes(30);
 TimeSpan diff = TimeSpan.FromHours(2) - TimeSpan.FromMinutes(30);
 
-// Разница между датами
+// Р Р°Р·РЅРёС†Р° РјРµР¶РґСѓ РґР°С‚Р°РјРё
 DateTime start = new DateTime(2024, 3, 15);
 DateTime end = new DateTime(2024, 3, 18);
-TimeSpan span = end - start;  // 3 дня
+TimeSpan span = end - start;  // 3 РґРЅСЏ
 Console.WriteLine(span.TotalDays);  // 3
 ```
 
-### Stopwatch для производительности
+### Stopwatch РґР»СЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё
 
 ```csharp
 using System.Diagnostics;
 
 Stopwatch sw = Stopwatch.StartNew();
 
-// Код...
+// РљРѕРґ...
 System.Threading.Thread.Sleep(2000);
 
 sw.Stop();
 
-Console.WriteLine($"Прошло: {sw.ElapsedMilliseconds} мс");
-Console.WriteLine($"Прошло: {sw.Elapsed.TotalSeconds} секунд");
+Console.WriteLine($"РџСЂРѕС€Р»Рѕ: {sw.ElapsedMilliseconds} РјСЃ");
+Console.WriteLine($"РџСЂРѕС€Р»Рѕ: {sw.Elapsed.TotalSeconds} СЃРµРєСѓРЅРґ");
 ```
 
 ---
 
-## 13. Лучшие практики и принципы
+## 13. Р›СѓС‡С€РёРµ РїСЂР°РєС‚РёРєРё Рё РїСЂРёРЅС†РёРїС‹
 
-### SOLID принципы
+### SOLID РїСЂРёРЅС†РёРїС‹
 
-#### S — Single Responsibility Principle
+#### S вЂ” Single Responsibility Principle
 ```csharp
-// ? Плохо: класс делает слишком много
+// ? РџР»РѕС…Рѕ: РєР»Р°СЃСЃ РґРµР»Р°РµС‚ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ
 public class User
 {
     public void CreateUser() { }
@@ -875,7 +875,7 @@ public class User
     public void ValidatePassword() { }
 }
 
-// ? Хорошо: каждый класс делает одно
+// ? РҐРѕСЂРѕС€Рѕ: РєР°Р¶РґС‹Р№ РєР»Р°СЃСЃ РґРµР»Р°РµС‚ РѕРґРЅРѕ
 public class UserCreator
 {
     public void Create(User user) { }
@@ -897,25 +897,25 @@ public class PasswordValidator
 }
 ```
 
-#### O — Open/Closed Principle
+#### O вЂ” Open/Closed Principle
 ```csharp
-// ? Плохо: нужно изменять класс при добавлении нового платежа
+// ? РџР»РѕС…Рѕ: РЅСѓР¶РЅРѕ РёР·РјРµРЅСЏС‚СЊ РєР»Р°СЃСЃ РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё РЅРѕРІРѕРіРѕ РїР»Р°С‚РµР¶Р°
 public class PaymentProcessor
 {
     public void Process(string type, decimal amount)
     {
         if (type == "CreditCard")
         {
-            // код для кредитной карты
+            // РєРѕРґ РґР»СЏ РєСЂРµРґРёС‚РЅРѕР№ РєР°СЂС‚С‹
         }
         else if (type == "PayPal")
         {
-            // код для PayPal
+            // РєРѕРґ РґР»СЏ PayPal
         }
     }
 }
 
-// ? Хорошо: открыт для расширения, закрыт для изменения
+// ? РҐРѕСЂРѕС€Рѕ: РѕС‚РєСЂС‹С‚ РґР»СЏ СЂР°СЃС€РёСЂРµРЅРёСЏ, Р·Р°РєСЂС‹С‚ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ
 public interface IPaymentMethod
 {
     void Process(decimal amount);
@@ -940,9 +940,9 @@ public class PaymentProcessor
 }
 ```
 
-#### L — Liskov Substitution Principle
+#### L вЂ” Liskov Substitution Principle
 ```csharp
-// ? Правильно: все наследники могут заменить родителя
+// ? РџСЂР°РІРёР»СЊРЅРѕ: РІСЃРµ РЅР°СЃР»РµРґРЅРёРєРё РјРѕРіСѓС‚ Р·Р°РјРµРЅРёС‚СЊ СЂРѕРґРёС‚РµР»СЏ
 public class Animal
 {
     public virtual void Eat() { }
@@ -950,24 +950,24 @@ public class Animal
 
 public class Dog : Animal
 {
-    public override void Eat() { }  // Вполне себе может есть
+    public override void Eat() { }  // Р’РїРѕР»РЅРµ СЃРµР±Рµ РјРѕР¶РµС‚ РµСЃС‚СЊ
 }
 
 public class Cat : Animal
 {
-    public override void Eat() { }  // Может есть
+    public override void Eat() { }  // РњРѕР¶РµС‚ РµСЃС‚СЊ
 }
 
-// Этот код работает с ЛЮБЫМ Animal
+// Р­С‚РѕС‚ РєРѕРґ СЂР°Р±РѕС‚Р°РµС‚ СЃ Р›Р®Р‘Р«Рњ Animal
 void FeedAnimal(Animal animal)
 {
-    animal.Eat();  // Не важно, Dog или Cat
+    animal.Eat();  // РќРµ РІР°Р¶РЅРѕ, Dog РёР»Рё Cat
 }
 ```
 
-#### I — Interface Segregation Principle
+#### I вЂ” Interface Segregation Principle
 ```csharp
-// ? Плохо: большой интерфейс
+// ? РџР»РѕС…Рѕ: Р±РѕР»СЊС€РѕР№ РёРЅС‚РµСЂС„РµР№СЃ
 public interface IWorker
 {
     void Work();
@@ -975,7 +975,7 @@ public interface IWorker
     void Sleep();
 }
 
-// ? Хорошо: маленькие интерфейсы
+// ? РҐРѕСЂРѕС€Рѕ: РјР°Р»РµРЅСЊРєРёРµ РёРЅС‚РµСЂС„РµР№СЃС‹
 public interface IWorker
 {
     void Work();
@@ -999,15 +999,15 @@ public class Employee : IWorker, INeedFood, INeedRest
 }
 ```
 
-#### D — Dependency Inversion Principle
+#### D вЂ” Dependency Inversion Principle
 ```csharp
-// ? Плохо: зависимость от конкретного класса
+// ? РџР»РѕС…Рѕ: Р·Р°РІРёСЃРёРјРѕСЃС‚СЊ РѕС‚ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РєР»Р°СЃСЃР°
 public class UserService
 {
-    private MySQLDatabase database = new MySQLDatabase();  // Привязаны!
+    private MySQLDatabase database = new MySQLDatabase();  // РџСЂРёРІСЏР·Р°РЅС‹!
 }
 
-// ? Хорошо: зависимость от интерфейса
+// ? РҐРѕСЂРѕС€Рѕ: Р·Р°РІРёСЃРёРјРѕСЃС‚СЊ РѕС‚ РёРЅС‚РµСЂС„РµР№СЃР°
 public interface IDatabase
 {
     void Save(User user);
@@ -1015,7 +1015,7 @@ public interface IDatabase
 
 public class UserService
 {
-    private IDatabase database;  // Может быть любая реализация!
+    private IDatabase database;  // РњРѕР¶РµС‚ Р±С‹С‚СЊ Р»СЋР±Р°СЏ СЂРµР°Р»РёР·Р°С†РёСЏ!
     
     public UserService(IDatabase database)
     {
@@ -1027,7 +1027,7 @@ public class UserService
 ### DRY (Don't Repeat Yourself)
 
 ```csharp
-// ? Плохо: повторение кода
+// ? РџР»РѕС…Рѕ: РїРѕРІС‚РѕСЂРµРЅРёРµ РєРѕРґР°
 public class ValidationHelper
 {
     public bool ValidateUsername(string username)
@@ -1049,7 +1049,7 @@ public class ValidationHelper
     }
 }
 
-// ? Хорошо: общий метод
+// ? РҐРѕСЂРѕС€Рѕ: РѕР±С‰РёР№ РјРµС‚РѕРґ
 public class ValidationHelper
 {
     public bool IsNotEmpty(string value)
@@ -1072,7 +1072,7 @@ public class ValidationHelper
 ### KISS (Keep It Simple, Stupid)
 
 ```csharp
-// ? Слишком сложно
+// ? РЎР»РёС€РєРѕРј СЃР»РѕР¶РЅРѕ
 public class ComplexValidator
 {
     public bool Validate(User user)
@@ -1083,7 +1083,7 @@ public class ComplexValidator
     }
 }
 
-// ? Проще
+// ? РџСЂРѕС‰Рµ
 public class SimpleValidator
 {
     public bool ValidateName(string name) => !string.IsNullOrWhiteSpace(name);
@@ -1101,27 +1101,27 @@ public class SimpleValidator
 
 ---
 
-## Краткая шпаргалка по темам
+## РљСЂР°С‚РєР°СЏ С€РїР°СЂРіР°Р»РєР° РїРѕ С‚РµРјР°Рј
 
-| Тема | Когда использовать | Главный класс |
+| РўРµРјР° | РљРѕРіРґР° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ | Р“Р»Р°РІРЅС‹Р№ РєР»Р°СЃСЃ |
 |------|-------------------|---------------|
-| **Классы** | Создание объектов с поведением | `class` |
-| **Интерфейсы** | Определение контракта | `interface` |
-| **Наследование** | Переиспользование кода | `:` |
-| **Полиморфизм** | Вызов разного кода по типу | `virtual/override` |
-| **Generics** | Типобезопасные коллекции | `<T>` |
-| **LINQ** | Запросы к коллекциям | `.Where().Select()` |
-| **Исключения** | Обработка ошибок | `try-catch` |
-| **DateTime** | Работа с датами | `DateTime` |
-| **TimeSpan** | Интервалы времени | `TimeSpan` |
-| **null-операторы** | Безопасная работа с null | `?.`, `??` |
+| **РљР»Р°СЃСЃС‹** | РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚РѕРІ СЃ РїРѕРІРµРґРµРЅРёРµРј | `class` |
+| **РРЅС‚РµСЂС„РµР№СЃС‹** | РћРїСЂРµРґРµР»РµРЅРёРµ РєРѕРЅС‚СЂР°РєС‚Р° | `interface` |
+| **РќР°СЃР»РµРґРѕРІР°РЅРёРµ** | РџРµСЂРµРёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РєРѕРґР° | `:` |
+| **РџРѕР»РёРјРѕСЂС„РёР·Рј** | Р’С‹Р·РѕРІ СЂР°Р·РЅРѕРіРѕ РєРѕРґР° РїРѕ С‚РёРїСѓ | `virtual/override` |
+| **Generics** | РўРёРїРѕР±РµР·РѕРїР°СЃРЅС‹Рµ РєРѕР»Р»РµРєС†РёРё | `<T>` |
+| **LINQ** | Р—Р°РїСЂРѕСЃС‹ Рє РєРѕР»Р»РµРєС†РёСЏРј | `.Where().Select()` |
+| **РСЃРєР»СЋС‡РµРЅРёСЏ** | РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РѕРє | `try-catch` |
+| **DateTime** | Р Р°Р±РѕС‚Р° СЃ РґР°С‚Р°РјРё | `DateTime` |
+| **TimeSpan** | РРЅС‚РµСЂРІР°Р»С‹ РІСЂРµРјРµРЅРё | `TimeSpan` |
+| **null-РѕРїРµСЂР°С‚РѕСЂС‹** | Р‘РµР·РѕРїР°СЃРЅР°СЏ СЂР°Р±РѕС‚Р° СЃ null | `?.`, `??` |
 
 ---
 
-## Лучшие практики для QA/Automation
+## Р›СѓС‡С€РёРµ РїСЂР°РєС‚РёРєРё РґР»СЏ QA/Automation
 
 ```csharp
-// 1. Используйте Page Object Model
+// 1. РСЃРїРѕР»СЊР·СѓР№С‚Рµ Page Object Model
 public class LoginPage
 {
     public TextField UsernameField { get; private set; }
@@ -1130,7 +1130,7 @@ public class LoginPage
     public void Login(string username, string password) { }
 }
 
-// 2. Используйте DI для сервисов
+// 2. РСЃРїРѕР»СЊР·СѓР№С‚Рµ DI РґР»СЏ СЃРµСЂРІРёСЃРѕРІ
 public class LoginTest
 {
     private readonly IWebDriver driver;
@@ -1143,33 +1143,33 @@ public class LoginTest
     }
 }
 
-// 3. Безопасная работа с null
+// 3. Р‘РµР·РѕРїР°СЃРЅР°СЏ СЂР°Р±РѕС‚Р° СЃ null
 string text = element?.Text ?? "Unknown";
 
-// 4. Используйте TryParse для преобразований
+// 4. РСЃРїРѕР»СЊР·СѓР№С‚Рµ TryParse РґР»СЏ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёР№
 if (DateTime.TryParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
 {
-    // Используем date
+    // РСЃРїРѕР»СЊР·СѓРµРј date
 }
 
-// 5. Используйте Stopwatch для производительности
+// 5. РСЃРїРѕР»СЊР·СѓР№С‚Рµ Stopwatch РґР»СЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё
 Stopwatch sw = Stopwatch.StartNew();
-// Код...
+// РљРѕРґ...
 sw.Stop();
 Assert.IsTrue(sw.Elapsed < TimeSpan.FromSeconds(5));
 
-// 6. Используйте using для ресурсов
+// 6. РСЃРїРѕР»СЊР·СѓР№С‚Рµ using РґР»СЏ СЂРµСЃСѓСЂСЃРѕРІ
 using var driver = new ChromeDriver();
-// Используем driver
-// Автоматически закроется
+// РСЃРїРѕР»СЊР·СѓРµРј driver
+// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё Р·Р°РєСЂРѕРµС‚СЃСЏ
 ```
 
 ---
 
-## Файлы в проекте:
-- `Program.cs` — примеры всех концепций
-- `BasicTypes.cs` — примеры типов данных
-- `OOPExamples.cs` — примеры классов и наследования
-- `LINQExamples.cs` — примеры запросов
-- `DateTimeExamples.cs` — примеры работы с датами
+## Р¤Р°Р№Р»С‹ РІ РїСЂРѕРµРєС‚Рµ:
+- `Program.cs` вЂ” РїСЂРёРјРµСЂС‹ РІСЃРµС… РєРѕРЅС†РµРїС†РёР№
+- `BasicTypes.cs` вЂ” РїСЂРёРјРµСЂС‹ С‚РёРїРѕРІ РґР°РЅРЅС‹С…
+- `OOPExamples.cs` вЂ” РїСЂРёРјРµСЂС‹ РєР»Р°СЃСЃРѕРІ Рё РЅР°СЃР»РµРґРѕРІР°РЅРёСЏ
+- `LINQExamples.cs` вЂ” РїСЂРёРјРµСЂС‹ Р·Р°РїСЂРѕСЃРѕРІ
+- `DateTimeExamples.cs` вЂ” РїСЂРёРјРµСЂС‹ СЂР°Р±РѕС‚С‹ СЃ РґР°С‚Р°РјРё
 

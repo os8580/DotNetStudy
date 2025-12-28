@@ -1,26 +1,26 @@
-# Topic3 — Полиморфизм и наследование (Полный курс для начинающих)
+п»ї# Topic3 вЂ” РџРѕР»РёРјРѕСЂС„РёР·Рј Рё РЅР°СЃР»РµРґРѕРІР°РЅРёРµ (РџРѕР»РЅС‹Р№ РєСѓСЂСЃ РґР»СЏ РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-## Цель
-Понять, как один класс может наследовать от другого, переопределять методы, и почему это важно для избежания дублирования кода.
+## Р¦РµР»СЊ
+РџРѕРЅСЏС‚СЊ, РєР°Рє РѕРґРёРЅ РєР»Р°СЃСЃ РјРѕР¶РµС‚ РЅР°СЃР»РµРґРѕРІР°С‚СЊ РѕС‚ РґСЂСѓРіРѕРіРѕ, РїРµСЂРµРѕРїСЂРµРґРµР»СЏС‚СЊ РјРµС‚РѕРґС‹, Рё РїРѕС‡РµРјСѓ СЌС‚Рѕ РІР°Р¶РЅРѕ РґР»СЏ РёР·Р±РµР¶Р°РЅРёСЏ РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РєРѕРґР°.
 
 ---
 
-## 1. Что такое наследование? (Для самых начинающих)
+## 1. Р§С‚Рѕ С‚Р°РєРѕРµ РЅР°СЃР»РµРґРѕРІР°РЅРёРµ? (Р”Р»СЏ СЃР°РјС‹С… РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-### Аналогия из жизни
+### РђРЅР°Р»РѕРіРёСЏ РёР· Р¶РёР·РЅРё
 ```
-Животное — родитель
-?? Собака — наследник (наследует от Животного)
-?? Кошка — наследник
-?? Птица — наследник
+Р–РёРІРѕС‚РЅРѕРµ вЂ” СЂРѕРґРёС‚РµР»СЊ
+?? РЎРѕР±Р°РєР° вЂ” РЅР°СЃР»РµРґРЅРёРє (РЅР°СЃР»РµРґСѓРµС‚ РѕС‚ Р–РёРІРѕС‚РЅРѕРіРѕ)
+?? РљРѕС€РєР° вЂ” РЅР°СЃР»РµРґРЅРёРє
+?? РџС‚РёС†Р° вЂ” РЅР°СЃР»РµРґРЅРёРє
 
-Все животные едят, спят, дышат (общее поведение).
-Но собака лает, кошка мяукает, птица чирикает (разное поведение).
+Р’СЃРµ Р¶РёРІРѕС‚РЅС‹Рµ РµРґСЏС‚, СЃРїСЏС‚, РґС‹С€Р°С‚ (РѕР±С‰РµРµ РїРѕРІРµРґРµРЅРёРµ).
+РќРѕ СЃРѕР±Р°РєР° Р»Р°РµС‚, РєРѕС€РєР° РјСЏСѓРєР°РµС‚, РїС‚РёС†Р° С‡РёСЂРёРєР°РµС‚ (СЂР°Р·РЅРѕРµ РїРѕРІРµРґРµРЅРёРµ).
 ```
 
-### В программировании:
+### Р’ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРё:
 ```csharp
-// Родительский класс (базовый класс)
+// Р РѕРґРёС‚РµР»СЊСЃРєРёР№ РєР»Р°СЃСЃ (Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ)
 public class Animal
 {
     public string Name { get; set; }
@@ -34,49 +34,49 @@ public class Animal
     }
 }
 
-// Дочерний класс (наследует от Animal)
+// Р”РѕС‡РµСЂРЅРёР№ РєР»Р°СЃСЃ (РЅР°СЃР»РµРґСѓРµС‚ РѕС‚ Animal)
 public class Dog : Animal
 {
-    // Переопределяем MakeSound() для собаки
+    // РџРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј MakeSound() РґР»СЏ СЃРѕР±Р°РєРё
     public override void MakeSound()
     {
         Console.WriteLine("Woof! Woof!");
     }
 }
 
-// Дочерний класс (наследует от Animal)
+// Р”РѕС‡РµСЂРЅРёР№ РєР»Р°СЃСЃ (РЅР°СЃР»РµРґСѓРµС‚ РѕС‚ Animal)
 public class Cat : Animal
 {
-    // Переопределяем MakeSound() для кошки
+    // РџРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј MakeSound() РґР»СЏ РєРѕС€РєРё
     public override void MakeSound()
     {
         Console.WriteLine("Meow!");
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 Animal dog = new Dog { Name = "Rex" };
-dog.Sleep();       // ? Sleep унаследована от Animal
-dog.Eat();         // ? Eat унаследована от Animal
-dog.MakeSound();   // ? Вызовет переопределенный MakeSound из Dog
+dog.Sleep();       // ? Sleep СѓРЅР°СЃР»РµРґРѕРІР°РЅР° РѕС‚ Animal
+dog.Eat();         // ? Eat СѓРЅР°СЃР»РµРґРѕРІР°РЅР° РѕС‚ Animal
+dog.MakeSound();   // ? Р’С‹Р·РѕРІРµС‚ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ MakeSound РёР· Dog
 
 Animal cat = new Cat { Name = "Whiskers" };
-cat.MakeSound();   // ? Вызовет переопределенный MakeSound из Cat
+cat.MakeSound();   // ? Р’С‹Р·РѕРІРµС‚ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ MakeSound РёР· Cat
 ```
 
 ---
 
-## 2. Зачем нужно наследование? (3 причины)
+## 2. Р—Р°С‡РµРј РЅСѓР¶РЅРѕ РЅР°СЃР»РµРґРѕРІР°РЅРёРµ? (3 РїСЂРёС‡РёРЅС‹)
 
-### Причина 1: Избегайте дублирования (DRY)
+### РџСЂРёС‡РёРЅР° 1: РР·Р±РµРіР°Р№С‚Рµ РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ (DRY)
 
-? **Без наследования** (много повторений):
+? **Р‘РµР· РЅР°СЃР»РµРґРѕРІР°РЅРёСЏ** (РјРЅРѕРіРѕ РїРѕРІС‚РѕСЂРµРЅРёР№):
 ```csharp
 public class Dog
 {
     public string Name { get; set; }
     
-    // Одинаковые методы...
+    // РћРґРёРЅР°РєРѕРІС‹Рµ РјРµС‚РѕРґС‹...
     public void Sleep() => Console.WriteLine("Zzz...");
     public void Eat() => Console.WriteLine("Nom nom nom");
     
@@ -87,7 +87,7 @@ public class Cat
 {
     public string Name { get; set; }
     
-    // Одинаковые методы повторены!
+    // РћРґРёРЅР°РєРѕРІС‹Рµ РјРµС‚РѕРґС‹ РїРѕРІС‚РѕСЂРµРЅС‹!
     public void Sleep() => Console.WriteLine("Zzz...");
     public void Eat() => Console.WriteLine("Nom nom nom");
     
@@ -98,7 +98,7 @@ public class Bird
 {
     public string Name { get; set; }
     
-    // Снова одинаковые методы!
+    // РЎРЅРѕРІР° РѕРґРёРЅР°РєРѕРІС‹Рµ РјРµС‚РѕРґС‹!
     public void Sleep() => Console.WriteLine("Zzz...");
     public void Eat() => Console.WriteLine("Nom nom nom");
     
@@ -106,9 +106,9 @@ public class Bird
 }
 ```
 
-? **С наследованием** (код не повторяется):
+? **РЎ РЅР°СЃР»РµРґРѕРІР°РЅРёРµРј** (РєРѕРґ РЅРµ РїРѕРІС‚РѕСЂСЏРµС‚СЃСЏ):
 ```csharp
-// Базовый класс с общим кодом
+// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ СЃ РѕР±С‰РёРј РєРѕРґРѕРј
 public class Animal
 {
     public string Name { get; set; }
@@ -119,7 +119,7 @@ public class Animal
     public virtual void MakeSound() { }
 }
 
-// Каждый класс только переопределяет отличия
+// РљР°Р¶РґС‹Р№ РєР»Р°СЃСЃ С‚РѕР»СЊРєРѕ РїРµСЂРµРѕРїСЂРµРґРµР»СЏРµС‚ РѕС‚Р»РёС‡РёСЏ
 public class Dog : Animal
 {
     public override void MakeSound() => Console.WriteLine("Woof!");
@@ -136,63 +136,63 @@ public class Bird : Animal
 }
 ```
 
-### Причина 2: Полиморфизм (один код работает со всеми)
+### РџСЂРёС‡РёРЅР° 2: РџРѕР»РёРјРѕСЂС„РёР·Рј (РѕРґРёРЅ РєРѕРґ СЂР°Р±РѕС‚Р°РµС‚ СЃРѕ РІСЃРµРјРё)
 
 ```csharp
-// Один метод работает с любым Animal!
+// РћРґРёРЅ РјРµС‚РѕРґ СЂР°Р±РѕС‚Р°РµС‚ СЃ Р»СЋР±С‹Рј Animal!
 void PrintAnimalSound(Animal animal)
 {
-    Console.WriteLine($"{animal.Name} говорит:");
-    animal.MakeSound();  // ? Вызовет правильный метод для каждого животного
+    Console.WriteLine($"{animal.Name} РіРѕРІРѕСЂРёС‚:");
+    animal.MakeSound();  // ? Р’С‹Р·РѕРІРµС‚ РїСЂР°РІРёР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РєР°Р¶РґРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 Animal dog = new Dog { Name = "Rex" };
 Animal cat = new Cat { Name = "Whiskers" };
 Animal bird = new Bird { Name = "Tweety" };
 
-PrintAnimalSound(dog);    // Rex говорит: Woof!
-PrintAnimalSound(cat);    // Whiskers говорит: Meow!
-PrintAnimalSound(bird);   // Tweety говорит: Chirp!
+PrintAnimalSound(dog);    // Rex РіРѕРІРѕСЂРёС‚: Woof!
+PrintAnimalSound(cat);    // Whiskers РіРѕРІРѕСЂРёС‚: Meow!
+PrintAnimalSound(bird);   // Tweety РіРѕРІРѕСЂРёС‚: Chirp!
 
-// Или в цикле:
+// РР»Рё РІ С†РёРєР»Рµ:
 List<Animal> animals = new List<Animal> { dog, cat, bird };
 foreach (var animal in animals)
 {
-    PrintAnimalSound(animal);  // Каждый издает свой звук!
+    PrintAnimalSound(animal);  // РљР°Р¶РґС‹Р№ РёР·РґР°РµС‚ СЃРІРѕР№ Р·РІСѓРє!
 }
 ```
 
-### Причина 3: Расширяемость
+### РџСЂРёС‡РёРЅР° 3: Р Р°СЃС€РёСЂСЏРµРјРѕСЃС‚СЊ
 
 ```csharp
-// Новое животное? Просто добавляем класс!
+// РќРѕРІРѕРµ Р¶РёРІРѕС‚РЅРѕРµ? РџСЂРѕСЃС‚Рѕ РґРѕР±Р°РІР»СЏРµРј РєР»Р°СЃСЃ!
 public class Snake : Animal
 {
     public override void MakeSound() => Console.WriteLine("Hisss!");
 }
 
-// Весь остальной код работает без изменений!
+// Р’РµСЃСЊ РѕСЃС‚Р°Р»СЊРЅРѕР№ РєРѕРґ СЂР°Р±РѕС‚Р°РµС‚ Р±РµР· РёР·РјРµРЅРµРЅРёР№!
 animals.Add(new Snake { Name = "Sssandro" });
 foreach (var animal in animals)
 {
-    PrintAnimalSound(animal);  // ? Работает со Snake тоже!
+    PrintAnimalSound(animal);  // ? Р Р°Р±РѕС‚Р°РµС‚ СЃРѕ Snake С‚РѕР¶Рµ!
 }
 ```
 
 ---
 
-## 3. virtual и override
+## 3. virtual Рё override
 
-### Что это?
+### Р§С‚Рѕ СЌС‚Рѕ?
 
-**virtual** — "этот метод можно переопределить"
-**override** — "я переопределяю виртуальный метод"
+**virtual** вЂ” "СЌС‚РѕС‚ РјРµС‚РѕРґ РјРѕР¶РЅРѕ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ"
+**override** вЂ” "СЏ РїРµСЂРµРѕРїСЂРµРґРµР»СЏСЋ РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ"
 
 ```csharp
 public class Animal
 {
-    // virtual — дочерние классы могут переопределить
+    // virtual вЂ” РґРѕС‡РµСЂРЅРёРµ РєР»Р°СЃСЃС‹ РјРѕРіСѓС‚ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ
     public virtual void MakeSound()
     {
         Console.WriteLine("Generic sound");
@@ -201,39 +201,39 @@ public class Animal
 
 public class Dog : Animal
 {
-    // override — переопределяем виртуальный метод
+    // override вЂ” РїРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ
     public override void MakeSound()
     {
         Console.WriteLine("Woof!");
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 Animal animal = new Animal();
 animal.MakeSound();  // Generic sound
 
 Animal dog = new Dog();
-dog.MakeSound();     // Woof! (переопределенный метод)
+dog.MakeSound();     // Woof! (РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ РјРµС‚РѕРґ)
 ```
 
-### Важно: Полиморфизм
+### Р’Р°Р¶РЅРѕ: РџРѕР»РёРјРѕСЂС„РёР·Рј
 ```csharp
-// Самое важное свойство наследования!
+// РЎР°РјРѕРµ РІР°Р¶РЅРѕРµ СЃРІРѕР№СЃС‚РІРѕ РЅР°СЃР»РµРґРѕРІР°РЅРёСЏ!
 
 Animal dog = new Dog();
-dog.MakeSound();  // Вызовет Dog.MakeSound(), хотя тип переменной — Animal!
+dog.MakeSound();  // Р’С‹Р·РѕРІРµС‚ Dog.MakeSound(), С…РѕС‚СЏ С‚РёРї РїРµСЂРµРјРµРЅРЅРѕР№ вЂ” Animal!
 
-// Это зависит от РЕАЛЬНОГО типа объекта (Dog), а не объявленного типа (Animal)
+// Р­С‚Рѕ Р·Р°РІРёСЃРёС‚ РѕС‚ Р Р•РђР›Р¬РќРћР“Рћ С‚РёРїР° РѕР±СЉРµРєС‚Р° (Dog), Р° РЅРµ РѕР±СЉСЏРІР»РµРЅРЅРѕРіРѕ С‚РёРїР° (Animal)
 ```
 
 ---
 
-## 4. abstract класс (абстрактный класс)
+## 4. abstract РєР»Р°СЃСЃ (Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ)
 
-Иногда базовый класс не должен создаваться напрямую. Используйте `abstract`:
+РРЅРѕРіРґР° Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РЅРµ РґРѕР»Р¶РµРЅ СЃРѕР·РґР°РІР°С‚СЊСЃСЏ РЅР°РїСЂСЏРјСѓСЋ. РСЃРїРѕР»СЊР·СѓР№С‚Рµ `abstract`:
 
 ```csharp
-// Абстрактный класс — нельзя создать напрямую
+// РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ вЂ” РЅРµР»СЊР·СЏ СЃРѕР·РґР°С‚СЊ РЅР°РїСЂСЏРјСѓСЋ
 public abstract class Animal
 {
     public string Name { get; set; }
@@ -241,49 +241,49 @@ public abstract class Animal
     public void Sleep() => Console.WriteLine("Zzz...");
     public void Eat() => Console.WriteLine("Nom nom nom");
     
-    // Абстрактный метод — ДОЛЖЕН быть переопределен в дочерних классах
+    // РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РјРµС‚РѕРґ вЂ” Р”РћР›Р–Р•Рќ Р±С‹С‚СЊ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅ РІ РґРѕС‡РµСЂРЅРёС… РєР»Р°СЃСЃР°С…
     public abstract void MakeSound();
 }
 
-// Использование
-// ? Animal animal = new Animal();  // Ошибка! Не можем создать абстрактный класс
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
+// ? Animal animal = new Animal();  // РћС€РёР±РєР°! РќРµ РјРѕР¶РµРј СЃРѕР·РґР°С‚СЊ Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ
 
-// ? Можем создать Dog (который реализует MakeSound())
+// ? РњРѕР¶РµРј СЃРѕР·РґР°С‚СЊ Dog (РєРѕС‚РѕСЂС‹Р№ СЂРµР°Р»РёР·СѓРµС‚ MakeSound())
 Animal dog = new Dog { Name = "Rex" };
 dog.MakeSound();  // Woof!
 
-// ? Если создадим класс Bird и забудим переопределить MakeSound():
+// ? Р•СЃР»Рё СЃРѕР·РґР°РґРёРј РєР»Р°СЃСЃ Bird Рё Р·Р°Р±СѓРґРёРј РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ MakeSound():
 public class Bird : Animal
 {
-    // Ошибка компиляции! Должны реализовать MakeSound()
+    // РћС€РёР±РєР° РєРѕРјРїРёР»СЏС†РёРё! Р”РѕР»Р¶РЅС‹ СЂРµР°Р»РёР·РѕРІР°С‚СЊ MakeSound()
 }
 ```
 
 ### abstract vs virtual
 
-| Особенность | virtual | abstract |
+| РћСЃРѕР±РµРЅРЅРѕСЃС‚СЊ | virtual | abstract |
 |-------------|---------|----------|
-| **Может быть создан класс?** | ? Да | ? Нет |
-| **Тело метода** | ? Есть | ? Нет |
-| **Должны ли дочерние переопределять?** | ? Опционально | ? Обязательно |
-| **Когда использовать?** | Есть общее поведение | Только контракт |
+| **РњРѕР¶РµС‚ Р±С‹С‚СЊ СЃРѕР·РґР°РЅ РєР»Р°СЃСЃ?** | ? Р”Р° | ? РќРµС‚ |
+| **РўРµР»Рѕ РјРµС‚РѕРґР°** | ? Р•СЃС‚СЊ | ? РќРµС‚ |
+| **Р”РѕР»Р¶РЅС‹ Р»Рё РґРѕС‡РµСЂРЅРёРµ РїРµСЂРµРѕРїСЂРµРґРµР»СЏС‚СЊ?** | ? РћРїС†РёРѕРЅР°Р»СЊРЅРѕ | ? РћР±СЏР·Р°С‚РµР»СЊРЅРѕ |
+| **РљРѕРіРґР° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ?** | Р•СЃС‚СЊ РѕР±С‰РµРµ РїРѕРІРµРґРµРЅРёРµ | РўРѕР»СЊРєРѕ РєРѕРЅС‚СЂР°РєС‚ |
 
 ```csharp
-// virtual — есть реализация
+// virtual вЂ” РµСЃС‚СЊ СЂРµР°Р»РёР·Р°С†РёСЏ
 public virtual void MakeSound() => Console.WriteLine("Some sound");
 
-// abstract — только сигнатура
-public abstract void MakeSound();  // Нет тела!
+// abstract вЂ” С‚РѕР»СЊРєРѕ СЃРёРіРЅР°С‚СѓСЂР°
+public abstract void MakeSound();  // РќРµС‚ С‚РµР»Р°!
 ```
 
 ---
 
-## 5. Практический пример для QA/Automation
+## 5. РџСЂР°РєС‚РёС‡РµСЃРєРёР№ РїСЂРёРјРµСЂ РґР»СЏ QA/Automation
 
-### Сценарий: Работа с разными браузерами
+### РЎС†РµРЅР°СЂРёР№: Р Р°Р±РѕС‚Р° СЃ СЂР°Р·РЅС‹РјРё Р±СЂР°СѓР·РµСЂР°РјРё
 
 ```csharp
-// ========== БАЗОВЫЙ КЛАСС ==========
+// ========== Р‘РђР—РћР’Р«Р™ РљР›РђРЎРЎ ==========
 public abstract class Browser
 {
     protected string _windowHandle;
@@ -291,42 +291,42 @@ public abstract class Browser
     
     public string CurrentUrl => _currentUrl;
     
-    // Общее поведение
+    // РћР±С‰РµРµ РїРѕРІРµРґРµРЅРёРµ
     public void ClearCache()
     {
-        Console.WriteLine("???  Очищаем кэш...");
+        Console.WriteLine("???  РћС‡РёС‰Р°РµРј РєСЌС€...");
     }
     
-    // Виртуальный метод (может быть переопределен)
+    // Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ (РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅ)
     public virtual void PrintConsole()
     {
         Console.WriteLine("?? [BROWSER] Log message");
     }
     
-    // Абстрактные методы (ДОЛЖНЫ быть реализованы)
+    // РђР±СЃС‚СЂР°РєС‚РЅС‹Рµ РјРµС‚РѕРґС‹ (Р”РћР›Р–РќР« Р±С‹С‚СЊ СЂРµР°Р»РёР·РѕРІР°РЅС‹)
     public abstract void Launch();
     public abstract void Navigate(string url);
     public abstract void Close();
 }
 
-// ========== РЕАЛИЗАЦИЯ 1: Chrome ==========
+// ========== Р Р•РђР›РР—РђР¦РРЇ 1: Chrome ==========
 public class ChromeBrowser : Browser
 {
     public override void Launch()
     {
-        Console.WriteLine("?? Запускаем Chrome...");
+        Console.WriteLine("?? Р—Р°РїСѓСЃРєР°РµРј Chrome...");
         _windowHandle = "chrome_12345";
     }
     
     public override void Navigate(string url)
     {
         _currentUrl = url;
-        Console.WriteLine($"?? Chrome переходит на {url}");
+        Console.WriteLine($"?? Chrome РїРµСЂРµС…РѕРґРёС‚ РЅР° {url}");
     }
     
     public override void Close()
     {
-        Console.WriteLine("?? Закрываем Chrome");
+        Console.WriteLine("?? Р—Р°РєСЂС‹РІР°РµРј Chrome");
     }
     
     public override void PrintConsole()
@@ -335,24 +335,24 @@ public class ChromeBrowser : Browser
     }
 }
 
-// ========== РЕАЛИЗАЦИЯ 2: Firefox ==========
+// ========== Р Р•РђР›РР—РђР¦РРЇ 2: Firefox ==========
 public class FirefoxBrowser : Browser
 {
     public override void Launch()
     {
-        Console.WriteLine("?? Запускаем Firefox...");
+        Console.WriteLine("?? Р—Р°РїСѓСЃРєР°РµРј Firefox...");
         _windowHandle = "firefox_67890";
     }
     
     public override void Navigate(string url)
     {
         _currentUrl = url;
-        Console.WriteLine($"?? Firefox переходит на {url}");
+        Console.WriteLine($"?? Firefox РїРµСЂРµС…РѕРґРёС‚ РЅР° {url}");
     }
     
     public override void Close()
     {
-        Console.WriteLine("?? Закрываем Firefox");
+        Console.WriteLine("?? Р—Р°РєСЂС‹РІР°РµРј Firefox");
     }
 }
 
@@ -373,20 +373,20 @@ public class LoginPage
     
     public void Login(string username, string password)
     {
-        Console.WriteLine($"??  Логинимся как {username}");
+        Console.WriteLine($"??  Р›РѕРіРёРЅРёРјСЃСЏ РєР°Рє {username}");
     }
 }
 
-// ========== ИСПОЛЬЗОВАНИЕ ==========
+// ========== РРЎРџРћР›Р¬Р—РћР’РђРќРР• ==========
 class Program
 {
     static void Main()
     {
-        // Тест в Chrome
-        Console.WriteLine("=== ТЕСТ В CHROME ===");
+        // РўРµСЃС‚ РІ Chrome
+        Console.WriteLine("=== РўР•РЎРў Р’ CHROME ===");
         Browser chromeBrowser = new ChromeBrowser();
         chromeBrowser.Launch();
-        chromeBrowser.ClearCache();  // ? Унаследованный метод
+        chromeBrowser.ClearCache();  // ? РЈРЅР°СЃР»РµРґРѕРІР°РЅРЅС‹Р№ РјРµС‚РѕРґ
         
         LoginPage loginPage = new LoginPage(chromeBrowser);
         loginPage.Open();
@@ -395,34 +395,34 @@ class Program
         chromeBrowser.PrintConsole();  // ?? [CHROME] Console message
         chromeBrowser.Close();
         
-        Console.WriteLine("\n=== ТЕСТ В FIREFOX ===");
-        // Тот же тест в Firefox!
+        Console.WriteLine("\n=== РўР•РЎРў Р’ FIREFOX ===");
+        // РўРѕС‚ Р¶Рµ С‚РµСЃС‚ РІ Firefox!
         Browser firefoxBrowser = new FirefoxBrowser();
         firefoxBrowser.Launch();
-        firefoxBrowser.ClearCache();  // ? Работает одинаково!
+        firefoxBrowser.ClearCache();  // ? Р Р°Р±РѕС‚Р°РµС‚ РѕРґРёРЅР°РєРѕРІРѕ!
         
         loginPage = new LoginPage(firefoxBrowser);
         loginPage.Open();
         loginPage.Login("bob", "secret");
         
-        firefoxBrowser.PrintConsole();  // ?? [BROWSER] Log message (дефолтный)
+        firefoxBrowser.PrintConsole();  // ?? [BROWSER] Log message (РґРµС„РѕР»С‚РЅС‹Р№)
         firefoxBrowser.Close();
     }
 }
 
-// Вывод:
-// === ТЕСТ В CHROME ===
-// ?? Запускаем Chrome...
-// ???  Очищаем кэш...
-// ?? Chrome переходит на https://example.com/login
-// ??  Логинимся как alice
+// Р’С‹РІРѕРґ:
+// === РўР•РЎРў Р’ CHROME ===
+// ?? Р—Р°РїСѓСЃРєР°РµРј Chrome...
+// ???  РћС‡РёС‰Р°РµРј РєСЌС€...
+// ?? Chrome РїРµСЂРµС…РѕРґРёС‚ РЅР° https://example.com/login
+// ??  Р›РѕРіРёРЅРёРјСЃСЏ РєР°Рє alice
 // ?? [CHROME] Console message
-// ?? Закрываем Chrome
+// ?? Р—Р°РєСЂС‹РІР°РµРј Chrome
 //
-// === ТЕСТ В FIREFOX ===
-// ?? Запускаем Firefox...
-// ???  Очищаем кэш...
-// ?? Firefox переходит на https://example.com/login
-// ??  Логинимся как bob
+// === РўР•РЎРў Р’ FIREFOX ===
+// ?? Р—Р°РїСѓСЃРєР°РµРј Firefox...
+// ???  РћС‡РёС‰Р°РµРј РєСЌС€...
+// ?? Firefox РїРµСЂРµС…РѕРґРёС‚ РЅР° https://example.com/login
+// ??  Р›РѕРіРёРЅРёРјСЃСЏ РєР°Рє bob
 // ?? [BROWSER] Log message
-// ?? Закрываем Firefox
+// ?? Р—Р°РєСЂС‹РІР°РµРј Firefox

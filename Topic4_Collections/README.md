@@ -1,183 +1,183 @@
-# Topic4 — Коллекции (Полный курс для начинающих)
+п»ї# Topic4 вЂ” РљРѕР»Р»РµРєС†РёРё (РџРѕР»РЅС‹Р№ РєСѓСЂСЃ РґР»СЏ РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-## Цель
-Понять, как работают коллекции в C#, когда использовать каждую из них, и как выбрать правильную коллекцию для конкретной задачи.
+## Р¦РµР»СЊ
+РџРѕРЅСЏС‚СЊ, РєР°Рє СЂР°Р±РѕС‚Р°СЋС‚ РєРѕР»Р»РµРєС†РёРё РІ C#, РєРѕРіРґР° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°Р¶РґСѓСЋ РёР· РЅРёС…, Рё РєР°Рє РІС‹Р±СЂР°С‚СЊ РїСЂР°РІРёР»СЊРЅСѓСЋ РєРѕР»Р»РµРєС†РёСЋ РґР»СЏ РєРѕРЅРєСЂРµС‚РЅРѕР№ Р·Р°РґР°С‡Рё.
 
 ---
 
-## 1. Что такое коллекция? (Для самых начинающих)
+## 1. Р§С‚Рѕ С‚Р°РєРѕРµ РєРѕР»Р»РµРєС†РёСЏ? (Р”Р»СЏ СЃР°РјС‹С… РЅР°С‡РёРЅР°СЋС‰РёС…)
 
-### Аналогия
+### РђРЅР°Р»РѕРіРёСЏ
 ```
-Переменная = коробка с одним предметом
+РџРµСЂРµРјРµРЅРЅР°СЏ = РєРѕСЂРѕР±РєР° СЃ РѕРґРЅРёРј РїСЂРµРґРјРµС‚РѕРј
 int age = 30;
 
-Коллекция = большой шкаф с множеством предметов
+РљРѕР»Р»РµРєС†РёСЏ = Р±РѕР»СЊС€РѕР№ С€РєР°С„ СЃ РјРЅРѕР¶РµСЃС‚РІРѕРј РїСЂРµРґРјРµС‚РѕРІ
 List<int> ages = new List<int> { 20, 25, 30, 35, 40 };
 ```
 
-### Проблема без коллекций
+### РџСЂРѕР±Р»РµРјР° Р±РµР· РєРѕР»Р»РµРєС†РёР№
 
 ```csharp
-// Нужно хранить возрасты 5 человек
+// РќСѓР¶РЅРѕ С…СЂР°РЅРёС‚СЊ РІРѕР·СЂР°СЃС‚С‹ 5 С‡РµР»РѕРІРµРє
 int age1 = 20;
 int age2 = 25;
 int age3 = 30;
 int age4 = 35;
 int age5 = 40;
 
-// ? Неудобно! Много переменных!
-// Что если 100 человек? 1000?
+// ? РќРµСѓРґРѕР±РЅРѕ! РњРЅРѕРіРѕ РїРµСЂРµРјРµРЅРЅС‹С…!
+// Р§С‚Рѕ РµСЃР»Рё 100 С‡РµР»РѕРІРµРє? 1000?
 
-// Решение — коллекция!
+// Р РµС€РµРЅРёРµ вЂ” РєРѕР»Р»РµРєС†РёСЏ!
 List<int> ages = new List<int> { 20, 25, 30, 35, 40 };
-// Все 5 значений в одной переменной!
+// Р’СЃРµ 5 Р·РЅР°С‡РµРЅРёР№ РІ РѕРґРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№!
 ```
 
 ---
 
-## 2. Array (Массив) — Основы
+## 2. Array (РњР°СЃСЃРёРІ) вЂ” РћСЃРЅРѕРІС‹
 
-### Создание массива
+### РЎРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР°
 
 ```csharp
-// Массив из 5 целых чисел
-int[] numbers = new int[5];  // По умолчанию заполнена нулями: { 0, 0, 0, 0, 0 }
+// РњР°СЃСЃРёРІ РёР· 5 С†РµР»С‹С… С‡РёСЃРµР»
+int[] numbers = new int[5];  // РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Р·Р°РїРѕР»РЅРµРЅР° РЅСѓР»СЏРјРё: { 0, 0, 0, 0, 0 }
 
-// Массив с инициализацией
-int[] ages = new int[] { 20, 25, 30, 35, 40 };  // 5 элементов
+// РњР°СЃСЃРёРІ СЃ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№
+int[] ages = new int[] { 20, 25, 30, 35, 40 };  // 5 СЌР»РµРјРµРЅС‚РѕРІ
 
-// Краткая форма (компилятор определит размер)
-int[] scores = { 90, 85, 95, 88 };  // 4 элемента
+// РљСЂР°С‚РєР°СЏ С„РѕСЂРјР° (РєРѕРјРїРёР»СЏС‚РѕСЂ РѕРїСЂРµРґРµР»РёС‚ СЂР°Р·РјРµСЂ)
+int[] scores = { 90, 85, 95, 88 };  // 4 СЌР»РµРјРµРЅС‚Р°
 
-// Массив строк
+// РњР°СЃСЃРёРІ СЃС‚СЂРѕРє
 string[] names = { "Alice", "Bob", "Charlie" };
 
-// Пустой массив
+// РџСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
 int[] empty = new int[0];
 ```
 
-### Доступ к элементам
+### Р”РѕСЃС‚СѓРї Рє СЌР»РµРјРµРЅС‚Р°Рј
 
 ```csharp
 int[] numbers = { 10, 20, 30, 40, 50 };
 
-// Индекс начинается с 0!
-Console.WriteLine(numbers[0]);  // 10 (первый элемент)
-Console.WriteLine(numbers[1]);  // 20 (второй элемент)
-Console.WriteLine(numbers[4]);  // 50 (последний элемент)
+// РРЅРґРµРєСЃ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ 0!
+Console.WriteLine(numbers[0]);  // 10 (РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚)
+Console.WriteLine(numbers[1]);  // 20 (РІС‚РѕСЂРѕР№ СЌР»РµРјРµРЅС‚)
+Console.WriteLine(numbers[4]);  // 50 (РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚)
 
-// ? Ошибка: индекс вне границ
+// ? РћС€РёР±РєР°: РёРЅРґРµРєСЃ РІРЅРµ РіСЂР°РЅРёС†
 // Console.WriteLine(numbers[5]);  // IndexOutOfRangeException!
 
-// Длина массива
+// Р”Р»РёРЅР° РјР°СЃСЃРёРІР°
 int length = numbers.Length;  // 5
 
-// Изменение элемента
+// РР·РјРµРЅРµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 numbers[0] = 100;
 Console.WriteLine(numbers[0]);  // 100
 ```
 
-### Итерация по массиву
+### РС‚РµСЂР°С†РёСЏ РїРѕ РјР°СЃСЃРёРІСѓ
 
 ```csharp
 int[] numbers = { 10, 20, 30, 40, 50 };
 
-// For — с индексом
+// For вЂ” СЃ РёРЅРґРµРєСЃРѕРј
 for (int i = 0; i < numbers.Length; i++)
 {
     Console.WriteLine($"numbers[{i}] = {numbers[i]}");
 }
 
-// Foreach — без индекса (проще!)
+// Foreach вЂ” Р±РµР· РёРЅРґРµРєСЃР° (РїСЂРѕС‰Рµ!)
 foreach (int number in numbers)
 {
     Console.WriteLine(number);
 }
 
-// Foreach с LINQ
+// Foreach СЃ LINQ
 numbers.ForEach(n => Console.WriteLine(n));
 ```
 
-### Проблемы с массивом
+### РџСЂРѕР±Р»РµРјС‹ СЃ РјР°СЃСЃРёРІРѕРј
 
 ```csharp
 int[] numbers = new int[3] { 10, 20, 30 };
 
-// ? Нельзя добавить элемент (размер фиксирован!)
-// numbers[3] = 40;  // Ошибка!
+// ? РќРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ (СЂР°Р·РјРµСЂ С„РёРєСЃРёСЂРѕРІР°РЅ!)
+// numbers[3] = 40;  // РћС€РёР±РєР°!
 
-// ? Нельзя удалить элемент (размер фиксирован!)
+// ? РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ (СЂР°Р·РјРµСЂ С„РёРєСЃРёСЂРѕРІР°РЅ!)
 
-// Размер создается при создании и не меняется!
-// Это неудобно для реальных приложений!
+// Р Р°Р·РјРµСЂ СЃРѕР·РґР°РµС‚СЃСЏ РїСЂРё СЃРѕР·РґР°РЅРёРё Рё РЅРµ РјРµРЅСЏРµС‚СЃСЏ!
+// Р­С‚Рѕ РЅРµСѓРґРѕР±РЅРѕ РґР»СЏ СЂРµР°Р»СЊРЅС‹С… РїСЂРёР»РѕР¶РµРЅРёР№!
 ```
 
 ---
 
-## 3. List<T> — Динамический массив (РЕКОМЕНДУЕТСЯ!)
+## 3. List<T> вЂ” Р”РёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ (Р Р•РљРћРњР•РќР”РЈР•РўРЎРЇ!)
 
-### Создание List
+### РЎРѕР·РґР°РЅРёРµ List
 
 ```csharp
-// Пустой список
+// РџСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє
 List<int> numbers = new List<int>();
 
-// С инициализацией
+// РЎ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№
 List<int> ages = new List<int> { 20, 25, 30, 35, 40 };
 
-// С начальной емкостью (оптимизация)
-List<string> names = new List<string>(10);  // Зарезервировано место для 10 элементов
+// РЎ РЅР°С‡Р°Р»СЊРЅРѕР№ РµРјРєРѕСЃС‚СЊСЋ (РѕРїС‚РёРјРёР·Р°С†РёСЏ)
+List<string> names = new List<string>(10);  // Р—Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ РјРµСЃС‚Рѕ РґР»СЏ 10 СЌР»РµРјРµРЅС‚РѕРІ
 
-// Из другой коллекции
+// РР· РґСЂСѓРіРѕР№ РєРѕР»Р»РµРєС†РёРё
 int[] array = { 1, 2, 3 };
 List<int> listFromArray = new List<int>(array);
 
-// Из результата LINQ
+// РР· СЂРµР·СѓР»СЊС‚Р°С‚Р° LINQ
 List<int> evens = numbers.Where(n => n % 2 == 0).ToList();
 ```
 
-### Основные методы
+### РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹
 
 ```csharp
 List<int> numbers = new List<int> { 10, 20, 30 };
 
-// Добавление элемента в конец
+// Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС†
 numbers.Add(40);
 Console.WriteLine(numbers);  // { 10, 20, 30, 40 }
 
-// Добавление элемента в конкретную позицию
+// Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРєСЂРµС‚РЅСѓСЋ РїРѕР·РёС†РёСЋ
 numbers.Insert(1, 15);
 Console.WriteLine(numbers);  // { 10, 15, 20, 30, 40 }
 
-// Удаление элемента по значению
+// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ Р·РЅР°С‡РµРЅРёСЋ
 numbers.Remove(15);
 Console.WriteLine(numbers);  // { 10, 20, 30, 40 }
 
-// Удаление элемента по индексу
+// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 numbers.RemoveAt(0);
 Console.WriteLine(numbers);  // { 20, 30, 40 }
 
-// Очистка списка
+// РћС‡РёСЃС‚РєР° СЃРїРёСЃРєР°
 numbers.Clear();
 Console.WriteLine(numbers);  // { }
 
-// Проверка наличия элемента
+// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ СЌР»РµРјРµРЅС‚Р°
 List<int> nums = new List<int> { 10, 20, 30 };
 bool contains = nums.Contains(20);  // true
 
-// Найти индекс элемента
+// РќР°Р№С‚Рё РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р°
 int index = nums.IndexOf(20);  // 1
 
-// Количество элементов
+// РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
 int count = nums.Count;  // 3
 
-// Получить элемент
+// РџРѕР»СѓС‡РёС‚СЊ СЌР»РµРјРµРЅС‚
 int first = nums[0];
 int last = nums[nums.Count - 1];
 ```
 
-### Пример для QA
+### РџСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
 public class TestResults
@@ -205,7 +205,7 @@ public class TestResults
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 TestResults tr = new TestResults();
 tr.AddResult("Login Test", true);
 tr.AddResult("Logout Test", false);
@@ -219,15 +219,15 @@ tr.PrintResults();
 
 ---
 
-## 4. Dictionary<TKey, TValue> — Ключ-значение
+## 4. Dictionary<TKey, TValue> вЂ” РљР»СЋС‡-Р·РЅР°С‡РµРЅРёРµ
 
-### Создание Dictionary
+### РЎРѕР·РґР°РЅРёРµ Dictionary
 
 ```csharp
-// Пустой словарь
+// РџСѓСЃС‚РѕР№ СЃР»РѕРІР°СЂСЊ
 Dictionary<string, int> ages = new Dictionary<string, int>();
 
-// С инициализацией
+// РЎ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№
 Dictionary<string, int> scores = new Dictionary<string, int>
 {
     { "Alice", 90 },
@@ -235,7 +235,7 @@ Dictionary<string, int> scores = new Dictionary<string, int>
     { "Charlie", 95 }
 };
 
-// Альтернативный синтаксис инициализации
+// РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ СЃРёРЅС‚Р°РєСЃРёСЃ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
 Dictionary<string, string> cities = new Dictionary<string, string>
 {
     ["USA"] = "New York",
@@ -244,7 +244,7 @@ Dictionary<string, string> cities = new Dictionary<string, string>
 };
 ```
 
-### Основные методы
+### РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹
 
 ```csharp
 Dictionary<string, int> ages = new Dictionary<string, int>
@@ -253,60 +253,60 @@ Dictionary<string, int> ages = new Dictionary<string, int>
     { "Bob", 25 }
 };
 
-// Добавление
+// Р”РѕР±Р°РІР»РµРЅРёРµ
 ages.Add("Charlie", 35);
 
-// Добавление или обновление (проще!)
-ages["Diana"] = 28;  // Если ключа нет — добавит, если есть — обновит
+// Р”РѕР±Р°РІР»РµРЅРёРµ РёР»Рё РѕР±РЅРѕРІР»РµРЅРёРµ (РїСЂРѕС‰Рµ!)
+ages["Diana"] = 28;  // Р•СЃР»Рё РєР»СЋС‡Р° РЅРµС‚ вЂ” РґРѕР±Р°РІРёС‚, РµСЃР»Рё РµСЃС‚СЊ вЂ” РѕР±РЅРѕРІРёС‚
 
-// Получение значения
+// РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
 int aliceAge = ages["Alice"];  // 30
 
-// ? Безопасное получение (если ключа нет)
+// ? Р‘РµР·РѕРїР°СЃРЅРѕРµ РїРѕР»СѓС‡РµРЅРёРµ (РµСЃР»Рё РєР»СЋС‡Р° РЅРµС‚)
 if (ages.TryGetValue("Eve", out int eveAge))
 {
-    Console.WriteLine($"Eve возраст: {eveAge}");
+    Console.WriteLine($"Eve РІРѕР·СЂР°СЃС‚: {eveAge}");
 }
 else
 {
-    Console.WriteLine("Eve не найдена");
+    Console.WriteLine("Eve РЅРµ РЅР°Р№РґРµРЅР°");
 }
 
-// Проверка наличия ключа
+// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РєР»СЋС‡Р°
 bool hasAlice = ages.ContainsKey("Alice");  // true
 
-// Проверка наличия значения
+// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ Р·РЅР°С‡РµРЅРёСЏ
 bool hasAge30 = ages.ContainsValue(30);  // true (Alice)
 
-// Удаление
+// РЈРґР°Р»РµРЅРёРµ
 ages.Remove("Bob");
 
-// Очистка
+// РћС‡РёСЃС‚РєР°
 ages.Clear();
 
-// Количество элементов
+// РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
 int count = ages.Count;
 
-// Итерация
+// РС‚РµСЂР°С†РёСЏ
 foreach (var pair in ages)
 {
-    Console.WriteLine($"{pair.Key}: {pair.Value} лет");
+    Console.WriteLine($"{pair.Key}: {pair.Value} Р»РµС‚");
 }
 
-// Только ключи
+// РўРѕР»СЊРєРѕ РєР»СЋС‡Рё
 foreach (var key in ages.Keys)
 {
     Console.WriteLine(key);
 }
 
-// Только значения
+// РўРѕР»СЊРєРѕ Р·РЅР°С‡РµРЅРёСЏ
 foreach (var value in ages.Values)
 {
     Console.WriteLine(value);
 }
 ```
 
-### Пример для QA
+### РџСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
 public class LoginCredentials
@@ -329,11 +329,11 @@ public class LoginCredentials
     
     public void RegisterUser(string username, string password)
     {
-        credentials[username] = password;  // Добавит или обновит
+        credentials[username] = password;  // Р”РѕР±Р°РІРёС‚ РёР»Рё РѕР±РЅРѕРІРёС‚
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 LoginCredentials auth = new LoginCredentials();
 Console.WriteLine(auth.Login("alice", "password123"));  // true
 Console.WriteLine(auth.Login("alice", "wrong"));        // false
@@ -344,75 +344,75 @@ Console.WriteLine(auth.Login("diana", "newpass"));      // true
 
 ---
 
-## 5. HashSet<T> — Уникальные значения
+## 5. HashSet<T> вЂ” РЈРЅРёРєР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 
-### Создание HashSet
+### РЎРѕР·РґР°РЅРёРµ HashSet
 
 ```csharp
-// Пустой набор
+// РџСѓСЃС‚РѕР№ РЅР°Р±РѕСЂ
 HashSet<int> uniqueNumbers = new HashSet<int>();
 
-// С инициализацией
+// РЎ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№
 HashSet<string> colors = new HashSet<string> { "Red", "Green", "Blue" };
 
-// Из другой коллекции (удалит дубликаты!)
+// РР· РґСЂСѓРіРѕР№ РєРѕР»Р»РµРєС†РёРё (СѓРґР°Р»РёС‚ РґСѓР±Р»РёРєР°С‚С‹!)
 int[] numbersWithDuplicates = { 1, 2, 2, 3, 3, 3 };
 HashSet<int> unique = new HashSet<int>(numbersWithDuplicates);
-Console.WriteLine(string.Join(", ", unique));  // 1, 2, 3 (дубликаты удалены!)
+Console.WriteLine(string.Join(", ", unique));  // 1, 2, 3 (РґСѓР±Р»РёРєР°С‚С‹ СѓРґР°Р»РµРЅС‹!)
 ```
 
-### Основные методы
+### РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹
 
 ```csharp
 HashSet<int> numbers = new HashSet<int> { 10, 20, 30 };
 
-// Добавление (если уже есть — ничего не произойдет)
-numbers.Add(20);  // Не добавится, так как уже есть
-numbers.Add(40);  // Добавится
+// Р”РѕР±Р°РІР»РµРЅРёРµ (РµСЃР»Рё СѓР¶Рµ РµСЃС‚СЊ вЂ” РЅРёС‡РµРіРѕ РЅРµ РїСЂРѕРёР·РѕР№РґРµС‚)
+numbers.Add(20);  // РќРµ РґРѕР±Р°РІРёС‚СЃСЏ, С‚Р°Рє РєР°Рє СѓР¶Рµ РµСЃС‚СЊ
+numbers.Add(40);  // Р”РѕР±Р°РІРёС‚СЃСЏ
 
-// Проверка наличия
+// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ
 bool contains = numbers.Contains(20);  // true
 
-// Удаление
+// РЈРґР°Р»РµРЅРёРµ
 numbers.Remove(20);
 
-// Очистка
+// РћС‡РёСЃС‚РєР°
 numbers.Clear();
 
-// Количество элементов
+// РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
 int count = numbers.Count;
 
-// Итерация
+// РС‚РµСЂР°С†РёСЏ
 foreach (int number in numbers)
 {
     Console.WriteLine(number);
 }
 ```
 
-### Операции множеств
+### РћРїРµСЂР°С†РёРё РјРЅРѕР¶РµСЃС‚РІ
 
 ```csharp
 HashSet<int> set1 = new HashSet<int> { 1, 2, 3, 4 };
 HashSet<int> set2 = new HashSet<int> { 3, 4, 5, 6 };
 
-// Объединение (Union) — все элементы из обоих
+// РћР±СЉРµРґРёРЅРµРЅРёРµ (Union) вЂ” РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РёР· РѕР±РѕРёС…
 set1.UnionWith(set2);
 Console.WriteLine(string.Join(", ", set1));  // 1, 2, 3, 4, 5, 6
 
-// Пересечение (Intersection) — только общие элементы
+// РџРµСЂРµСЃРµС‡РµРЅРёРµ (Intersection) вЂ” С‚РѕР»СЊРєРѕ РѕР±С‰РёРµ СЌР»РµРјРµРЅС‚С‹
 HashSet<int> s1 = new HashSet<int> { 1, 2, 3, 4 };
 HashSet<int> s2 = new HashSet<int> { 3, 4, 5, 6 };
 s1.IntersectWith(s2);
 Console.WriteLine(string.Join(", ", s1));  // 3, 4
 
-// Разность (Except) — элементы только из первого
+// Р Р°Р·РЅРѕСЃС‚СЊ (Except) вЂ” СЌР»РµРјРµРЅС‚С‹ С‚РѕР»СЊРєРѕ РёР· РїРµСЂРІРѕРіРѕ
 HashSet<int> s3 = new HashSet<int> { 1, 2, 3, 4 };
 HashSet<int> s4 = new HashSet<int> { 3, 4, 5, 6 };
 s3.ExceptWith(s4);
 Console.WriteLine(string.Join(", ", s3));  // 1, 2
 ```
 
-### Пример для QA
+### РџСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
 public class ClickedElements
@@ -421,7 +421,7 @@ public class ClickedElements
     
     public void ClickElement(string elementId)
     {
-        clickedIds.Add(elementId);  // Дубликаты автоматически игнорируются
+        clickedIds.Add(elementId);  // Р”СѓР±Р»РёРєР°С‚С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РёРіРЅРѕСЂРёСЂСѓСЋС‚СЃСЏ
     }
     
     public bool WasClicked(string elementId)
@@ -431,71 +431,71 @@ public class ClickedElements
     
     public int UniqueClickCount()
     {
-        return clickedIds.Count;  // Только уникальные клики!
+        return clickedIds.Count;  // РўРѕР»СЊРєРѕ СѓРЅРёРєР°Р»СЊРЅС‹Рµ РєР»РёРєРё!
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 ClickedElements tracker = new ClickedElements();
 tracker.ClickElement("button1");
-tracker.ClickElement("button1");  // Дубликат — не добавится
+tracker.ClickElement("button1");  // Р”СѓР±Р»РёРєР°С‚ вЂ” РЅРµ РґРѕР±Р°РІРёС‚СЃСЏ
 tracker.ClickElement("button2");
-tracker.ClickElement("button1");  // Дубликат — не добавится
+tracker.ClickElement("button1");  // Р”СѓР±Р»РёРєР°С‚ вЂ” РЅРµ РґРѕР±Р°РІРёС‚СЃСЏ
 
-Console.WriteLine(tracker.UniqueClickCount());  // 2 (не 4!)
+Console.WriteLine(tracker.UniqueClickCount());  // 2 (РЅРµ 4!)
 ```
 
 ---
 
-## 6. Queue<T> — Очередь (FIFO)
+## 6. Queue<T> вЂ” РћС‡РµСЂРµРґСЊ (FIFO)
 
-### Создание Queue
+### РЎРѕР·РґР°РЅРёРµ Queue
 
 ```csharp
-// Пустая очередь
+// РџСѓСЃС‚Р°СЏ РѕС‡РµСЂРµРґСЊ
 Queue<string> queue = new Queue<string>();
 
-// С инициализацией
+// РЎ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№
 Queue<int> numbers = new Queue<int> { 10, 20, 30 };
 ```
 
-### Основные методы
+### РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹
 
 ```csharp
 Queue<string> queue = new Queue<string>();
 
-// Добавление в конец очереди
+// Р”РѕР±Р°РІР»РµРЅРёРµ РІ РєРѕРЅРµС† РѕС‡РµСЂРµРґРё
 queue.Enqueue("Alice");
 queue.Enqueue("Bob");
 queue.Enqueue("Charlie");
 
-// Получение из начала (и удаление)
+// РџРѕР»СѓС‡РµРЅРёРµ РёР· РЅР°С‡Р°Р»Р° (Рё СѓРґР°Р»РµРЅРёРµ)
 string first = queue.Dequeue();  // "Alice"
 
-// Посмотреть первый без удаления
+// РџРѕСЃРјРѕС‚СЂРµС‚СЊ РїРµСЂРІС‹Р№ Р±РµР· СѓРґР°Р»РµРЅРёСЏ
 string next = queue.Peek();  // "Bob"
 
-// Проверка наличия элементов
+// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ СЌР»РµРјРµРЅС‚РѕРІ
 bool isEmpty = queue.Count == 0;
 
-// Очистка
+// РћС‡РёСЃС‚РєР°
 queue.Clear();
 ```
 
-### FIFO — First In, First Out
+### FIFO вЂ” First In, First Out
 
 ```
-Очередь как в магазине:
-Alice приходит ? Встает в очередь ? Alice first
-Bob приходит ? Встает после Alice
-Charlie приходит ? Встает после Bob
+РћС‡РµСЂРµРґСЊ РєР°Рє РІ РјР°РіР°Р·РёРЅРµ:
+Alice РїСЂРёС…РѕРґРёС‚ ? Р’СЃС‚Р°РµС‚ РІ РѕС‡РµСЂРµРґСЊ ? Alice first
+Bob РїСЂРёС…РѕРґРёС‚ ? Р’СЃС‚Р°РµС‚ РїРѕСЃР»Рµ Alice
+Charlie РїСЂРёС…РѕРґРёС‚ ? Р’СЃС‚Р°РµС‚ РїРѕСЃР»Рµ Bob
 
-Alice уходит (обслужили первой)
-Bob становится первым
-Charlie становится вторым
+Alice СѓС…РѕРґРёС‚ (РѕР±СЃР»СѓР¶РёР»Рё РїРµСЂРІРѕР№)
+Bob СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїРµСЂРІС‹Рј
+Charlie СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РІС‚РѕСЂС‹Рј
 ```
 
-### Пример для QA
+### РџСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
 public class TaskQueue
@@ -505,21 +505,21 @@ public class TaskQueue
     public void QueueTask(string taskName)
     {
         tasks.Enqueue(taskName);
-        Console.WriteLine($"Задача добавлена: {taskName}");
+        Console.WriteLine($"Р—Р°РґР°С‡Р° РґРѕР±Р°РІР»РµРЅР°: {taskName}");
     }
     
     public string ExecuteNextTask()
     {
         if (tasks.Count > 0)
         {
-            return tasks.Dequeue();  // Первая в очереди — первая выполняется
+            return tasks.Dequeue();  // РџРµСЂРІР°СЏ РІ РѕС‡РµСЂРµРґРё вЂ” РїРµСЂРІР°СЏ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ
         }
-        return "Нет задач";
+        return "РќРµС‚ Р·Р°РґР°С‡";
     }
     
     public void PrintQueue()
     {
-        Console.WriteLine("Очередь задач:");
+        Console.WriteLine("РћС‡РµСЂРµРґСЊ Р·Р°РґР°С‡:");
         foreach (var task in tasks)
         {
             Console.WriteLine($"  - {task}");
@@ -527,68 +527,68 @@ public class TaskQueue
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 TaskQueue queue = new TaskQueue();
 queue.QueueTask("Open page");
 queue.QueueTask("Click button");
 queue.QueueTask("Verify text");
 
-string task = queue.ExecuteNextTask();  // "Open page" (первая)
+string task = queue.ExecuteNextTask();  // "Open page" (РїРµСЂРІР°СЏ)
 task = queue.ExecuteNextTask();         // "Click button"
 task = queue.ExecuteNextTask();         // "Verify text"
 ```
 
 ---
 
-## 7. Stack<T> — Стек (LIFO)
+## 7. Stack<T> вЂ” РЎС‚РµРє (LIFO)
 
-### Создание Stack
+### РЎРѕР·РґР°РЅРёРµ Stack
 
 ```csharp
-// Пустой стек
+// РџСѓСЃС‚РѕР№ СЃС‚РµРє
 Stack<string> stack = new Stack<string>();
 
-// С инициализацией
+// РЎ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№
 Stack<int> numbers = new Stack<int> { 10, 20, 30 };
 ```
 
-### Основные методы
+### РћСЃРЅРѕРІРЅС‹Рµ РјРµС‚РѕРґС‹
 
 ```csharp
 Stack<string> stack = new Stack<string>();
 
-// Добавление в вершину стека
+// Р”РѕР±Р°РІР»РµРЅРёРµ РІ РІРµСЂС€РёРЅСѓ СЃС‚РµРєР°
 stack.Push("Alice");
 stack.Push("Bob");
 stack.Push("Charlie");
 
-// Получение с вершины (и удаление)
+// РџРѕР»СѓС‡РµРЅРёРµ СЃ РІРµСЂС€РёРЅС‹ (Рё СѓРґР°Р»РµРЅРёРµ)
 string top = stack.Pop();  // "Charlie"
 
-// Посмотреть вершину без удаления
+// РџРѕСЃРјРѕС‚СЂРµС‚СЊ РІРµСЂС€РёРЅСѓ Р±РµР· СѓРґР°Р»РµРЅРёСЏ
 string next = stack.Peek();  // "Bob"
 
-// Проверка наличия элементов
+// РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ СЌР»РµРјРµРЅС‚РѕРІ
 bool isEmpty = stack.Count == 0;
 
-// Очистка
+// РћС‡РёСЃС‚РєР°
 stack.Clear();
 ```
 
-### LIFO — Last In, First Out
+### LIFO вЂ” Last In, First Out
 
 ```
-Стек как стопка тарелок:
-Кладу Alice ? Стек: [Alice]
-Кладу Bob ? Стек: [Alice, Bob]
-Кладу Charlie ? Стек: [Alice, Bob, Charlie]
+РЎС‚РµРє РєР°Рє СЃС‚РѕРїРєР° С‚Р°СЂРµР»РѕРє:
+РљР»Р°РґСѓ Alice ? РЎС‚РµРє: [Alice]
+РљР»Р°РґСѓ Bob ? РЎС‚РµРє: [Alice, Bob]
+РљР»Р°РґСѓ Charlie ? РЎС‚РµРє: [Alice, Bob, Charlie]
 
-Беру сверху ? Charlie (последняя, которая положил)
-Беру сверху ? Bob
-Беру сверху ? Alice (первая, которую положил)
+Р‘РµСЂСѓ СЃРІРµСЂС…Сѓ ? Charlie (РїРѕСЃР»РµРґРЅСЏСЏ, РєРѕС‚РѕСЂР°СЏ РїРѕР»РѕР¶РёР»)
+Р‘РµСЂСѓ СЃРІРµСЂС…Сѓ ? Bob
+Р‘РµСЂСѓ СЃРІРµСЂС…Сѓ ? Alice (РїРµСЂРІР°СЏ, РєРѕС‚РѕСЂСѓСЋ РїРѕР»РѕР¶РёР»)
 ```
 
-### Пример для QA
+### РџСЂРёРјРµСЂ РґР»СЏ QA
 
 ```csharp
 public class BrowserHistory
@@ -598,84 +598,84 @@ public class BrowserHistory
     public void VisitPage(string url)
     {
         history.Push(url);
-        Console.WriteLine($"Перешли на: {url}");
+        Console.WriteLine($"РџРµСЂРµС€Р»Рё РЅР°: {url}");
     }
     
     public string GoBack()
     {
         if (history.Count > 0)
         {
-            return history.Pop();  // Последняя страница
+            return history.Pop();  // РџРѕСЃР»РµРґРЅСЏСЏ СЃС‚СЂР°РЅРёС†Р°
         }
-        return "Нет истории";
+        return "РќРµС‚ РёСЃС‚РѕСЂРёРё";
     }
     
     public string CurrentPage()
     {
         if (history.Count > 0)
         {
-            return history.Peek();  // Текущая страница
+            return history.Peek();  // РўРµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
         }
-        return "История пуста";
+        return "РСЃС‚РѕСЂРёСЏ РїСѓСЃС‚Р°";
     }
 }
 
-// Использование
+// РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 BrowserHistory browser = new BrowserHistory();
 browser.VisitPage("Google");
 browser.VisitPage("GitHub");
 browser.VisitPage("StackOverflow");
 
 Console.WriteLine(browser.CurrentPage());  // StackOverflow
-browser.GoBack();  // Вернулись на GitHub
+browser.GoBack();  // Р’РµСЂРЅСѓР»РёСЃСЊ РЅР° GitHub
 Console.WriteLine(browser.CurrentPage());  // GitHub
 ```
 
 ---
 
-## 8. Сравнение коллекций
+## 8. РЎСЂР°РІРЅРµРЅРёРµ РєРѕР»Р»РµРєС†РёР№
 
-| Коллекция | Доступ | Добавление | Удаление | Уникальность | Когда использовать |
+| РљРѕР»Р»РµРєС†РёСЏ | Р”РѕСЃС‚СѓРї | Р”РѕР±Р°РІР»РµРЅРёРµ | РЈРґР°Р»РµРЅРёРµ | РЈРЅРёРєР°Р»СЊРЅРѕСЃС‚СЊ | РљРѕРіРґР° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ |
 |-----------|--------|-----------|----------|------------|-------------------|
-| **Array** | O(1) | Нет | Нет | Нет | Редко (размер известен) |
-| **List<T>** | O(1) | O(n) | O(n) | Нет | **ВСЕ СЛУЧАИ** |
-| **Dictionary<K,V>** | O(1) | O(1) | O(1) | Да (ключи) | Ключ-значение |
-| **HashSet<T>** | O(1) | O(1) | O(1) | Да | Уникальные значения |
-| **Queue<T>** | O(1) | O(1) | O(1) | Нет | FIFO очередь |
-| **Stack<T>** | O(1) | O(1) | O(1) | Нет | LIFO стек |
+| **Array** | O(1) | РќРµС‚ | РќРµС‚ | РќРµС‚ | Р РµРґРєРѕ (СЂР°Р·РјРµСЂ РёР·РІРµСЃС‚РµРЅ) |
+| **List<T>** | O(1) | O(n) | O(n) | РќРµС‚ | **Р’РЎР• РЎР›РЈР§РђР** |
+| **Dictionary<K,V>** | O(1) | O(1) | O(1) | Р”Р° (РєР»СЋС‡Рё) | РљР»СЋС‡-Р·РЅР°С‡РµРЅРёРµ |
+| **HashSet<T>** | O(1) | O(1) | O(1) | Р”Р° | РЈРЅРёРєР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ |
+| **Queue<T>** | O(1) | O(1) | O(1) | РќРµС‚ | FIFO РѕС‡РµСЂРµРґСЊ |
+| **Stack<T>** | O(1) | O(1) | O(1) | РќРµС‚ | LIFO СЃС‚РµРє |
 
 ---
 
-## 9. IEnumerable<T> и IReadOnlyList<T>
+## 9. IEnumerable<T> Рё IReadOnlyList<T>
 
-### Почему это важно для API?
+### РџРѕС‡РµРјСѓ СЌС‚Рѕ РІР°Р¶РЅРѕ РґР»СЏ API?
 
 ```csharp
-// ? Плохо: возвращаем List (клиент может его изменить!)
+// ? РџР»РѕС…Рѕ: РІРѕР·РІСЂР°С‰Р°РµРј List (РєР»РёРµРЅС‚ РјРѕР¶РµС‚ РµРіРѕ РёР·РјРµРЅРёС‚СЊ!)
 public List<User> GetUsers()
 {
     List<User> users = new List<User> { /*...*/ };
-    return users;  // Клиент может удалить элементы!
+    return users;  // РљР»РёРµРЅС‚ РјРѕР¶РµС‚ СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚С‹!
 }
 
-// ? Хорошо: возвращаем интерфейс (клиент не может изменить!)
+// ? РҐРѕСЂРѕС€Рѕ: РІРѕР·РІСЂР°С‰Р°РµРј РёРЅС‚РµСЂС„РµР№СЃ (РєР»РёРµРЅС‚ РЅРµ РјРѕР¶РµС‚ РёР·РјРµРЅРёС‚СЊ!)
 public IEnumerable<User> GetUsers()
 {
     List<User> users = new List<User> { /*...*/ };
-    return users;  // Клиент может только читать!
+    return users;  // РљР»РёРµРЅС‚ РјРѕР¶РµС‚ С‚РѕР»СЊРєРѕ С‡РёС‚Р°С‚СЊ!
 }
 
 public IReadOnlyList<User> GetUsersList()
 {
     List<User> users = new List<User> { /*...*/ };
-    return users.AsReadOnly();  // Защита от изменений!
+    return users.AsReadOnly();  // Р—Р°С‰РёС‚Р° РѕС‚ РёР·РјРµРЅРµРЅРёР№!
 }
 ```
 
-### Использование
+### РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ
 
 ```csharp
-// IEnumerable — только итерация
+// IEnumerable вЂ” С‚РѕР»СЊРєРѕ РёС‚РµСЂР°С†РёСЏ
 public void PrintUsers(IEnumerable<User> users)
 {
     foreach (var user in users)
@@ -684,7 +684,7 @@ public void PrintUsers(IEnumerable<User> users)
     }
 }
 
-// IReadOnlyList — итерация и доступ по индексу
+// IReadOnlyList вЂ” РёС‚РµСЂР°С†РёСЏ Рё РґРѕСЃС‚СѓРї РїРѕ РёРЅРґРµРєСЃСѓ
 public void PrintFirstUser(IReadOnlyList<User> users)
 {
     if (users.Count > 0)
@@ -696,27 +696,27 @@ public void PrintFirstUser(IReadOnlyList<User> users)
 
 ---
 
-## 10. LINQ с коллекциями
+## 10. LINQ СЃ РєРѕР»Р»РµРєС†РёСЏРјРё
 
-### Фильтрация и трансформация
+### Р¤РёР»СЊС‚СЂР°С†РёСЏ Рё С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёСЏ
 
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-// Where — фильтрация
+// Where вЂ” С„РёР»СЊС‚СЂР°С†РёСЏ
 var evens = numbers.Where(n => n % 2 == 0);  // { 2, 4, 6, 8, 10 }
 
-// Select — трансформация
+// Select вЂ” С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёСЏ
 var doubled = numbers.Select(n => n * 2);  // { 2, 4, 6, 8, ... }
 
-// Комбинирование
+// РљРѕРјР±РёРЅРёСЂРѕРІР°РЅРёРµ
 var result = numbers
-    .Where(n => n > 3)       // Только > 3
-    .Select(n => n * n);     // Возвести в квадрат
+    .Where(n => n > 3)       // РўРѕР»СЊРєРѕ > 3
+    .Select(n => n * n);     // Р’РѕР·РІРµСЃС‚Рё РІ РєРІР°РґСЂР°С‚
 // { 16, 25, 36, 49, 64, 81, 100 }
 ```
 
-### GroupBy и Join
+### GroupBy Рё Join
 
 ```csharp
 List<User> users = new List<User>
@@ -726,7 +726,7 @@ List<User> users = new List<User>
     new User { Name = "Charlie", Department = "HR", Salary = 80000 }
 };
 
-// GroupBy — группировка
+// GroupBy вЂ” РіСЂСѓРїРїРёСЂРѕРІРєР°
 var grouped = users
     .GroupBy(u => u.Department)
     .Select(g => new 
@@ -736,31 +736,31 @@ var grouped = users
         AvgSalary = g.Average(u => u.Salary)
     });
 
-// Результат:
+// Р РµР·СѓР»СЊС‚Р°С‚:
 // { Department = "IT", Count = 2, AvgSalary = 95000 }
 // { Department = "HR", Count = 1, AvgSalary = 80000 }
 ```
 
 ---
 
-## 11. Частые ошибки новичков
+## 11. Р§Р°СЃС‚С‹Рµ РѕС€РёР±РєРё РЅРѕРІРёС‡РєРѕРІ
 
-### ? Ошибка 1: Индекс вне границ
+### ? РћС€РёР±РєР° 1: РРЅРґРµРєСЃ РІРЅРµ РіСЂР°РЅРёС†
 
 ```csharp
 int[] array = { 1, 2, 3 };
 
-// ? Ошибка: индексы идут от 0 до 2
+// ? РћС€РёР±РєР°: РёРЅРґРµРєСЃС‹ РёРґСѓС‚ РѕС‚ 0 РґРѕ 2
 // Console.WriteLine(array[3]);  // IndexOutOfRangeException!
 
-// ? Правильно
+// ? РџСЂР°РІРёР»СЊРЅРѕ
 if (index >= 0 && index < array.Length)
 {
     Console.WriteLine(array[index]);
 }
 ```
 
-### ? Ошибка 2: Забыли .ToList() для материализации
+### ? РћС€РёР±РєР° 2: Р—Р°Р±С‹Р»Рё .ToList() РґР»СЏ РјР°С‚РµСЂРёР°Р»РёР·Р°С†РёРё
 
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3 };
@@ -768,13 +768,13 @@ List<int> numbers = new List<int> { 1, 2, 3 };
 var query = numbers.Where(n => n > 1);
 numbers.Clear();
 
-// ? Ошибка: query зависит от исходного списка!
+// ? РћС€РёР±РєР°: query Р·Р°РІРёСЃРёС‚ РѕС‚ РёСЃС…РѕРґРЅРѕРіРѕ СЃРїРёСЃРєР°!
 foreach (var n in query)
 {
-    Console.WriteLine(n);  // Ничего не выведет!
+    Console.WriteLine(n);  // РќРёС‡РµРіРѕ РЅРµ РІС‹РІРµРґРµС‚!
 }
 
-// ? Правильно
+// ? РџСЂР°РІРёР»СЊРЅРѕ
 var snapshot = numbers.Where(n => n > 1).ToList();  // Snapshot
 numbers.Clear();
 foreach (var n in snapshot)
@@ -783,19 +783,19 @@ foreach (var n in snapshot)
 }
 ```
 
-### ? Ошибка 3: Изменение List во время итерации
+### ? РћС€РёР±РєР° 3: РР·РјРµРЅРµРЅРёРµ List РІРѕ РІСЂРµРјСЏ РёС‚РµСЂР°С†РёРё
 
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 
-// ? Ошибка: modifying collection while iterating!
+// ? РћС€РёР±РєР°: modifying collection while iterating!
 foreach (var n in numbers)
 {
     if (n == 3)
         numbers.Remove(n);  // ?? InvalidOperationException!
 }
 
-// ? Правильно: итерируем по копии
+// ? РџСЂР°РІРёР»СЊРЅРѕ: РёС‚РµСЂРёСЂСѓРµРј РїРѕ РєРѕРїРёРё
 foreach (var n in numbers.ToList())
 {
     if (n == 3)
@@ -803,47 +803,47 @@ foreach (var n in numbers.ToList())
 }
 ```
 
-### ? Ошибка 4: Неправильное использование Dictionary
+### ? РћС€РёР±РєР° 4: РќРµРїСЂР°РІРёР»СЊРЅРѕРµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Dictionary
 
 ```csharp
 Dictionary<string, int> ages = new Dictionary<string, int>();
 
-// ? Ошибка: прямой доступ к несуществующему ключу
+// ? РћС€РёР±РєР°: РїСЂСЏРјРѕР№ РґРѕСЃС‚СѓРї Рє РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРјСѓ РєР»СЋС‡Сѓ
 // int age = ages["Alice"];  // KeyNotFoundException!
 
-// ? Правильно
+// ? РџСЂР°РІРёР»СЊРЅРѕ
 if (ages.TryGetValue("Alice", out int age))
 {
     Console.WriteLine(age);
 }
 else
 {
-    Console.WriteLine("Alice не найдена");
+    Console.WriteLine("Alice РЅРµ РЅР°Р№РґРµРЅР°");
 }
 ```
 
 ---
 
-## 12. Лучшие практики
+## 12. Р›СѓС‡С€РёРµ РїСЂР°РєС‚РёРєРё
 
 ? **DO:**
-- Используйте `List<T>` для большинства случаев
-- Используйте `Dictionary<TKey, TValue>` для связи ключ-значение
-- Используйте `HashSet<T>` если нужны уникальные значения
-- Возвращайте `IEnumerable<T>` или `IReadOnlyList<T>` вместо конкретной коллекции
-- Используйте LINQ вместо ручных циклов
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `List<T>` РґР»СЏ Р±РѕР»СЊС€РёРЅСЃС‚РІР° СЃР»СѓС‡Р°РµРІ
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `Dictionary<TKey, TValue>` РґР»СЏ СЃРІСЏР·Рё РєР»СЋС‡-Р·РЅР°С‡РµРЅРёРµ
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ `HashSet<T>` РµСЃР»Рё РЅСѓР¶РЅС‹ СѓРЅРёРєР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
+- Р’РѕР·РІСЂР°С‰Р°Р№С‚Рµ `IEnumerable<T>` РёР»Рё `IReadOnlyList<T>` РІРјРµСЃС‚Рѕ РєРѕРЅРєСЂРµС‚РЅРѕР№ РєРѕР»Р»РµРєС†РёРё
+- РСЃРїРѕР»СЊР·СѓР№С‚Рµ LINQ РІРјРµСЃС‚Рѕ СЂСѓС‡РЅС‹С… С†РёРєР»РѕРІ
 
 ? **DON'T:**
-- Не используйте Array если заранее не знаете размер
-- Не изменяйте коллекцию во время итерации по ней
-- Не забывайте про `.ToList()` для материализации LINQ запросов
-- Не используйте обычные коллекции в многопоточности (используйте ConcurrentCollections)
-- Не возвращайте изменяемые коллекции (используйте IReadOnlyList)
+- РќРµ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ Array РµСЃР»Рё Р·Р°СЂР°РЅРµРµ РЅРµ Р·РЅР°РµС‚Рµ СЂР°Р·РјРµСЂ
+- РќРµ РёР·РјРµРЅСЏР№С‚Рµ РєРѕР»Р»РµРєС†РёСЋ РІРѕ РІСЂРµРјСЏ РёС‚РµСЂР°С†РёРё РїРѕ РЅРµР№
+- РќРµ Р·Р°Р±С‹РІР°Р№С‚Рµ РїСЂРѕ `.ToList()` РґР»СЏ РјР°С‚РµСЂРёР°Р»РёР·Р°С†РёРё LINQ Р·Р°РїСЂРѕСЃРѕРІ
+- РќРµ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ РѕР±С‹С‡РЅС‹Рµ РєРѕР»Р»РµРєС†РёРё РІ РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅРѕСЃС‚Рё (РёСЃРїРѕР»СЊР·СѓР№С‚Рµ ConcurrentCollections)
+- РќРµ РІРѕР·РІСЂР°С‰Р°Р№С‚Рµ РёР·РјРµРЅСЏРµРјС‹Рµ РєРѕР»Р»РµРєС†РёРё (РёСЃРїРѕР»СЊР·СѓР№С‚Рµ IReadOnlyList)
 
 ---
 
-## Файлы в проекте:
-- `Program.cs` — примеры всех коллекций
-- `CollectionComparison.cs` — сравнение коллекций
-- `LINQWithCollections.cs` — примеры LINQ с коллекциями
+## Р¤Р°Р№Р»С‹ РІ РїСЂРѕРµРєС‚Рµ:
+- `Program.cs` вЂ” РїСЂРёРјРµСЂС‹ РІСЃРµС… РєРѕР»Р»РµРєС†РёР№
+- `CollectionComparison.cs` вЂ” СЃСЂР°РІРЅРµРЅРёРµ РєРѕР»Р»РµРєС†РёР№
+- `LINQWithCollections.cs` вЂ” РїСЂРёРјРµСЂС‹ LINQ СЃ РєРѕР»Р»РµРєС†РёСЏРјРё
 
