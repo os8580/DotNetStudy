@@ -36,13 +36,13 @@ null = "ничего", "отсутствие значения", "неизвес�
 ```csharp
 User user = null;
 
-// ? NullReferenceException! "Попытка открыть доступ к null"
+//  NullReferenceException! "Попытка открыть доступ к null"
 Console.WriteLine(user.Name);
 
-// ? То же самое
-string name = user.Name;  // ?? Падает!
+//  То же самое
+string name = user.Name;  //  Падает!
 
-// ? Нужна проверка
+//  Нужна проверка
 if (user != null)
 {
     Console.WriteLine(user.Name);  // Безопасно
@@ -63,7 +63,7 @@ if (user != null)
 User user = null;
 
 // БЕЗ ?. (ошибка)
-// Console.WriteLine(user.Name);  // ? NullReferenceException!
+// Console.WriteLine(user.Name);  //  NullReferenceException!
 
 // С ?. (безопасно)
 Console.WriteLine(user?.Name);  // null (ничего не произойдет)
@@ -89,7 +89,7 @@ public class User
 User user = null;
 
 // БЕЗ ?.
-// string name = user.GetName();  // ? NullReferenceException!
+// string name = user.GetName();  //  NullReferenceException!
 
 // С ?.
 string? name = user?.GetName();  // null (метод не вызывается)
@@ -104,7 +104,7 @@ name = user?.GetName();  // "Alice"
 List<string> items = null;
 
 // БЕЗ ?.
-// Console.WriteLine(items[0]);  // ? NullReferenceException!
+// Console.WriteLine(items[0]);  //  NullReferenceException!
 
 // С ?.
 string? item = items?[0];  // null (доступ не выполняется)
@@ -262,13 +262,13 @@ var logs = session.GetLogs();  // { "Open page", "Click button" }
 ```csharp
 string? text = GetSomeText();  // Может быть null
 
-// ? Без ! — компилятор волнуется
+// ℹ Без ! — компилятор волнуется
 // int length = text.Length;  // Ошибка! text может быть null
 
 // С ! — игнорируем опасность (ПЛОХО!)
 int length = text!.Length;  // Компилятор молчит, но если null ? ??
 
-// ? Правильно — проверить
+//  ПРАВИЛЬНО — проверить
 if (text != null)
 {
     int length = text.Length;  // Безопасно
@@ -361,10 +361,10 @@ public class LoginTest
 ```csharp
 User? user = null;
 
-// ? Без ?
-// string name = user.Name;  // ? NullReferenceException!
+// ℹ Без ?
+// string name = user.Name;  //  NullReferenceException!
 
-// ? С ?
+// ℹ С ?
 string? name = user?.Name;  // null
 ```
 
@@ -374,10 +374,10 @@ string? name = user?.Name;  // null
 string a = "A";
 string b = "B";
 
-// ? Неправильно думать
+//  Неправильно думать
 string result = null ?? a ?? b;  // Вернет "A"
 
-// ? Правильный порядок
+//  Правильный порядок
 string result = a ?? b ?? "default";  // Вернет "A"
 ```
 
@@ -386,10 +386,10 @@ string result = a ?? b ?? "default";  // Вернет "A"
 ```csharp
 string? text = GetText();  // Может быть null
 
-// ? ПЛОХО! Если null ? ??
+//  ПЛОХО! Если null ? ??
 int length = text!.Length;
 
-// ? ХОРОШО! Проверяем первым
+//  ХОРОШО! Проверяем первым
 if (text != null)
 {
     int length = text.Length;
@@ -399,10 +399,10 @@ if (text != null)
 ### ? Ошибка 4: ?? с методом, вызывающим побочные эффекты
 
 ```csharp
-// ? Опасно
+//  Опасно
 string name = user?.Name ?? GetDefaultName();  // GetDefaultName вызывается!
 
-// ? Безопаснее
+//  Безопаснее
 string name = user?.Name ?? "Default";
 ```
 

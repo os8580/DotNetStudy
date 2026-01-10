@@ -74,8 +74,8 @@ public class User
 
 // Использование
 User user = new User();
-user.Name = "Alice";              // ? OK — поле публичное
-// user._age = 25;                // ? Ошибка — поле приватное
+user.Name = "Alice";              //  OK — поле публичное
+// user._age = 25;                //  Ошибка — поле приватное
 ```
 
 ### Приватное vs публичное
@@ -222,7 +222,7 @@ public class Employee
 
     // Упрощённый конструктор: вызывает основной через this
     public Employee(string name)
-        : this(name, "Junior", 0)  // ? Вызовет основной конструктор!
+        : this(name, "Junior", 0)  //  Вызовет основной конструктор!
     {
         // Вы можете добавить дополнительную логику ЗА конструктором
         Console.WriteLine($"✓ Упрощённый конструктор для {name}");
@@ -285,7 +285,7 @@ public class User : Person
 
     // Конструктор User: сначала инициализирует Person через base
     public User(string name, int age, bool isActive)
-        : base(name, age)  // ? Вызывает конструктор Person
+        : base(name, age)  //  Вызывает конструктор Person
     {
         IsActive = isActive;
         Console.WriteLine($"✓ User инициализирован: активен = {isActive}");
@@ -299,7 +299,7 @@ public class Employee : User
 
     // Конструктор Employee: сначала инициализирует User через base
     public Employee(string name, int age, bool isActive, string position)
-        : base(name, age, isActive)  // ? Вызывает конструктор User
+        : base(name, age, isActive)  //  Вызывает конструктор User
     {
         Position = position;
         Console.WriteLine($"✓ Employee инициализирован: {position}");
@@ -360,14 +360,14 @@ public class User : Person
 
     // Основной конструктор User
     public User(string name, int age, bool isActive)
-        : base(name, age)  // ? base: вызывает Person(name, age)
+        : base(name, age)  //  base: вызывает Person(name, age)
     {
         IsActive = isActive;
         Console.WriteLine($"? User: активен = {isActive}");
     }
 
     // Упрощённый конструктор User (через this)
-    public User() : this("John", 25, false)  // ? this: вызывает основной User
+    public User() : this("John", 25, false)  //  this: вызывает основной User
     {
         Console.WriteLine("? User: дефолтный конструктор");
     }
@@ -377,15 +377,15 @@ public class User : Person
 Console.WriteLine("--- Создание User с параметрами ---");
 User user1 = new User("Alice", 30, true);
 // Вывод:
-// ? Person: Alice, 30 лет
-// ? User: активен = True
+//  Person: Alice, 30 лет
+//  User: активен = True
 
 Console.WriteLine("\n--- Создание User без параметров ---");
 User user2 = new User();
 // Вывод:
-// ? Person: John, 25 лет
-// ? User: активен = False
-// ? User: дефолтный конструктор
+//  Person: John, 25 лет
+//  User: активен = False
+//  User: дефолтный конструктор
 ```
 
 ---
@@ -412,7 +412,7 @@ public class Employee : Person
 {
     public string Position { get; set; }
 
-    // ? ОШИБКА! Поля Person не инициализированы!
+    //  Ошибка! Поля Person не инициализированы!
     public Employee(string position)
     {
         Position = position;  // OK, но Person не готов
@@ -431,9 +431,9 @@ public class Employee : Person
 {
     public string Position { get; set; }
 
-    // ? ПРАВИЛЬНО!
+    //  ПРАВИЛЬНО!
     public Employee(string position)
-        : base("default", 0)  // ? Инициализируем Person
+        : base("default", 0)  //  Инициализируем Person
     {
         Position = position;
     }
@@ -443,7 +443,7 @@ public class Employee : Person
 #### Ошибка 2: Использовали и `this`, и `base` одновременно
 
 ```csharp
-// ? КОМПИЛЯЦИЯ ПРОВАЛИТСЯ!
+//  КОМПИЛЯЦИЯ ПРОВАЛИТСЯ!
 public Employee(string pos) : base(name, age) : this(pos, 0)
 {
 }
@@ -467,8 +467,8 @@ public Employee(string pos) : this(pos, "Junior", 5000)
 #### Ошибка 3: Забыли параметры при вызове `base`
 
 ```csharp
-// ? ОШИБКА!
-public Employee(string name, int age) : base()  // ? base() требует параметры!
+//  Ошибка!
+public Employee(string name, int age) : base()  //  base() требует параметры!
 {
 }
 ```
@@ -491,18 +491,18 @@ protected Person(string name = "default name", int age = 0, bool isActive = fals
     IsActive = isActive;
 }
 
-protected Person() : this("default name", 0, false) { }  // ? this
+protected Person() : this("default name", 0, false) { }  //  this
 ```
 
 **User.cs** (наследуется от Person):
 
 ```csharp
 public User(string name, int age, bool isActive)
-    : base(name, age, isActive)  // ? base: вызывает Person
+    : base(name, age, isActive)  //  base: вызывает Person
 {
 }
 
-public User() : base() { }  // ? base: вызывает Person()
+public User() : base() { }  //  base: вызывает Person()
 ```
 
 **Employee.cs** (наследуется от User):
@@ -510,7 +510,7 @@ public User() : base() { }  // ? base: вызывает Person()
 ```csharp
 public Employee(string? position = null, decimal salary = 0,
                 string name = "default name", int age = 0, bool isActive = false)
-    : base(name, age, isActive)  // ? base: вызывает User
+    : base(name, age, isActive)  //  base: вызывает User
 {
     Position = position;
     Salary = salary;
@@ -598,7 +598,7 @@ public class Calculator
 }
 
 // Использование
-int sum = Calculator.Add(5, 3);  // ? Вызовом без создания объекта!
+int sum = Calculator.Add(5, 3);  // ℹ Вызовом без создания объекта!
 Console.WriteLine(sum);  // 8
 
 Calculator calc = new Calculator();
@@ -667,7 +667,7 @@ Console.WriteLine(Configuration.ApiUrl);  // https://api.example.com
 #### Ошибка 1: Использовали static для данных объекта
 
 ```csharp
-// ? ОШИБКА!
+//  Ошибка!
 public class User
 {
     public static string Name { get; set; }  // Общее для ВСЕХ пользователей!
@@ -689,7 +689,7 @@ public class Config
 }
 
 // Где-то в коде...
-Config.ApiUrl = "https://evil.com";  // ? ИЗМЕНИЛИ! Теперь везде зло-URL
+Config.ApiUrl = "https://evil.com";  //  ИЗМЕНИЛИ! Теперь везде зло-URL
 
 // РЕШЕНИЕ: используйте readonly или private setter
 public class Config
@@ -708,11 +708,11 @@ public class Config
 ```csharp
 public class Person
 {
-    public int Age;  // ? Проблема!
+    public int Age;  //  Проблема!
 }
 
 Person p = new Person();
-p.Age = -50;  // ?? Отрицательный возраст! Никто не проверил!
+p.Age = -50;  //  Отрицательный возраст! Никто не проверил!
 ```
 
 ### Решение — свойства
@@ -740,8 +740,8 @@ public class Person
 
 // Использование
 Person p = new Person();
-p.Age = 30;   // ? OK
-// p.Age = -50;  // ? Исключение! (обработано свойством)
+p.Age = 30;   //  OK
+// p.Age = -50;  //  Исключение! (обработано свойством)
 ```
 
 ### Краткая форма (Auto-property)
@@ -768,12 +768,12 @@ public class Person
 
     public Person(string name)
     {
-        Name = name;  // ? OK — в конструкторе можно
+        Name = name;  //  OK — в конструкторе можно
     }
 }
 
 Person p = new Person("Alice");
-// p.Name = "Bob";  // ? Ошибка! init запрещает изменение
+// p.Name = "Bob";  //  Ошибка! init запрещает изменение
 ```
 
 ### readonly для полей
@@ -786,7 +786,7 @@ public class Config
 }
 
 // Можно читать, но нельзя менять
-// config.ApiUrl = "...";  // ? Ошибка!
+// config.ApiUrl = "...";  //  Ошибка!
 ```
 
 ---
@@ -941,7 +941,7 @@ public class Person
 }
 
 Person p = new Person();
-Console.WriteLine(p.Name.Length);  // ?? NullReferenceException!
+Console.WriteLine(p.Name.Length);  //  NullReferenceException!
 ```
 
 **Решение**: Инициализируйте в конструкторе или используйте свойства с значениями по умолчанию.
@@ -951,11 +951,11 @@ Console.WriteLine(p.Name.Length);  // ?? NullReferenceException!
 ```csharp
 public class User
 {
-    public int Age;  // ? Публичное поле — опасно!
+    public int Age;  //  Публичное поле — опасно!
 }
 
 User u = new User();
-u.Age = -100;  // ?? Никто не проверил!
+u.Age = -100;  //  Никто не проверил!
 ```
 
 **Решение**: Используйте свойства для валидации:
@@ -977,9 +977,9 @@ public class User
 
 ```csharp
 Person p;  // Переменная объявлена, но объект не создан
-// p.Name = "Alice";  // ?? NullReferenceException!
+// p.Name = "Alice";  //  NullReferenceException!
 
-Person p = new Person();  // ? Правильно
+Person p = new Person();  //  ПРАВИЛЬНО
 p.Name = "Alice";
 ```
 

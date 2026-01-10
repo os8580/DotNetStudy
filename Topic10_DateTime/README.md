@@ -96,12 +96,12 @@ DateTime nextWeek = date.AddDays(7);        // На неделю позже
 Console.WriteLine(date);      // 15.03.2024 14:30:45
 Console.WriteLine(tomorrow);  // 16.03.2024 14:30:45
 
-// ? Ошибка новичков: забывают присвоить результат
+//  Ошибка новичков: забывают присвоить результат
 DateTime startDate = DateTime.Now;
-startDate.AddDays(1);  // ? Это ничего не сделает!
+startDate.AddDays(1);  //  Это ничего не сделает!
 Console.WriteLine(startDate);  // Старая дата!
 
-// ? Правильно
+//  ПРАВИЛЬНО
 startDate = startDate.AddDays(1);  // Присваиваем результат
 ```
 
@@ -189,10 +189,10 @@ else
     Console.WriteLine("Не удалось распарсить дату");
 }
 
-// ? Если парсинг не удался с Parse
-// DateTime dt3 = DateTime.Parse("неправильная дата");  // ?? Исключение!
+// ℹ Если парсинг не удался с Parse
+// DateTime dt3 = DateTime.Parse("неправильная дата");  //  Исключение!
 
-// ? С TryParse просто false
+// ℹ С TryParse просто false
 bool ok = DateTime.TryParse("неправильная дата", out DateTime dt3);  // ok = false
 ```
 
@@ -270,10 +270,10 @@ DateTime dt1 = new DateTime(2024, 3, 15, 10, 30, 0);
 DateTime dt2 = new DateTime(2024, 3, 15, 14, 45, 0);
 DateTime dt3 = new DateTime(2024, 3, 16, 10, 30, 0);
 
-// ? Без .Date (сравнивает дату И время)
+//  Без .Date (сравнивает дату И время)
 Console.WriteLine(dt1 == dt2);  // false (разное время)
 
-// ? С .Date (сравнивает только дату)
+//  С .Date (сравнивает только дату)
 Console.WriteLine(dt1.Date == dt2.Date);  // true (одна дата)
 Console.WriteLine(dt1.Date == dt3.Date);  // false (разные даты)
 ```
@@ -358,10 +358,10 @@ DateTime convertedDt = dto.DateTime;
 DateTime webTime = DateTime.Parse("2024-03-15T14:30:00");  // Откуда-то с веб-сайта
 DateTime expectedTime = new DateTime(2024, 3, 15, 14, 30, 0);
 
-// ? Опасно: разные пояса
+//  Опасно: разные пояса
 if (webTime == expectedTime) { }
 
-// ? Безопаснее: преобразуйте в UTC для сравнения
+//  Безопаснее: преобразуйте в UTC для сравнения
 if (webTime.ToUniversalTime() == expectedTime.ToUniversalTime()) { }
 ```
 
@@ -576,10 +576,10 @@ public class DateValidationTest
 
 ```csharp
 DateTime date = new DateTime(2024, 3, 15);
-date.AddDays(1);  // ? Это ничего не изменяет!
+date.AddDays(1);  //  Это ничего не изменяет!
 Console.WriteLine(date);  // 15.03.2024 (не изменилось!)
 
-// ? Правильно
+//  ПРАВИЛЬНО
 date = date.AddDays(1);  // Присвойте результат
 Console.WriteLine(date);  // 16.03.2024
 ```
@@ -587,12 +587,12 @@ Console.WriteLine(date);  // 16.03.2024
 ### ? Ошибка 2: Неправильный формат при парсинге
 
 ```csharp
-// ? Ошибка: строка в формате "dd.MM.yyyy", а мы указали другой
+//  Ошибка: строка в формате "dd.MM.yyyy", а мы указали другой
 string dateString = "15.03.2024";
 DateTime dt = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-// ?? Исключение!
+//  Исключение!
 
-// ? Правильно
+//  ПРАВИЛЬНО
 DateTime dt = DateTime.ParseExact(dateString, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
 ```
 
@@ -602,13 +602,13 @@ DateTime dt = DateTime.ParseExact(dateString, "dd.MM.yyyy", System.Globalization
 DateTime dt1 = new DateTime(2024, 3, 15, 10, 30, 0);
 DateTime dt2 = new DateTime(2024, 3, 15, 14, 45, 0);
 
-if (dt1 == dt2)  // ? false (разное время)
+if (dt1 == dt2)  // ℹ false (разное время)
 {
     // Не выполнится
 }
 
-// ? Если нужна только дата
-if (dt1.Date == dt2.Date)  // ? true (одна дата)
+// ℹ Если нужна только дата
+if (dt1.Date == dt2.Date)  // ℹ true (одна дата)
 {
     // Выполнится!
 }
@@ -620,12 +620,12 @@ if (dt1.Date == dt2.Date)  // ? true (одна дата)
 DateTime today = DateTime.Today;  // 15.03.2024 00:00:00
 DateTime now = DateTime.Now;      // 15.03.2024 14:30:45
 
-if (today == now)  // ? false (разное время)
+if (today == now)  // ℹ false (разное время)
 {
     // Не выполнится
 }
 
-if (today.Date == now.Date)  // ? true
+if (today.Date == now.Date)  // ℹ true
 {
     // Выполнится!
 }

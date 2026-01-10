@@ -44,7 +44,7 @@
 ```csharp
 // БЕЗ обработки (программа падает)
 int[] numbers = { 1, 2, 3 };
-Console.WriteLine(numbers[10]);  // ?? IndexOutOfRangeException!
+Console.WriteLine(numbers[10]);  //  IndexOutOfRangeException!
 Console.WriteLine("Never printed");  // Эта строка не выполнится
 
 // С обработкой (программа продолжает работать)
@@ -57,7 +57,7 @@ catch (IndexOutOfRangeException ex)
 {
     Console.WriteLine($"Ошибка: {ex.Message}");  // Обработка ошибки
 }
-Console.WriteLine("Program continues");  // ? Выполнится!
+Console.WriteLine("Program continues");  //  Выполнится!
 ```
 
 ---
@@ -70,7 +70,7 @@ Console.WriteLine("Program continues");  // ? Выполнится!
 try
 {
     // Код, который может выбросить исключение
-    int result = 10 / int.Parse("0");  // ?? DivideByZeroException
+    int result = 10 / int.Parse("0");  //  DivideByZeroException
 }
 catch (DivideByZeroException ex)
 {
@@ -105,7 +105,7 @@ try
 {
     // ...
 }
-// ? Правильный порядок (от специфичного к общему)
+//  Правильный порядок (от специфичного к общему)
 catch (DivideByZeroException ex)
 {
     // Сначала специфичные
@@ -119,7 +119,7 @@ catch (Exception ex)
     // И в конце общее Exception
 }
 
-// ? НЕПРАВИЛЬНЫЙ порядок
+//  НЕПРАВИЛЬНЫЙ порядок
 catch (Exception ex)
 {
     // Если поймаем общее исключение первым,
@@ -138,7 +138,7 @@ try
 {
     Console.WriteLine("1. Попытка");
     throw new Exception("Ошибка!");
-    Console.WriteLine("2. Никогда не выполнится");  // ? Пропущено
+    Console.WriteLine("2. Никогда не выполнится");  // ℹ Пропущено
 }
 catch (Exception ex)
 {
@@ -147,7 +147,7 @@ catch (Exception ex)
 }
 finally
 {
-    Console.WriteLine("4. Finally ВСЕГДА выполнится");  // ? Выполнится
+    Console.WriteLine("4. Finally ВСЕГДА выполнится");  //  Выполнится
 }
 
 // Вывод:
@@ -224,7 +224,7 @@ public class FileReader
 // Проблема: можно забыть закрыть
 FileReader reader = new FileReader("file.txt");
 // ... используем reader ...
-reader.Close();  // ? Что если забыли это написать?
+reader.Close();  //  Что если забыли это написать?
 ```
 
 ### Решение 1: IDisposable
@@ -299,7 +299,7 @@ using (var driver = new FakeDriver())
     driver.LogAction("Open page");
     driver.LogAction("Click button");
     driver.LogAction("Verify text");
-}  // ? Автоматически вызовется Dispose()
+}  //  Автоматически вызовется Dispose()
 
 // Вывод:
 // Action: Open page
@@ -366,7 +366,7 @@ try
 {
     int.Parse("123");
 }
-catch (FormatException ex)  // ? Специфичное
+catch (FormatException ex)  // ℹ Специфичное
 {
     Console.WriteLine("Ошибка формата");
 }
@@ -383,7 +383,7 @@ catch (Exception ex)
 catch (Exception ex)
 {
     Console.WriteLine("Cannot handle this");
-    throw;  // ? Пробросить дальше с сохранением стека вызовов
+    throw;  // ℹ Пробросить дальше с сохранением стека вызовов
 }
 
 // Используйте using для IDisposable
@@ -394,26 +394,26 @@ resource.DoSomething();
 ### ? DON'T:
 
 ```csharp
-// ? Не ловите все подряд
+//  Не ловите все подряд
 try
 {
     // код
 }
-catch (Exception)  // ? ПЛОХО! Скрываете все ошибки
+catch (Exception)  //  ПЛОХО! Скрываете все ошибки
 {
     // ignoring
 }
 
-// ? Не создавайте исключение без текста
-throw new Exception();  // ? Непонятно, что случилось
+//  Не создавайте исключение без текста
+throw new Exception();  //  Непонятно, что случилось
 
-// ? Не игнорируйте исключения
+//  Не игнорируйте исключения
 try { /* код */ }
-catch { }  // ? Что произошло? Почему молчим?
+catch { }  //  Что произошло? Почему молчим?
 
-// ? Не забывайте про using
+//  Не забывайте про using
 FileStream stream = new FileStream("file.txt", FileMode.Open);
-// ? Если вернуть раньше, поток остается открыт!
+// ℹ Если вернуть раньше, поток остается открыт!
 ```
 
 ---
@@ -427,16 +427,16 @@ try
 {
     // ...
 }
-catch (Exception ex)  // ? Слишком общий, первым!
+catch (Exception ex)  //  Слишком общий, первым!
 {
     Console.WriteLine("Ошибка");
 }
-catch (FormatException ex)  // ? Никогда не выполнится!
+catch (FormatException ex)  //  Никогда не выполнится!
 {
     Console.WriteLine("Ошибка формата");
 }
 
-// ? Правильно
+//  ПРАВИЛЬНО
 catch (FormatException ex)
 {
     Console.WriteLine("Ошибка формата");
@@ -457,15 +457,15 @@ try
 catch (Exception ex)
 {
     Console.WriteLine("Error");
-    // ? Забыли throw! Ошибка просто исчезает!
+    //  Забыли throw! Ошибка просто исчезает!
 }
 Console.WriteLine("Program continues");  // Программа продолжает работать!
 
-// ? Если нужно пробросить
+// ℹ Если нужно пробросить
 catch (Exception ex)
 {
     Console.WriteLine("Error");
-    throw;  // ? Пробросить ошибку дальше
+    throw;  // ℹ Пробросить ошибку дальше
 }
 ```
 
@@ -473,11 +473,11 @@ catch (Exception ex)
 
 ```csharp
 FileStream stream = new FileStream("file.txt", FileMode.Open);
-// ? Если исключение, поток не закроется!
+// ℹ Если исключение, поток не закроется!
 
-// ? Правильно
+//  ПРАВИЛЬНО
 using var stream = new FileStream("file.txt", FileMode.Open);
-// ? Даже если исключение, поток закроется
+//  Даже если исключение, поток закроется
 ```
 
 ---

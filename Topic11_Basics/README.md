@@ -71,7 +71,7 @@ public class User
     public string Name { get; set; }
 }
 
-User user1 = null;  // ? OK
+User user1 = null;  // OK
 User user2 = new User();
 
 // struct — значимый тип (на STACK), не может быть null (но может быть int?)
@@ -82,9 +82,9 @@ public struct Point
 }
 
 Point p1 = new Point();  // Всегда инициализирован
-Point? p2 = null;  // ? Nullable struct
+Point? p2 = null;  // Nullable struct
 
-// Правило: использутй class по умолчанию, struct для малых данных
+// Правило: используй class по умолчанию, struct для малых данных
 ```
 
 ### object и var
@@ -98,7 +98,7 @@ object something = "text"; // Может быть string
 var number = 42;      // Компилятор определит: это int
 var text = "hello";   // Это string
 
-// ? var только для локальных переменных, не для параметров/свойств
+// var только для локальных переменных, не для параметров/свойств
 var collection = new List<int>();  // Это List<int>
 ```
 
@@ -151,21 +151,21 @@ string formatted = string.Format("Привет, {0}! Тебе {1} лет", name,
 
 // С форматом
 decimal price = 19.99m;
-string priceText = $"Цена: {price:C}";  // Цена: 19,99 ?
-string percentage = $"Прогресс: {0.75:P}";  // Прогресс: 75,00 %
+string priceText = $"Цена: {price:C}";  // Цена: ₽19.99
+string percentage = $"Прогресс: {0.75:P}";  // Прогресс: 75.00%
 ```
 
 ### StringBuilder для частых изменений
 
 ```csharp
-// ? Неэффективно (строка неизменяемая!)
+// ❌ Неэффективно (строка неизменяемая!)
 string result = "";
 for (int i = 0; i < 1000; i++)
 {
     result += i + ", ";  // Создает новую строку 1000 раз!
 }
 
-// ? Эффективно
+// ✅ Эффективно
 var sb = new StringBuilder();
 for (int i = 0; i < 1000; i++)
 {
@@ -385,7 +385,7 @@ Console.WriteLine(Counter.Total);  // 2 (всех объектов)
 Console.WriteLine(c1.Value);       // 0 (отдельный)
 Console.WriteLine(c2.Value);       // 0 (отдельный)
 
-// ? Минус: Static сложно тестировать, избегайте!
+// ❌ Минус: Static сложно тестировать, избегайте!
 ```
 
 ---
@@ -440,8 +440,8 @@ public class Circle : Shape
     }
 }
 
-// ? Circle c = new Circle();  // OK
-// ? Shape s = new Shape();    // Ошибка! abstract нельзя создать
+// Circle c = new Circle();  // OK
+// Shape s = new Shape();    // Ошибка! abstract нельзя создать
 ```
 
 ---
@@ -878,7 +878,7 @@ Console.WriteLine($"Прошло: {sw.Elapsed.TotalSeconds} секунд");
 #### S — Single Responsibility Principle
 
 ```csharp
-// ? Плохо: класс делает слишком много
+// ❌ Плохо: класс делает слишком много
 public class User
 {
     public void CreateUser() { }
@@ -887,7 +887,7 @@ public class User
     public void ValidatePassword() { }
 }
 
-// ? Хорошо: каждый класс делает одно
+// ✅ Хорошо: каждый класс делает одно
 public class UserCreator
 {
     public void Create(User user) { }
@@ -912,7 +912,7 @@ public class PasswordValidator
 #### O — Open/Closed Principle
 
 ```csharp
-// ? Плохо: нужно изменять класс при добавлении нового платежа
+// ❌ Плохо: нужно изменять класс при добавлении нового платежа
 public class PaymentProcessor
 {
     public void Process(string type, decimal amount)
@@ -928,7 +928,7 @@ public class PaymentProcessor
     }
 }
 
-// ? Хорошо: открыт для расширения, закрыт для изменения
+// ✅ Хорошо: открыт для расширения, закрыт для изменения
 public interface IPaymentMethod
 {
     void Process(decimal amount);
@@ -956,7 +956,7 @@ public class PaymentProcessor
 #### L — Liskov Substitution Principle
 
 ```csharp
-// ? Правильно: все наследники могут заменить родителя
+// ✅ Правильно: все наследники могут заменить родителя
 public class Animal
 {
     public virtual void Eat() { }
@@ -982,7 +982,7 @@ void FeedAnimal(Animal animal)
 #### I — Interface Segregation Principle
 
 ```csharp
-// ? Плохо: большой интерфейс
+// ❌ Плохо: большой интерфейс
 public interface IWorker
 {
     void Work();
@@ -990,7 +990,7 @@ public interface IWorker
     void Sleep();
 }
 
-// ? Хорошо: маленькие интерфейсы
+// ✅ Хорошо: маленькие интерфейсы
 public interface IWorker
 {
     void Work();
@@ -1017,13 +1017,13 @@ public class Employee : IWorker, INeedFood, INeedRest
 #### D — Dependency Inversion Principle
 
 ```csharp
-// ? Плохо: зависимость от конкретного класса
+// ❌ Плохо: зависимость от конкретного класса
 public class UserService
 {
     private MySQLDatabase database = new MySQLDatabase();  // Привязаны!
 }
 
-// ? Хорошо: зависимость от интерфейса
+// ✅ Хорошо: зависимость от интерфейса
 public interface IDatabase
 {
     void Save(User user);
@@ -1043,7 +1043,7 @@ public class UserService
 ### DRY (Don't Repeat Yourself)
 
 ```csharp
-// ? Плохо: повторение кода
+// ❌ Плохо: повторение кода
 public class ValidationHelper
 {
     public bool ValidateUsername(string username)
@@ -1065,7 +1065,7 @@ public class ValidationHelper
     }
 }
 
-// ? Хорошо: общий метод
+// ✅ Хорошо: общий метод
 public class ValidationHelper
 {
     public bool IsNotEmpty(string value)
@@ -1088,7 +1088,7 @@ public class ValidationHelper
 ### KISS (Keep It Simple, Stupid)
 
 ```csharp
-// ? Слишком сложно
+// ❌ Слишком сложно
 public class ComplexValidator
 {
     public bool Validate(User user)
@@ -1099,7 +1099,7 @@ public class ComplexValidator
     }
 }
 
-// ? Проще
+// ✅ Проще
 public class SimpleValidator
 {
     public bool ValidateName(string name) => !string.IsNullOrWhiteSpace(name);

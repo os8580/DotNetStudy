@@ -109,7 +109,7 @@ testWithFake.TestLogin();  // Тест работает, но без интер�
 ```csharp
 public class LoginTest
 {
-    private ApiLoginService _service;  // ? Привязан к конкретному классу!
+    private ApiLoginService _service;  //  Привязан к конкретному классу!
 
     public LoginTest()
     {
@@ -133,7 +133,7 @@ public class LoginTest
 ```csharp
 public class LoginTest
 {
-    private ILoginService _service;  // ? Зависит от интерфейса!
+    private ILoginService _service;  //  Зависит от интерфейса!
 
     public LoginTest(ILoginService service)
     {
@@ -553,12 +553,12 @@ class Program
 
 // Вывод:
 // === С РЕАЛЬНЫМ БРАУЗЕРОМ ===
-// ?? Открыли в Chrome: https://example.com/login
+//  Открыли в Chrome: https://example.com/login
 // Логинимся как alice...
 // Chrome - https://example.com/login
 //
 // === С ФАЛЬШИВЫМ ДЛЯ ТЕСТА ===
-// ?? Фальшивый открыл: https://example.com/login (без интернета)
+//  Фальшивый открыл: https://example.com/login (без интернета)
 // Логинимся как bob...
 ```
 
@@ -575,7 +575,7 @@ public class LoginTest
 
     public LoginTest()
     {
-        _service = new ApiLoginService();  // ? Привязаны к конкретному классу!
+        _service = new ApiLoginService();  //  Привязаны к конкретному классу!
     }
 }
 
@@ -591,12 +591,12 @@ public class LoginTest
 
     public LoginTest()
     {
-        // ? Откуда появился _service? Он же null!
+        //  Откуда появился _service? Он же null!
     }
 
     public void Test()
     {
-        _service.Login("alice", "password");  // ?? NullReferenceException!
+        _service.Login("alice", "password");  //  NullReferenceException!
     }
 }
 ```
@@ -610,7 +610,7 @@ public class Page
                 IScroller s, IValidator v, ILogger l,
                 INotifier n, IAnalytics a, ICache ca)
     {
-        // ?? 10 параметров! Это код-запах (code smell)
+        //  10 параметров! Это код-запах (code smell)
     }
 }
 ```
@@ -629,7 +629,7 @@ public class Page
 {
     public Page(IDriver driver, IPageActions actions)
     {
-        // ? Намного понятнее!
+        //  Намного понятнее!
     }
 }
 ```

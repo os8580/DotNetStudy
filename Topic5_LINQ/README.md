@@ -55,7 +55,7 @@ var result2 = numbers
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 
-// ? DEFERRED: запрос еще не выполнен!
+//  DEFERRED: запрос еще не выполнен!
 var query = numbers.Where(n => n > 3);
 
 // Запрос выполнится только когда мы:
@@ -113,7 +113,7 @@ foreach (var name in query)
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 
-// ? IMMEDIATE: выполняется СЕЙЧАС!
+//  IMMEDIATE: выполняется СЕЙЧАС!
 List<int> result = numbers.Where(n => n > 3).ToList();  // Выполнилось!
 
 // Теперь result = { 4, 5 } (готовая коллекция)
@@ -312,10 +312,10 @@ int total = numbers.Count();           // 10
 // С условием (эффективнее, чем Where().Count())
 int evenCount = numbers.Count(n => n % 2 == 0);  // 5
 
-// ? Неправильно (неэффективно)
+//  Неправильно (неэффективно)
 int badCount = numbers.Where(n => n % 2 == 0).Count();
 
-// ? Правильно (быстрее)
+//  ПРАВИЛЬНО (быстрее)
 int goodCount = numbers.Count(n => n % 2 == 0);
 ```
 
@@ -399,21 +399,21 @@ users.RemoveAll(u => !u.IsActive);
 
 foreach (var user in activeUsers)
 {
-    // ? Ошибка! activeUsers зависит от исходного списка
+    //  Ошибка! activeUsers зависит от исходного списка
     // После Remove, activeUsers может быть пустой!
 }
 
-// ? Правильно
+//  ПРАВИЛЬНО
 var activeUsers = users.Where(u => u.IsActive).ToList();
 ```
 
 ### ? Ошибка 2: Неэффективная цепочка
 
 ```csharp
-// ? Неэффективно (два прохода по данным)
+//  Неэффективно (два прохода по данным)
 int count = numbers.Where(n => n > 5).Count();
 
-// ? Эффективно (один проход)
+//  Эффективно (один проход)
 int count = numbers.Count(n => n > 5);
 ```
 
@@ -428,9 +428,9 @@ int count = query.Count();      // Выполнение 1
 var list = query.ToList();      // Выполнение 2
 bool any = query.Any();         // Выполнение 3
 
-// ? Неэффективно! Where выполняется 3 раза!
+//  Неэффективно! Where выполняется 3 раза!
 
-// ? Правильно
+//  ПРАВИЛЬНО
 var snapshot = query.ToList();  // Одно выполнение
 int count = snapshot.Count;
 bool any = snapshot.Any();

@@ -46,10 +46,10 @@ public class Container
 
 Container container = new Container();
 container.Set(42);
-int number = (int)container.Get();  // ? Нужно кастовать! Может упасть!
+int number = (int)container.Get();  //  Нужно кастовать! Может упасть!
 
 container.Set("Hello");
-int wrongCast = (int)container.Get();  // ?? InvalidCastException!
+int wrongCast = (int)container.Get();  //  InvalidCastException!
 
 // С Generics (безопасно)
 public class Container<T>
@@ -62,11 +62,11 @@ public class Container<T>
 
 Container<int> intContainer = new Container<int>();
 intContainer.Set(42);
-int number = intContainer.Get();  // ? Безопасно, без каста
+int number = intContainer.Get();  //  Безопасно, без каста
 
 Container<string> stringContainer = new Container<string>();
 stringContainer.Set("Hello");
-string text = stringContainer.Get();  // ? Безопасно
+string text = stringContainer.Get();  //  Безопасно
 ```
 
 ---
@@ -162,10 +162,10 @@ public class Repository<T> where T : class  // T должен быть клас�
     public void Add(T item) => items.Add(item);
 }
 
-// ? OK — User это класс
+//  OK — User это класс
 Repository<User> userRepo = new Repository<User>();
 
-// ? Ошибка — int это struct (значимый тип)
+//  Ошибка — int это struct (значимый тип)
 // Repository<int> intRepo = new Repository<int>();
 ```
 
@@ -180,10 +180,10 @@ public class Validator<T> where T : struct  // T должен быть struct
     }
 }
 
-// ? OK — int это struct
+//  OK — int это struct
 Validator<int> intValidator = new Validator<int>();
 
-// ? Ошибка — User это класс
+//  Ошибка — User это класс
 // Validator<User> userValidator = new Validator<User>();
 ```
 
@@ -200,11 +200,11 @@ public class Factory<T> where T : new()  // T должен иметь new()
 
 public class MyClass { }
 
-// ? OK — MyClass имеет конструктор без параметров
+//  OK — MyClass имеет конструктор без параметров
 Factory<MyClass> factory = new Factory<MyClass>();
 MyClass instance = factory.Create();
 
-// ? Ошибка — User требует параметр в конструкторе
+//  Ошибка — User требует параметр в конструкторе
 // public class User { public User(string name) { } }
 // Factory<User> userFactory = new Factory<User>();
 ```
@@ -222,10 +222,10 @@ public class AnimalCage<T> where T : Animal  // T должен быть Animal �
     public void Add(T animal) => animals.Add(animal);
 }
 
-// ? OK — Dog наследует от Animal
+//  OK — Dog наследует от Animal
 AnimalCage<Dog> dogCage = new AnimalCage<Dog>();
 
-// ? Ошибка — string не наследует от Animal
+//  Ошибка — string не наследует от Animal
 // AnimalCage<string> stringCage = new AnimalCage<string>();
 ```
 
@@ -243,7 +243,7 @@ public class Logger
     {
         foreach (var item in items)
         {
-            item.Log();  // ? Знаем, что есть метод Log()
+            item.Log();  // ℹ Знаем, что есть метод Log()
         }
     }
 }
@@ -254,7 +254,7 @@ public class User : ILoggable
     public void Log() => Console.WriteLine($"User: {Name}");
 }
 
-// ? OK
+//  OK
 Logger logger = new Logger();
 List<User> users = new List<User> { new User { Name = "Alice" } };
 logger.LogItems(users);
@@ -378,7 +378,7 @@ public class StringProducer : IProducer<string>
     public string Produce() => "Hello";
 }
 
-// ? Covariance: IProducer<string> можно присвоить IProducer<object>
+// ℹ Covariance: IProducer<string> можно присвоить IProducer<object>
 IProducer<object> producer = new StringProducer();
 
 // Это работает потому что out гарантирует, что T только возвращается, не принимается
@@ -397,7 +397,7 @@ public class ObjectConsumer : IConsumer<object>
     public void Consume(object item) => Console.WriteLine(item);
 }
 
-// ? Contravariance: IConsumer<object> можно присвоить IConsumer<string>
+// ℹ Contravariance: IConsumer<object> можно присвоить IConsumer<string>
 IConsumer<string> consumer = new ObjectConsumer();
 consumer.Consume("Hello");  // Работает!
 ```
@@ -413,16 +413,16 @@ public class Factory<T>
 {
     public T Create()
     {
-        return new T();  // ? Ошибка! T может не иметь конструктора
+        return new T();  //  Ошибка! T может не иметь конструктора
     }
 }
 
-// ? Правильно
+//  ПРАВИЛЬНО
 public class Factory<T> where T : new()
 {
     public T Create()
     {
-        return new T();  // ? OK
+        return new T();  //  OK
     }
 }
 ```
@@ -432,16 +432,16 @@ public class Factory<T> where T : new()
 ```csharp
 public class Container
 {
-    private object value;  // ? Потеря типобезопасности
+    private object value;  //  Потеря типобезопасности
 
     public void Set(object val) => value = val;
     public object Get() => value;
 }
 
-// ? Правильно
+//  ПРАВИЛЬНО
 public class Container<T>
 {
-    private T value;  // ? Типобезопасно
+    private T value;  //  Типобезопасно
 
     public void Set(T val) => value = val;
     public T Get() => value;
@@ -451,13 +451,13 @@ public class Container<T>
 ### ? Ошибка 3: Слишком широкое ограничение
 
 ```csharp
-// ? Слишком общий Repository
+//  Слишком общий Repository
 public class Repository<T> where T : class
 {
     // Проблема: не знаем, есть ли Id или другие свойства
 }
 
-// ? Правильно — требуем IEntity
+//  ПРАВИЛЬНО — требуем IEntity
 public class Repository<T> where T : class, IEntity
 {
     public T GetById(int id) { /*...*/ }

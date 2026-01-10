@@ -76,7 +76,7 @@ public struct Point
 
 // Использование
 Point p1 = new Point(10, 20);
-Point p2 = p1;  // ? Копируется VALUE (весь struct копируется)
+Point p2 = p1;  //  Копируется VALUE (весь struct копируется)
 
 p2.X = 100;
 
@@ -107,7 +107,7 @@ public class User
 
 // Использование
 User user1 = new User { Name = "Alice", Age = 30 };
-User user2 = user1;  // ? Копируется ССЫЛКА, не объект!
+User user2 = user1;  //  Копируется ССЫЛКА, не объект!
 
 user2.Name = "Bob";
 
@@ -213,10 +213,10 @@ else
 ```csharp
 // ref — переменная должна быть инициализирована ДО вызова
 int x = 5;
-MethodWithRef(ref x);  // ? OK, x уже = 5
+MethodWithRef(ref x);  //  OK, x уже = 5
 
 // out — переменная будет инициализирована В методе
-MethodWithOut(out int y);  // ? OK, y пока не инициализирована
+MethodWithOut(out int y);  //  OK, y пока не инициализирована
 ```
 
 ---
@@ -226,10 +226,10 @@ MethodWithOut(out int y);  // ? OK, y пока не инициализирова
 ### Проблема: как представить "отсутствие значения"?
 
 ```csharp
-int age = null;  // ? Ошибка! int не может быть null
+int age = null;  //  Ошибка! int не может быть null
 
 // Решение:
-int? age = null;  // ? OK! Nullable int
+int? age = null;  //  OK! Nullable int
 ```
 
 ### Использование
@@ -262,10 +262,10 @@ int value = number ?? 0;  // Если number null, используй 0
 ```csharp
 // Struct
 int? x = 5;
-x = null;  // ? OK
+x = null;  //  OK
 
 // Class (уже может быть null)
-User? user = null;  // ? OK (class уже ссылочный тип)
+User? user = null;  //  OK (class уже ссылочный тип)
 ```
 
 ---
@@ -286,14 +286,14 @@ Counter counter = new Counter { Value = 0 };
 Task t1 = Task.Run(() => {
     for (int i = 0; i < 1000; i++)
     {
-        counter.Value++;  // ? Race condition!
+        counter.Value++;  //  Race condition!
     }
 });
 
 Task t2 = Task.Run(() => {
     for (int i = 0; i < 1000; i++)
     {
-        counter.Value++;  // ? Race condition!
+        counter.Value++;  //  Race condition!
     }
 });
 
@@ -328,12 +328,12 @@ SafeCounter counter = new SafeCounter();
 
 Task t1 = Task.Run(() => {
     for (int i = 0; i < 1000; i++)
-        counter.Increment();  // ? Безопасно
+        counter.Increment();  //  Безопасно
 });
 
 Task t2 = Task.Run(() => {
     for (int i = 0; i < 1000; i++)
-        counter.Increment();  // ? Безопасно
+        counter.Increment();  //  Безопасно
 });
 
 Task.WaitAll(t1, t2);
@@ -350,14 +350,14 @@ ConcurrentDictionary<string, int> dict = new();
 Task t1 = Task.Run(() => {
     for (int i = 0; i < 1000; i++)
     {
-        dict.TryAdd($"key{i}", i);  // ? Потокобезопасно
+        dict.TryAdd($"key{i}", i);  //  Потокобезопасно
     }
 });
 
 Task t2 = Task.Run(() => {
     for (int i = 1000; i < 2000; i++)
     {
-        dict.TryAdd($"key{i}", i);  // ? Потокобезопасно
+        dict.TryAdd($"key{i}", i);  //  Потокобезопасно
     }
 });
 
@@ -411,22 +411,22 @@ public class TestContext
 void ChangeValue(ref int x) { x = 100; }
 
 int number = 5;
-// ? ChangeValue(number);  // Ошибка! Забыли ref
+// ❌ ChangeValue(number);  // Ошибка! Забыли ref
 
-// ?
+// ✅ Правильно:
 ChangeValue(ref number);  // ref обязателен
 ```
 
-### ? Ошибка 2: Race condition в многопоточности
+### ⚠️ Ошибка 2: Race condition в многопоточности
 
 ```csharp
-// ? Небезопасно
+//  Небезопасно
 for (int i = 0; i < 1000; i++)
 {
     Task.Run(() => counter.Value++);  // Race condition!
 }
 
-// ? Безопасно
+//  Безопасно
 for (int i = 0; i < 1000; i++)
 {
     Task.Run(() => { lock (obj) { counter.Value++; } });
@@ -437,12 +437,12 @@ for (int i = 0; i < 1000; i++)
 
 ```csharp
 int x = 5;
-if (x == null)  // ? int не может быть null!
+if (x == null)  //  int не может быть null!
 {
     // Это никогда не выполнится
 }
 
-// ? Правильно
+//  ПРАВИЛЬНО
 int? x = 5;
 if (x == null)
 {
