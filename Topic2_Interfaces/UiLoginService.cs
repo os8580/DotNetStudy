@@ -1,8 +1,20 @@
 ﻿namespace Topic2_Interfaces
 {
-    // 2. РЕАЛИЗАЦИЯ 1: UI ЛОГИН (Имитация Selenium)
+    /// <summary>
+    /// РЕАЛИЗАЦИЯ 1: UI Login Service
+    /// 
+    /// Это реальная реализация ILoginService для работы с браузером
+    /// (имитирует работу инструмента вроде Selenium)
+    /// 
+    /// Класс "говорит": "Я реализую интерфейс ILoginService,
+    /// значит у меня ЕСТЬ метод Login() и свойство IsLoggedIn"
+    /// </summary>
     public class UiLoginService : ILoginService
     {
+        /// <summary>
+        /// Флаг авторизации - ОБЯЗАТЕЛЕН, так как реализуем ILoginService
+        /// private set означает, что менять его снаружи нельзя, только через метод Login()
+        /// </summary>
         public bool IsLoggedIn { get; private set; }
 
         public void Login(string username, string password)

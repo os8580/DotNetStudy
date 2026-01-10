@@ -1,13 +1,21 @@
 ﻿# Topic7 — Исключения и управление ресурсами (Полный курс для начинающих)
 
 ## Цель
+
 Понять, как правильно обрабатывать ошибки в C#, когда использовать try/catch/finally, и как управлять ресурсами через IDisposable.
 
 ---
 
+### Для полного новичка: быстрый маршрут
+
+- Прочитайте разделы: "Что такое исключение?", "Try/Catch/Finally", "IDisposable и using".
+- Запустите Program.cs и посмотрите, как ведет себя программа при ошибке и при обработке.
+- Вернитесь к чек‑листу: под каждым вопросом есть короткий ответ, а подробности выше.
+
 ## 1. Что такое исключение? (Для самых начинающих)
 
 ### Аналогия
+
 ```
 Обычный ход программы:
 1. Сделай шаг вперед
@@ -170,7 +178,7 @@ public class UserValidator
         {
             throw new InvalidUsernameException("Username не может быть пустым!");
         }
-        
+
         if (username.Length < 3)
         {
             throw new InvalidUsernameException("Username должен быть минимум 3 символа!");
@@ -201,12 +209,12 @@ catch (InvalidUsernameException ex)
 public class FileReader
 {
     private StreamReader reader;
-    
+
     public FileReader(string filePath)
     {
         reader = new StreamReader(filePath);
     }
-    
+
     public void Close()
     {
         reader?.Close();  // Нужно вручную закрыть!
@@ -226,12 +234,12 @@ reader.Close();  // ? Что если забыли это написать?
 public class FileReader : IDisposable
 {
     private StreamReader reader;
-    
+
     public FileReader(string filePath)
     {
         reader = new StreamReader(filePath);
     }
-    
+
     // Метод для освобождения ресурсов
     public void Dispose()
     {
@@ -265,18 +273,18 @@ using var reader = new FileReader("file.txt");
 public class FakeDriver : IDisposable
 {
     private List<string> logs = new List<string>();
-    
+
     public void LogAction(string action)
     {
         logs.Add(action);
         Console.WriteLine($"Action: {action}");
     }
-    
+
     public void SaveLogsToFile(string filePath)
     {
         File.WriteAllLines(filePath, logs);
     }
-    
+
     public void Dispose()
     {
         // Очистка: сохранить логи, закрыть соединения, и т.д.
@@ -306,7 +314,7 @@ using (var driver = new FakeDriver())
 public class Resource : IDisposable
 {
     private bool disposed = false;
-    
+
     public void DoSomething()
     {
         if (disposed)
@@ -315,13 +323,13 @@ public class Resource : IDisposable
         }
         Console.WriteLine("Doing something...");
     }
-    
+
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);  // Не нужен финализатор
     }
-    
+
     protected virtual void Dispose(bool disposing)
     {
         if (!disposed)
@@ -331,14 +339,14 @@ public class Resource : IDisposable
                 // Освобождаем управляемые ресурсы
                 Console.WriteLine("Cleaning up managed resources");
             }
-            
+
             // Освобождаем неуправляемые ресурсы
             Console.WriteLine("Cleaning up unmanaged resources");
-            
+
             disposed = true;
         }
     }
-    
+
     ~Resource()
     {
         Dispose(false);
@@ -413,6 +421,7 @@ FileStream stream = new FileStream("file.txt", FileMode.Open);
 ## 6. Частые ошибки новичков
 
 ### ? Ошибка 1: Неправильный порядок catch блоков
+
 ```csharp
 try
 {
@@ -439,6 +448,7 @@ catch (Exception ex)
 ```
 
 ### ? Ошибка 2: Забыли throw
+
 ```csharp
 try
 {
@@ -460,6 +470,7 @@ catch (Exception ex)
 ```
 
 ### ? Ошибка 3: Забыли using
+
 ```csharp
 FileStream stream = new FileStream("file.txt", FileMode.Open);
 // ? Если исключение, поток не закроется!
@@ -473,24 +484,61 @@ using var stream = new FileStream("file.txt", FileMode.Open);
 
 ## 7. Типы исключений в .NET
 
-| Исключение | Когда выбрасывается |
-|-----------|-------------------|
-| `ArgumentException` | Неправильный аргумент |
-| `ArgumentNullException` | Аргумент null |
-| `DivideByZeroException` | Деление на ноль |
-| `FormatException` | Неправильный формат |
-| `IndexOutOfRangeException` | Индекс вне массива |
-| `InvalidOperationException` | Операция недействительна |
-| `KeyNotFoundException` | Ключ не найден в Dictionary |
-| `NotImplementedException` | Метод не реализован |
-| `NullReferenceException` | Обращение к null |
-| `OverflowException` | Переполнение |
-| `StackOverflowException` | Переполнение стека |
-| `TimeoutException` | Истекло время ожидания |
+| Исключение                  | Когда выбрасывается         |
+| --------------------------- | --------------------------- |
+| `ArgumentException`         | Неправильный аргумент       |
+| `ArgumentNullException`     | Аргумент null               |
+| `DivideByZeroException`     | Деление на ноль             |
+| `FormatException`           | Неправильный формат         |
+| `IndexOutOfRangeException`  | Индекс вне массива          |
+| `InvalidOperationException` | Операция недействительна    |
+| `KeyNotFoundException`      | Ключ не найден в Dictionary |
+| `NotImplementedException`   | Метод не реализован         |
+| `NullReferenceException`    | Обращение к null            |
+| `OverflowException`         | Переполнение                |
+| `StackOverflowException`    | Переполнение стека          |
+| `TimeoutException`          | Истекло время ожидания      |
 
 ---
 
 ## Файлы в проекте:
+
 - `Program.cs` — примеры обработки исключений
 - `ElementNotFoundException.cs` — пользовательское исключение
 - `FakeDriver.cs` — класс с IDisposable
+
+---
+
+## 8. ЧЕК-ЛИСТ ДЛЯ СОБЕСЕДОВАНИЯ 🎯
+
+### Вопрос 1: Что такое исключение и когда оно возникает?
+
+Краткий ответ: Исключение — сигнал об ошибке во время выполнения (например, деление на ноль, выход за границы массива, неверный формат). Без обработки программа прерывается.
+
+### Вопрос 2: Для чего нужен try/catch/finally?
+
+Краткий ответ: try — код с риском; catch — обработка конкретной ошибки; finally — выполняется всегда (для очистки ресурсов), даже если было исключение.
+
+### Вопрос 3: Почему порядок catch важен?
+
+Краткий ответ: Сначала ловите специфичные исключения, потом общие (Exception). Иначе общее перехватит всё и до специфичных обработчиков дело не дойдет.
+
+### Вопрос 4: Когда пробрасывать (rethrow) исключение?
+
+Краткий ответ: Если не можете корректно обработать — логируйте и пробрасывайте `throw;`, чтобы сохранить стек вызовов. Не “глотайте” ошибки.
+
+### Вопрос 5: Что такое IDisposable и чем помогает using?
+
+Краткий ответ: IDisposable определяет освобождение ресурсов. `using` автоматически вызывает `Dispose()` при выходе из блока — ресурсы не «утекут» даже при ошибке.
+
+### Вопрос 6: Как правильно реализовать Dispose по паттерну?
+
+Краткий ответ: Реализуйте `Dispose()` → вызывайте `Dispose(bool disposing)` → `GC.SuppressFinalize(this)` → защищайтесь от повторного вызова и от использования после Dispose.
+
+### Вопрос 7: Какие частые ошибки у новичков?
+
+Краткий ответ: Неправильный порядок catch; проглатывание исключений без `throw`; забытый `using` для ресурсов; создание Exception без сообщения.
+
+### Вопрос 8: Как спроектировать свое исключение?
+
+Краткий ответ: Наследуйтесь от `Exception`, добавьте понятное сообщение/контекст (например, селектор элемента), при необходимости — дополнительные поля, и документируйте класс.

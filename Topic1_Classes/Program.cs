@@ -72,3 +72,64 @@ foreach (var p in people)
     Console.WriteLine($"After toggle:  {p.GetSummary()}");
     Console.WriteLine();
 }
+
+// ===== ДЕМОНСТРАЦИЯ СВОЙСТВ (PROPERTIES) С ВАЛИДАЦИЕЙ =====
+Console.WriteLine("=====================================================");
+Console.WriteLine("ДЕМОНСТРАЦИЯ PROPERTIES (GET/SET) С ВАЛИДАЦИЕЙ");
+Console.WriteLine("=====================================================\n");
+
+Console.WriteLine("ПРИМЕР 1: Создание LoginPage с валидацией свойств");
+var loginPage = new LoginPage();
+Console.WriteLine($"Начальное состояние: {loginPage.GetInfo()}");
+
+// Установка Username через свойство (с валидацией)
+loginPage.Username = "alice";
+Console.WriteLine($"После установки Username: {loginPage.GetInfo()}");
+
+// Попытка установить пустой Username (вызовет исключение)
+try
+{
+    loginPage.Username = "";  // Пустое значение — ошибка!
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"❌ Ошибка при установке пустого Username: {ex.Message}");
+}
+
+// Вход (Login) с валидацией пароля
+Console.WriteLine("\nПопытка входа с коротким паролем:");
+try
+{
+    loginPage.Login("123");  // Пароль < 6 символов — ошибка!
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"❌ Ошибка: {ex.Message}");
+}
+
+Console.WriteLine("\nВход с корректным паролем:");
+loginPage.Login("password123");  // 6+ символов — OK!
+Console.WriteLine($"✓ Успешный вход: {loginPage.GetInfo()}");
+
+// IsLoggedIn — только для чтения (попытка изменить вызовет ошибку)
+Console.WriteLine("\nПопытка изменить IsLoggedIn напрямую:");
+try
+{
+    // loginPage.IsLoggedIn = false;  // Это не компилируется — нет setter!
+    Console.WriteLine("(IsLoggedIn — только для чтения, нельзя изменить напрямую)");
+    Console.WriteLine("Единственный способ изменить IsLoggedIn — вызвать методы Login() или Logout()");
+}
+catch
+{
+    Console.WriteLine("❌ Ошибка: IsLoggedIn только для чтения!");
+}
+
+// Выход
+Console.WriteLine("\nЫход из системы (Logout):");
+loginPage.Logout();
+Console.WriteLine($"✓ После выхода: {loginPage.GetInfo()}");
+
+Console.WriteLine("\n" + new string('=', 53));
+Console.WriteLine("✓ Topic1_Classes полностью пройден!");
+Console.WriteLine("  Изучены: классы, конструкторы, this/base, static, properties");
+Console.WriteLine("=" + new string('=', 52));

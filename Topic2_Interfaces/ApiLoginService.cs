@@ -1,8 +1,19 @@
 ﻿namespace Topic2_Interfaces
 {
-    // 3. РЕАЛИЗАЦИЯ 2: API ЛОГИН (Имитация HttpClient)
+    /// <summary>
+    /// РЕАЛИЗАЦИЯ 2: API Login Service
+    /// 
+    /// Это альтернативная реализация ILoginService для работы с API
+    /// (имитирует работу HttpClient для отправки запросов на сервер)
+    /// 
+    /// ВАЖНО: Код LoginTest работает одинаково с UiLoginService и ApiLoginService!
+    /// Это и есть мощь интерфейсов - один код для разных реализаций.
+    /// </summary>
     public class ApiLoginService : ILoginService
     {
+        /// <summary>
+        /// Флаг авторизации - ОБЯЗАТЕЛЕН, так как реализуем ILoginService
+        /// </summary>
         public bool IsLoggedIn { get; private set; }
 
         public void Login(string username, string password)

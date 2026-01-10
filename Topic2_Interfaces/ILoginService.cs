@@ -1,13 +1,33 @@
 ﻿namespace Topic2_Interfaces
 {
-    // 1. ОПРЕДЕЛЯЕМ ИНТЕРФЕЙС (КОНТРАКТ)
-    // Любой, кто хочет называться "Сервис Логина", ОБЯЗАН уметь делать Login.
+    /// <summary>
+    /// ИНТЕРФЕЙС - это КОНТРАКТ (правила, которые должны соблюдать реализации)
+    /// 
+    /// Интерфейс говорит: "Если ты хочешь называться ILoginService,
+    /// ты ОБЯЗАН реализовать этот метод и это свойство".
+    /// 
+    /// Интерфейс НЕ содержит реализацию (нет { } внутри),
+    /// только сигнатуры методов и свойств.
+    /// 
+    /// Как использовать:
+    /// public class ApiLoginService : ILoginService { ... }
+    /// public class UiLoginService : ILoginService { ... }
+    /// 
+    /// После этого можно использовать:
+    /// ILoginService service = new ApiLoginService();  // Работает!
+    /// ILoginService service = new UiLoginService();   // Тоже работает!
+    /// </summary>
     public interface ILoginService
     {
-        // Только сигнатура. Никакого тела { ... }
+        /// <summary>
+        /// Метод логина - ОБЯЗАН быть реализован всеми реализациями
+        /// </summary>
         void Login(string username, string password);
 
-        //Свойство тоже может быть частью контракта
+        /// <summary>
+        /// Свойство - флаг авторизации
+        /// Имеет только getter (get). Setter может быть в реализации.
+        /// </summary>
         bool IsLoggedIn { get; }
     }
 }

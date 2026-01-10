@@ -1,5 +1,7 @@
 ﻿namespace Topic6_Generics
 {
-    // Вспомогательные классы для примера
+    /// <summary>
+    /// Пример простого класса для демонстрации работы с дженериками.
+    /// </summary>
     public class Apple { public string Color = "Red"; }
 }

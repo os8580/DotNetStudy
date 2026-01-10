@@ -1,6 +1,7 @@
 ﻿# Topic4 — Коллекции (Полный курс для начинающих)
 
 ## Цель
+
 Понять, как работают коллекции в C#, когда использовать каждую из них, и как выбрать правильную коллекцию для конкретной задачи.
 
 ---
@@ -8,6 +9,7 @@
 ## 1. Что такое коллекция? (Для самых начинающих)
 
 ### Аналогия
+
 ```
 Переменная = коробка с одним предметом
 int age = 30;
@@ -26,10 +28,10 @@ int age3 = 30;
 int age4 = 35;
 int age5 = 40;
 
-// ? Неудобно! Много переменных!
+// ❌ Неудобно! Много переменных!
 // Что если 100 человек? 1000?
 
-// Решение — коллекция!
+// ✅ Решение — коллекция!
 List<int> ages = new List<int> { 20, 25, 30, 35, 40 };
 // Все 5 значений в одной переменной!
 ```
@@ -67,7 +69,7 @@ Console.WriteLine(numbers[0]);  // 10 (первый элемент)
 Console.WriteLine(numbers[1]);  // 20 (второй элемент)
 Console.WriteLine(numbers[4]);  // 50 (последний элемент)
 
-// ? Ошибка: индекс вне границ
+// ❌ Ошибка: индекс вне границ
 // Console.WriteLine(numbers[5]);  // IndexOutOfRangeException!
 
 // Длина массива
@@ -76,41 +78,6 @@ int length = numbers.Length;  // 5
 // Изменение элемента
 numbers[0] = 100;
 Console.WriteLine(numbers[0]);  // 100
-```
-
-### Итерация по массиву
-
-```csharp
-int[] numbers = { 10, 20, 30, 40, 50 };
-
-// For — с индексом
-for (int i = 0; i < numbers.Length; i++)
-{
-    Console.WriteLine($"numbers[{i}] = {numbers[i]}");
-}
-
-// Foreach — без индекса (проще!)
-foreach (int number in numbers)
-{
-    Console.WriteLine(number);
-}
-
-// Foreach с LINQ
-numbers.ForEach(n => Console.WriteLine(n));
-```
-
-### Проблемы с массивом
-
-```csharp
-int[] numbers = new int[3] { 10, 20, 30 };
-
-// ? Нельзя добавить элемент (размер фиксирован!)
-// numbers[3] = 40;  // Ошибка!
-
-// ? Нельзя удалить элемент (размер фиксирован!)
-
-// Размер создается при создании и не меняется!
-// Это неудобно для реальных приложений!
 ```
 
 ---
@@ -177,46 +144,6 @@ int first = nums[0];
 int last = nums[nums.Count - 1];
 ```
 
-### Пример для QA
-
-```csharp
-public class TestResults
-{
-    private List<string> results = new List<string>();
-    
-    public void AddResult(string testName, bool passed)
-    {
-        string result = passed ? $"? {testName}" : $"? {testName}";
-        results.Add(result);
-    }
-    
-    public void PrintResults()
-    {
-        Console.WriteLine("=== TEST RESULTS ===");
-        foreach (var result in results)
-        {
-            Console.WriteLine(result);
-        }
-    }
-    
-    public int GetPassedCount()
-    {
-        return results.Count(r => r.StartsWith("?"));
-    }
-}
-
-// Использование
-TestResults tr = new TestResults();
-tr.AddResult("Login Test", true);
-tr.AddResult("Logout Test", false);
-tr.AddResult("Profile Test", true);
-tr.PrintResults();
-// ======================
-// ? Login Test
-// ? Logout Test
-// ? Profile Test
-```
-
 ---
 
 ## 4. Dictionary<TKey, TValue> — Ключ-значение
@@ -262,7 +189,7 @@ ages["Diana"] = 28;  // Если ключа нет — добавит, если 
 // Получение значения
 int aliceAge = ages["Alice"];  // 30
 
-// ? Безопасное получение (если ключа нет)
+// ✅ Безопасное получение (если ключа нет)
 if (ages.TryGetValue("Eve", out int eveAge))
 {
     Console.WriteLine($"Eve возраст: {eveAge}");
@@ -304,42 +231,6 @@ foreach (var value in ages.Values)
 {
     Console.WriteLine(value);
 }
-```
-
-### Пример для QA
-
-```csharp
-public class LoginCredentials
-{
-    private Dictionary<string, string> credentials = new Dictionary<string, string>
-    {
-        { "alice", "password123" },
-        { "bob", "secure456" },
-        { "charlie", "secret789" }
-    };
-    
-    public bool Login(string username, string password)
-    {
-        if (credentials.TryGetValue(username, out string correctPassword))
-        {
-            return password == correctPassword;
-        }
-        return false;
-    }
-    
-    public void RegisterUser(string username, string password)
-    {
-        credentials[username] = password;  // Добавит или обновит
-    }
-}
-
-// Использование
-LoginCredentials auth = new LoginCredentials();
-Console.WriteLine(auth.Login("alice", "password123"));  // true
-Console.WriteLine(auth.Login("alice", "wrong"));        // false
-
-auth.RegisterUser("diana", "newpass");
-Console.WriteLine(auth.Login("diana", "newpass"));      // true
 ```
 
 ---
@@ -389,62 +280,6 @@ foreach (int number in numbers)
 }
 ```
 
-### Операции множеств
-
-```csharp
-HashSet<int> set1 = new HashSet<int> { 1, 2, 3, 4 };
-HashSet<int> set2 = new HashSet<int> { 3, 4, 5, 6 };
-
-// Объединение (Union) — все элементы из обоих
-set1.UnionWith(set2);
-Console.WriteLine(string.Join(", ", set1));  // 1, 2, 3, 4, 5, 6
-
-// Пересечение (Intersection) — только общие элементы
-HashSet<int> s1 = new HashSet<int> { 1, 2, 3, 4 };
-HashSet<int> s2 = new HashSet<int> { 3, 4, 5, 6 };
-s1.IntersectWith(s2);
-Console.WriteLine(string.Join(", ", s1));  // 3, 4
-
-// Разность (Except) — элементы только из первого
-HashSet<int> s3 = new HashSet<int> { 1, 2, 3, 4 };
-HashSet<int> s4 = new HashSet<int> { 3, 4, 5, 6 };
-s3.ExceptWith(s4);
-Console.WriteLine(string.Join(", ", s3));  // 1, 2
-```
-
-### Пример для QA
-
-```csharp
-public class ClickedElements
-{
-    private HashSet<string> clickedIds = new HashSet<string>();
-    
-    public void ClickElement(string elementId)
-    {
-        clickedIds.Add(elementId);  // Дубликаты автоматически игнорируются
-    }
-    
-    public bool WasClicked(string elementId)
-    {
-        return clickedIds.Contains(elementId);
-    }
-    
-    public int UniqueClickCount()
-    {
-        return clickedIds.Count;  // Только уникальные клики!
-    }
-}
-
-// Использование
-ClickedElements tracker = new ClickedElements();
-tracker.ClickElement("button1");
-tracker.ClickElement("button1");  // Дубликат — не добавится
-tracker.ClickElement("button2");
-tracker.ClickElement("button1");  // Дубликат — не добавится
-
-Console.WriteLine(tracker.UniqueClickCount());  // 2 (не 4!)
-```
-
 ---
 
 ## 6. Queue<T> — Очередь (FIFO)
@@ -486,56 +321,13 @@ queue.Clear();
 
 ```
 Очередь как в магазине:
-Alice приходит ? Встает в очередь ? Alice first
-Bob приходит ? Встает после Alice
-Charlie приходит ? Встает после Bob
+Alice приходит → Встает в очередь → Alice first
+Bob приходит → Встает после Alice
+Charlie приходит → Встает после Bob
 
 Alice уходит (обслужили первой)
 Bob становится первым
 Charlie становится вторым
-```
-
-### Пример для QA
-
-```csharp
-public class TaskQueue
-{
-    private Queue<string> tasks = new Queue<string>();
-    
-    public void QueueTask(string taskName)
-    {
-        tasks.Enqueue(taskName);
-        Console.WriteLine($"Задача добавлена: {taskName}");
-    }
-    
-    public string ExecuteNextTask()
-    {
-        if (tasks.Count > 0)
-        {
-            return tasks.Dequeue();  // Первая в очереди — первая выполняется
-        }
-        return "Нет задач";
-    }
-    
-    public void PrintQueue()
-    {
-        Console.WriteLine("Очередь задач:");
-        foreach (var task in tasks)
-        {
-            Console.WriteLine($"  - {task}");
-        }
-    }
-}
-
-// Использование
-TaskQueue queue = new TaskQueue();
-queue.QueueTask("Open page");
-queue.QueueTask("Click button");
-queue.QueueTask("Verify text");
-
-string task = queue.ExecuteNextTask();  // "Open page" (первая)
-task = queue.ExecuteNextTask();         // "Click button"
-task = queue.ExecuteNextTask();         // "Verify text"
 ```
 
 ---
@@ -579,70 +371,27 @@ stack.Clear();
 
 ```
 Стек как стопка тарелок:
-Кладу Alice ? Стек: [Alice]
-Кладу Bob ? Стек: [Alice, Bob]
-Кладу Charlie ? Стек: [Alice, Bob, Charlie]
+Кладу Alice → Стек: [Alice]
+Кладу Bob → Стек: [Alice, Bob]
+Кладу Charlie → Стек: [Alice, Bob, Charlie]
 
-Беру сверху ? Charlie (последняя, которая положил)
-Беру сверху ? Bob
-Беру сверху ? Alice (первая, которую положил)
-```
-
-### Пример для QA
-
-```csharp
-public class BrowserHistory
-{
-    private Stack<string> history = new Stack<string>();
-    
-    public void VisitPage(string url)
-    {
-        history.Push(url);
-        Console.WriteLine($"Перешли на: {url}");
-    }
-    
-    public string GoBack()
-    {
-        if (history.Count > 0)
-        {
-            return history.Pop();  // Последняя страница
-        }
-        return "Нет истории";
-    }
-    
-    public string CurrentPage()
-    {
-        if (history.Count > 0)
-        {
-            return history.Peek();  // Текущая страница
-        }
-        return "История пуста";
-    }
-}
-
-// Использование
-BrowserHistory browser = new BrowserHistory();
-browser.VisitPage("Google");
-browser.VisitPage("GitHub");
-browser.VisitPage("StackOverflow");
-
-Console.WriteLine(browser.CurrentPage());  // StackOverflow
-browser.GoBack();  // Вернулись на GitHub
-Console.WriteLine(browser.CurrentPage());  // GitHub
+Беру сверху → Charlie (последняя, которая положил)
+Беру сверху → Bob
+Беру сверху → Alice (первая, которую положил)
 ```
 
 ---
 
 ## 8. Сравнение коллекций
 
-| Коллекция | Доступ | Добавление | Удаление | Уникальность | Когда использовать |
-|-----------|--------|-----------|----------|------------|-------------------|
-| **Array** | O(1) | Нет | Нет | Нет | Редко (размер известен) |
-| **List<T>** | O(1) | O(n) | O(n) | Нет | **ВСЕ СЛУЧАИ** |
-| **Dictionary<K,V>** | O(1) | O(1) | O(1) | Да (ключи) | Ключ-значение |
-| **HashSet<T>** | O(1) | O(1) | O(1) | Да | Уникальные значения |
-| **Queue<T>** | O(1) | O(1) | O(1) | Нет | FIFO очередь |
-| **Stack<T>** | O(1) | O(1) | O(1) | Нет | LIFO стек |
+| Коллекция           | Доступ | Добавление | Удаление | Уникальность | Когда использовать      |
+| ------------------- | ------ | ---------- | -------- | ------------ | ----------------------- |
+| **Array**           | O(1)   | Нет        | Нет      | Нет          | Редко (размер известен) |
+| **List<T>**         | O(1)   | O(n)       | O(n)     | Нет          | **ВСЕ СЛУЧАИ**          |
+| **Dictionary<K,V>** | O(1)   | O(1)       | O(1)     | Да (ключи)   | Ключ-значение           |
+| **HashSet<T>**      | O(1)   | O(1)       | O(1)     | Да           | Уникальные значения     |
+| **Queue<T>**        | O(1)   | O(1)       | O(1)     | Нет          | FIFO очередь            |
+| **Stack<T>**        | O(1)   | O(1)       | O(1)     | Нет          | LIFO стек               |
 
 ---
 
@@ -651,14 +400,14 @@ Console.WriteLine(browser.CurrentPage());  // GitHub
 ### Почему это важно для API?
 
 ```csharp
-// ? Плохо: возвращаем List (клиент может его изменить!)
+// ❌ Плохо: возвращаем List (клиент может его изменить!)
 public List<User> GetUsers()
 {
     List<User> users = new List<User> { /*...*/ };
     return users;  // Клиент может удалить элементы!
 }
 
-// ? Хорошо: возвращаем интерфейс (клиент не может изменить!)
+// ✅ Хорошо: возвращаем интерфейс (клиент не может изменить!)
 public IEnumerable<User> GetUsers()
 {
     List<User> users = new List<User> { /*...*/ };
@@ -729,9 +478,9 @@ List<User> users = new List<User>
 // GroupBy — группировка
 var grouped = users
     .GroupBy(u => u.Department)
-    .Select(g => new 
-    { 
-        Department = g.Key, 
+    .Select(g => new
+    {
+        Department = g.Key,
         Count = g.Count(),
         AvgSalary = g.Average(u => u.Salary)
     });
@@ -745,22 +494,22 @@ var grouped = users
 
 ## 11. Частые ошибки новичков
 
-### ? Ошибка 1: Индекс вне границ
+### ❌ Ошибка 1: Индекс вне границ
 
 ```csharp
 int[] array = { 1, 2, 3 };
 
-// ? Ошибка: индексы идут от 0 до 2
+// ❌ Ошибка: индексы идут от 0 до 2
 // Console.WriteLine(array[3]);  // IndexOutOfRangeException!
 
-// ? Правильно
+// ✅ Правильно
 if (index >= 0 && index < array.Length)
 {
     Console.WriteLine(array[index]);
 }
 ```
 
-### ? Ошибка 2: Забыли .ToList() для материализации
+### ❌ Ошибка 2: Забыли .ToList() для материализации
 
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3 };
@@ -768,13 +517,13 @@ List<int> numbers = new List<int> { 1, 2, 3 };
 var query = numbers.Where(n => n > 1);
 numbers.Clear();
 
-// ? Ошибка: query зависит от исходного списка!
+// ❌ Ошибка: query зависит от исходного списка!
 foreach (var n in query)
 {
     Console.WriteLine(n);  // Ничего не выведет!
 }
 
-// ? Правильно
+// ✅ Правильно
 var snapshot = numbers.Where(n => n > 1).ToList();  // Snapshot
 numbers.Clear();
 foreach (var n in snapshot)
@@ -783,19 +532,19 @@ foreach (var n in snapshot)
 }
 ```
 
-### ? Ошибка 3: Изменение List во время итерации
+### ❌ Ошибка 3: Изменение List во время итерации
 
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 
-// ? Ошибка: modifying collection while iterating!
+// ❌ Ошибка: modifying collection while iterating!
 foreach (var n in numbers)
 {
     if (n == 3)
-        numbers.Remove(n);  // ?? InvalidOperationException!
+        numbers.Remove(n);  // InvalidOperationException!
 }
 
-// ? Правильно: итерируем по копии
+// ✅ Правильно: итерируем по копии
 foreach (var n in numbers.ToList())
 {
     if (n == 3)
@@ -803,15 +552,15 @@ foreach (var n in numbers.ToList())
 }
 ```
 
-### ? Ошибка 4: Неправильное использование Dictionary
+### ❌ Ошибка 4: Неправильное использование Dictionary
 
 ```csharp
 Dictionary<string, int> ages = new Dictionary<string, int>();
 
-// ? Ошибка: прямой доступ к несуществующему ключу
+// ❌ Ошибка: прямой доступ к несуществующему ключу
 // int age = ages["Alice"];  // KeyNotFoundException!
 
-// ? Правильно
+// ✅ Правильно
 if (ages.TryGetValue("Alice", out int age))
 {
     Console.WriteLine(age);
@@ -826,14 +575,16 @@ else
 
 ## 12. Лучшие практики
 
-? **DO:**
+✅ **DO:**
+
 - Используйте `List<T>` для большинства случаев
 - Используйте `Dictionary<TKey, TValue>` для связи ключ-значение
 - Используйте `HashSet<T>` если нужны уникальные значения
 - Возвращайте `IEnumerable<T>` или `IReadOnlyList<T>` вместо конкретной коллекции
 - Используйте LINQ вместо ручных циклов
 
-? **DON'T:**
+❌ **DON'T:**
+
 - Не используйте Array если заранее не знаете размер
 - Не изменяйте коллекцию во время итерации по ней
 - Не забывайте про `.ToList()` для материализации LINQ запросов
@@ -842,8 +593,240 @@ else
 
 ---
 
-## Файлы в проекте:
-- `Program.cs` — примеры всех коллекций
-- `CollectionComparison.cs` — сравнение коллекций
-- `LINQWithCollections.cs` — примеры LINQ с коллекциями
+### Для полного новичка: как пользоваться чек-листом
 
+- Сначала изучите разделы: "Сравнение коллекций", "IEnumerable/IReadOnlyList", "LINQ с коллекциями", "Частые ошибки".
+- Откройте Program.cs, запустите примеры и сверьте вывод — это даст интуицию.
+- Затем переходите к чек-листу: вопросы идут от простого к сложному и сопровождаются краткими примерами.
+- Нужный ответ всегда можно найти выше по документу или в итоговой таблице.
+
+## 13. ЧЕК-ЛИСТ ДЛЯ СОБЕСЕДОВАНИЯ 🎯
+
+### Вопрос 1: В чем разница между Array и List?
+
+Краткий ответ: Array — фиксированный размер и нельзя добавлять/удалять; List<T> — динамический, удобен по умолчанию для большинства задач.
+
+| Критерий               | Array                   | List<T>                |
+| ---------------------- | ----------------------- | ---------------------- |
+| **Размер**             | Фиксированный           | Динамический           |
+| **Изменяемость**       | Нельзя добавить/удалить | Можно добавить/удалить |
+| **Когда использовать** | Редко                   | **Всегда**             |
+
+```csharp
+int[] arr = new int[3];  // ❌ Нельзя добавить 4-й элемент
+
+List<int> list = new List<int> { 1, 2, 3 };
+list.Add(4);  // ✅ OK
+```
+
+---
+
+### Вопрос 2: Dictionary - ключ-значение с O(1) поиском
+
+Краткий ответ: Dictionary хранит пары ключ-значение с быстрым поиском по ключу; для безопасного чтения используйте TryGetValue.
+
+```csharp
+Dictionary<string, string> config = new Dictionary<string, string>
+{
+    ["url"] = "https://example.com",
+    ["browser"] = "Chrome"
+};
+
+// Безопасное получение
+if (config.TryGetValue("password", out string pass))
+{
+    Console.WriteLine(pass);
+}
+```
+
+**Когда использовать:** Ключ-значение, кэши, конфиги
+
+---
+
+### Вопрос 3: HashSet - уникальные значения
+
+Краткий ответ: HashSet хранит только уникальные элементы и удобно удаляет дубликаты.
+
+```csharp
+int[] numbers = { 1, 2, 2, 3, 3, 3 };
+HashSet<int> unique = new HashSet<int>(numbers);
+
+// Результат: { 1, 2, 3 } - только уникальные!
+```
+
+**Когда использовать:** Нужны только уникальные значения, удаление дубликатов
+
+---
+
+### Вопрос 4: FIFO vs LIFO
+
+Краткий ответ: Queue — FIFO (первым пришёл — первым вышел); Stack — LIFO (последним пришёл — первым вышел).
+
+**Queue (FIFO):**
+
+```csharp
+Queue<string> queue = new Queue<string>();
+queue.Enqueue("Alice");   // Alice
+queue.Enqueue("Bob");     // Alice, Bob
+queue.Dequeue();          // Удалит Alice (первый, который добавили)
+```
+
+**Stack (LIFO):**
+
+```csharp
+Stack<string> stack = new Stack<string>();
+stack.Push("Alice");      // Alice
+stack.Push("Bob");        // Alice, Bob
+stack.Pop();              // Удалит Bob (последний, который добавили)
+```
+
+---
+
+### Вопрос 5: Безопасный доступ к Dictionary
+
+Краткий ответ: Избегайте прямого индексирования; проверяйте ключ через ContainsKey или используйте TryGetValue, чтобы не ловить исключения.
+
+```csharp
+// ❌ Неправильно (KeyNotFoundException)
+// int age = ages["Bob"];
+
+// ✅ Правильно (TryGetValue)
+if (ages.TryGetValue("Bob", out int age))
+{
+    Console.WriteLine(age);
+}
+```
+
+---
+
+### Вопрос 6: Не изменяй List во время foreach
+
+Краткий ответ: Модификация коллекции внутри foreach вызывает ошибку; проходите по копии (ToList) или используйте for/RemoveAll.
+
+```csharp
+// ❌ Ошибка
+foreach (var n in numbers)
+{
+    if (n == 3)
+        numbers.Remove(n);  // InvalidOperationException!
+}
+
+// ✅ Правильно
+foreach (var n in numbers.ToList())
+{
+    if (n == 3)
+        numbers.Remove(n);  // OK
+}
+```
+
+---
+
+### Вопрос 7: Возвращай IEnumerable вместо List
+
+Краткий ответ: Возвращайте IEnumerable для чтения без возможности изменить исходную коллекцию; List раскрывает изменяемое внутреннее состояние.
+
+```csharp
+// ❌ Неправильно
+public List<User> GetUsers() { return users; }
+GetUsers().Clear();  // Очистил оригинальный список!
+
+// ✅ Правильно
+public IEnumerable<User> GetUsers() { return users; }
+GetUsers().Clear();  // ❌ Ошибка компиляции! Нет Clear()
+```
+
+---
+
+### Вопрос 8: Сложность операций (Big O)
+
+Краткий ответ: Dictionary/HashSet дают O(1) для поиска/добавления; List хорош для последовательного доступа, но удаление из середины — O(n).
+
+| Операция       | Array | List   | Dictionary | HashSet |
+| -------------- | ----- | ------ | ---------- | ------- |
+| **Доступ**     | O(1)  | O(1)   | —          | —       |
+| **Поиск**      | O(n)  | O(n)   | O(1)       | O(1)    |
+| **Добавление** | —     | O(1)\* | O(1)       | O(1)    |
+| **Удаление**   | —     | O(n)   | O(1)       | O(1)    |
+
+---
+
+### Вопрос 9: Когда использовать каждую коллекцию?
+
+Краткий ответ: List — по умолчанию; Dictionary — ключ-значение/кэш; HashSet — уникальные; Queue/Stack — очереди/стековые сценарии.
+
+**List<T>** — по умолчанию
+
+```csharp
+List<string> bugs = new List<string>();
+```
+
+**Dictionary<K,V>** — ключ-значение
+
+```csharp
+Dictionary<string, string> config = new Dictionary<string, string>();
+```
+
+**HashSet<T>** — уникальные значения
+
+```csharp
+HashSet<int> unique = new HashSet<int>();
+```
+
+**Queue<T>** — FIFO очередь
+
+```csharp
+Queue<string> tasks = new Queue<string>();
+```
+
+**Stack<T>** — LIFO стек
+
+```csharp
+Stack<string> history = new Stack<string>();
+```
+
+---
+
+## 14. ПРАКТИЧЕСКИЕ СОВЕТЫ ДЛЯ ИНТЕРВЬЮ
+
+### ✅ Что хорошо сказать:
+
+1. **"List динамический, начинает с начальной емкости"**
+
+   - При добавлении элемента переаллоцируется и удваивает размер
+   - Это дороговато, но амортизированно O(1)
+
+2. **"Dictionary на основе хеш-таблицы с O(1) поиском"**
+
+   - Все ключи должны быть уникальны
+   - TryGetValue безопаснее, чем прямой доступ
+
+3. **"Всегда возвращайте IEnumerable или IReadOnlyList"**
+   - Защита от неправильного использования
+   - Гибкость при смене реализации
+
+### ❌ Чего не нужно говорить:
+
+1. "Array и List - это одно и то же"
+2. "Dictionary нужен редко"
+3. "HashSet автоматически сортирует" (НЕПРАВИЛЬНО)
+
+---
+
+## 15. ИТОГОВАЯ ТАБЛИЦА
+
+| Коллекция      | Когда использовать  | Поиск | Добавление | Удаление |
+| -------------- | ------------------- | ----- | ---------- | -------- |
+| **List<T>**    | Общего назначения   | O(n)  | O(1)\*     | O(n)     |
+| **Dictionary** | Ключ-значение       | O(1)  | O(1)       | O(1)     |
+| **HashSet**    | Уникальные значения | O(1)  | O(1)       | O(1)     |
+| **Queue**      | FIFO очередь        | —     | O(1)       | O(1)     |
+| **Stack**      | LIFO стек           | —     | O(1)       | O(1)     |
+
+---
+
+## 16. СВЯЗЬ С ДРУГИМИ ТЕМАМИ
+
+- **Topic2 (Interfaces):** Работа с IEnumerable, IReadOnlyList
+- **Topic3 (Polymorphism):** Хранение разных типов в List<Base>
+- **Topic5 (LINQ):** Фильтрация и трансформация коллекций
+- **Topic6 (Generics):** List<T> - это обобщенный тип

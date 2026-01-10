@@ -1,7 +1,18 @@
 ﻿# Topic11 — Основы программирования (полный обзор и восстановление памяти)
 
 ## Цель
+
 Вспомнить и закрепить все основные концепции C#, которые вы изучили в Topics 1-10. Этот файл — путеводитель и шпаргалка для новичка.
+
+---
+
+### Для полного новичка: быстрый маршрут
+
+- **Это итоговая тема** — обзор всех Topics 1-10. Не ожидайте новых концепций, только повторение.
+- **Прочитайте разделы по порядку:** типы данных, строки, операторы, классы, наследование, интерфейсы, коллекции, generics, исключения, value/ref типы, null-операторы, DateTime.
+- **Запустите Program.cs** и посмотрите живые примеры: `dotnet run`
+- **Используйте как шпаргалку:** при забывчивости о синтаксисе или использовании.
+- **Вернитесь к чек-листу** (конец документа): 10 вопросов для проверки понимания.
 
 ---
 
@@ -292,21 +303,21 @@ public class User
     // Поля (данные)
     public string Name;
     private int age;  // private — только этот класс видит
-    
+
     // Свойства (управляемый доступ)
-    public int Age 
-    { 
+    public int Age
+    {
         get { return age; }
         set { age = value >= 0 ? value : 0; }  // Валидация
     }
-    
+
     // Конструктор (инициализация)
     public User(string name, int age)
     {
         Name = name;
         Age = age;
     }
-    
+
     // Метод (действие)
     public void PrintInfo()
     {
@@ -341,7 +352,7 @@ public class Math
     {
         return a + b;
     }
-    
+
     // Другая версия для double
     public static double Add(double a, double b)
     {
@@ -360,7 +371,7 @@ public class Counter
 {
     public static int Total = 0;  // Один на все объекты!
     public int Value = 0;         // У каждого объекта свой
-    
+
     public Counter()
     {
         Total++;  // Увеличиваем общий счетчик
@@ -388,7 +399,7 @@ Console.WriteLine(c2.Value);       // 0 (отдельный)
 public class Animal
 {
     public string Name { get; set; }
-    
+
     public virtual void MakeSound()
     {
         Console.WriteLine("Some sound");
@@ -422,7 +433,7 @@ public abstract class Shape
 public class Circle : Shape
 {
     public double Radius { get; set; }
-    
+
     public override double GetArea()
     {
         return Math.PI * Radius * Radius;
@@ -454,7 +465,7 @@ public class UserRepository : IRepository
     {
         Console.WriteLine($"Сохранили {user.Name}");
     }
-    
+
     public User GetById(int id)
     {
         return new User("Alice", 30);
@@ -473,13 +484,13 @@ repo.Save(new User("Bob", 25));
 public class UserService
 {
     private IRepository repository;
-    
+
     // Передаем через конструктор (DI)
     public UserService(IRepository repository)
     {
         this.repository = repository;
     }
-    
+
     public void CreateUser(string name, int age)
     {
         var user = new User(name, age);
@@ -571,7 +582,7 @@ List<int> result = numbers.Where(n => n > 5).ToList();  // Теперь это L
 public class Container<T>
 {
     private T value;
-    
+
     public void Set(T val) => value = val;
     public T Get() => value;
 }
@@ -642,7 +653,7 @@ finally
 public class FileHandler : IDisposable
 {
     private StreamReader reader;
-    
+
     public void Dispose()
     {
         reader?.Close();
@@ -865,6 +876,7 @@ Console.WriteLine($"Прошло: {sw.Elapsed.TotalSeconds} секунд");
 ### SOLID принципы
 
 #### S — Single Responsibility Principle
+
 ```csharp
 // ? Плохо: класс делает слишком много
 public class User
@@ -898,6 +910,7 @@ public class PasswordValidator
 ```
 
 #### O — Open/Closed Principle
+
 ```csharp
 // ? Плохо: нужно изменять класс при добавлении нового платежа
 public class PaymentProcessor
@@ -941,6 +954,7 @@ public class PaymentProcessor
 ```
 
 #### L — Liskov Substitution Principle
+
 ```csharp
 // ? Правильно: все наследники могут заменить родителя
 public class Animal
@@ -966,6 +980,7 @@ void FeedAnimal(Animal animal)
 ```
 
 #### I — Interface Segregation Principle
+
 ```csharp
 // ? Плохо: большой интерфейс
 public interface IWorker
@@ -1000,6 +1015,7 @@ public class Employee : IWorker, INeedFood, INeedRest
 ```
 
 #### D — Dependency Inversion Principle
+
 ```csharp
 // ? Плохо: зависимость от конкретного класса
 public class UserService
@@ -1016,7 +1032,7 @@ public interface IDatabase
 public class UserService
 {
     private IDatabase database;  // Может быть любая реализация!
-    
+
     public UserService(IDatabase database)
     {
         this.database = database;
@@ -1038,7 +1054,7 @@ public class ValidationHelper
             return false;
         return true;
     }
-    
+
     public bool ValidateEmail(string email)
     {
         if (string.IsNullOrWhiteSpace(email))
@@ -1056,12 +1072,12 @@ public class ValidationHelper
     {
         return !string.IsNullOrWhiteSpace(value);
     }
-    
+
     public bool MinLength(string value, int length)
     {
         return value.Length >= length;
     }
-    
+
     public bool Contains(string value, string substring)
     {
         return value.Contains(substring);
@@ -1077,8 +1093,8 @@ public class ComplexValidator
 {
     public bool Validate(User user)
     {
-        return (string.IsNullOrWhiteSpace(user.Name) == false) 
-            && (user.Age > 0 && user.Age < 150) 
+        return (string.IsNullOrWhiteSpace(user.Name) == false)
+            && (user.Age > 0 && user.Age < 150)
             && (!user.Email.Contains("@@") && user.Email.Contains("@"));
     }
 }
@@ -1089,11 +1105,11 @@ public class SimpleValidator
     public bool ValidateName(string name) => !string.IsNullOrWhiteSpace(name);
     public bool ValidateAge(int age) => age > 0 && age < 150;
     public bool ValidateEmail(string email) => email.Contains("@");
-    
+
     public bool Validate(User user)
     {
-        return ValidateName(user.Name) 
-            && ValidateAge(user.Age) 
+        return ValidateName(user.Name)
+            && ValidateAge(user.Age)
             && ValidateEmail(user.Email);
     }
 }
@@ -1103,18 +1119,18 @@ public class SimpleValidator
 
 ## Краткая шпаргалка по темам
 
-| Тема | Когда использовать | Главный класс |
-|------|-------------------|---------------|
-| **Классы** | Создание объектов с поведением | `class` |
-| **Интерфейсы** | Определение контракта | `interface` |
-| **Наследование** | Переиспользование кода | `:` |
-| **Полиморфизм** | Вызов разного кода по типу | `virtual/override` |
-| **Generics** | Типобезопасные коллекции | `<T>` |
-| **LINQ** | Запросы к коллекциям | `.Where().Select()` |
-| **Исключения** | Обработка ошибок | `try-catch` |
-| **DateTime** | Работа с датами | `DateTime` |
-| **TimeSpan** | Интервалы времени | `TimeSpan` |
-| **null-операторы** | Безопасная работа с null | `?.`, `??` |
+| Тема               | Когда использовать             | Главный класс       |
+| ------------------ | ------------------------------ | ------------------- |
+| **Классы**         | Создание объектов с поведением | `class`             |
+| **Интерфейсы**     | Определение контракта          | `interface`         |
+| **Наследование**   | Переиспользование кода         | `:`                 |
+| **Полиморфизм**    | Вызов разного кода по типу     | `virtual/override`  |
+| **Generics**       | Типобезопасные коллекции       | `<T>`               |
+| **LINQ**           | Запросы к коллекциям           | `.Where().Select()` |
+| **Исключения**     | Обработка ошибок               | `try-catch`         |
+| **DateTime**       | Работа с датами                | `DateTime`          |
+| **TimeSpan**       | Интервалы времени              | `TimeSpan`          |
+| **null-операторы** | Безопасная работа с null       | `?.`, `??`          |
 
 ---
 
@@ -1126,7 +1142,7 @@ public class LoginPage
 {
     public TextField UsernameField { get; private set; }
     public Button LoginButton { get; private set; }
-    
+
     public void Login(string username, string password) { }
 }
 
@@ -1135,7 +1151,7 @@ public class LoginTest
 {
     private readonly IWebDriver driver;
     private readonly ILogger logger;
-    
+
     public LoginTest(IWebDriver driver, ILogger logger)
     {
         this.driver = driver;
@@ -1166,10 +1182,50 @@ using var driver = new ChromeDriver();
 
 ---
 
-## Файлы в проекте:
-- `Program.cs` — примеры всех концепций
-- `BasicTypes.cs` — примеры типов данных
-- `OOPExamples.cs` — примеры классов и наследования
-- `LINQExamples.cs` — примеры запросов
-- `DateTimeExamples.cs` — примеры работы с датами
+## 14. ЧЕК-ЛИСТ ИТОГОВОЙ ПРОВЕРКИ ЗНАНИЙ 🎯
 
+### Вопрос 1: Какие основные типы данных вы знаете и когда их использовать?
+
+**Краткий ответ:** `int` (целые), `double`/`decimal` (дроби; decimal для денег), `bool` (true/false), `char` (символ), `string` (текст), `DateTime` (дата-время). Выбирайте в зависимости от того, что представляет данные.
+
+### Вопрос 2: В чем разница между class и struct?
+
+**Краткий ответ:** `class` — ссылочный тип (на heap, может быть null). `struct` — значимый тип (на stack, не может быть null). Использует class по умолчанию, struct только для малых однородных данных.
+
+### Вопрос 3: Что такое ООП и какие его столпы?
+
+**Краткий ответ:** ООП — объектно-ориентированное программирование. Столпы: **инкапсуляция** (скрытие деталей), **наследование** (переиспользование кода), **полиморфизм** (разные реализации одного интерфейса), **абстракция** (обобщение).
+
+### Вопрос 4: Как работает наследование и почему оно нужно?
+
+**Краткий ответ:** `class Child : Parent { }` — Child получает все от Parent. Нужно для переиспользования кода. `virtual` в родителе + `override` в ребенке позволяет заменять поведение.
+
+### Вопрос 5: Что такое интерфейс и как его использовать с Dependency Injection?
+
+**Краткий ответ:** Интерфейс — контракт (список методов/свойств). `class Service : IService { }` — реализует контракт. DI: внедрять интерфейс, не конкретный класс. `ServiceCollection` регистрирует сопоставления интерфейс → реализация.
+
+### Вопрос 6: Какие операторы вы знаете и как их использовать?
+
+**Краткий ответ:** Арифметические `+`, `-`, `*`, `/`; Сравнения `==`, `!=`, `<`, `>`; Логические `&&`, `||`, `!`; Присваивания `=`, `+=`, `-=`; Ternary `condition ? true_value : false_value`.
+
+### Вопрос 7: Как управлять потоком программы (if, for, while)?
+
+**Краткий ответ:** `if (condition) { }` — условное выполнение; `for (int i = 0; i < 10; i++) { }` — цикл с счетчиком; `while (condition) { }` — цикл пока условие верно; `foreach (var item in collection) { }` — перебор коллекции.
+
+### Вопрос 8: Что такое коллекции и когда использовать List, Dictionary, HashSet?
+
+**Краткий ответ:** `List<T>` — упорядоченный список; `Dictionary<K,V>` — пары ключ-значение; `HashSet<T>` — уникальные значения без порядка. LINQ: `Where`, `Select`, `GroupBy`, `Join` для обработки.
+
+### Вопрос 9: Как обрабатывать исключения и почему это важно?
+
+**Краткий ответ:** `try { } catch (Exception ex) { } finally { }` — перехватывает ошибки. `using` — гарантирует освобождение ресурсов. Ловите специфичные исключения, не общие.
+
+### Вопрос 10: Как вы применяете все это в QA-автотестах?
+
+**Краткий ответ:** Типы данных для тестовых данных, классы для Page Objects, интерфейсы для drivers, коллекции для хранения элементов, LINQ для фильтрации, исключения для проверки ошибок, DateTime для дат, null-операторы для безопасности.
+
+---
+
+## Файлы в проекте:
+
+- `Program.cs` — примеры всех концепций

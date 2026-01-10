@@ -7,6 +7,9 @@
         public int Age { get; set; }
         public bool IsActive { get; set; }
 
+        /// <summary>
+        /// ОСНОВНОЙ конструктор Person - инициализирует все поля
+        /// </summary>
         protected Person(string name = "default name", int age = 0, bool isActive = false)
         {
             Name = name;
@@ -14,7 +17,12 @@
             IsActive = isActive;
         }
 
-        // Пустой конструктор для дефолтных значений (DRY)
+        /// <summary>
+        /// Упрощённый конструктор (БЕЗ параметров)
+        /// Демонстрирует THIS: вызывает другой конструктор ТОГО ЖЕ класса
+        /// this("default name", 0, false) вызовет основной конструктор выше
+        /// Преимущество: DRY - не повторяем логику инициализации
+        /// </summary>
         protected Person() : this("default name", 0, false) { }
 
         // Абстрактный метод: каждый наследник даёт свою текстовую сводку

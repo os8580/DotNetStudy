@@ -2,10 +2,19 @@
 {
     public class User : Person
     {
-        // DRY: параметрless-ctor использует дефолты базового Person
+        /// <summary>
+        /// Упрощённый конструктор User (БЕЗ параметров)
+        /// Демонстрирует BASE: вызывает конструктор РОДИТЕЛЬСКОГО класса (Person)
+        /// base() вызовет конструктор Person без параметров
+        /// </summary>
         public User() : base() {}
 
-        // Явный конструктор для всех параметров
+        /// <summary>
+        /// ОСНОВНОЙ конструктор User (СО ВСЕМИ параметрами)
+        /// Демонстрирует BASE: вызывает конструктор РОДИТЕЛЬСКОГО класса (Person)
+        /// base(name, age, isActive) передаёт параметры в Person конструктор
+        /// Порядок выполнения: Person инициализируется ДО User
+        /// </summary>
         public User(string name, int age, bool isActive)
             : base(name, age, isActive)
         {
