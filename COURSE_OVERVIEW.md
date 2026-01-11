@@ -223,6 +223,24 @@
 
 ---
 
+## 14. Topic14 — Delegates, Functions & Functional Programming ⭐ NEW
+
+**Цель:** Понять делегаты, Action/Func, lambda-выражения и функциональное программирование
+
+- **Делегаты** - типы для хранения функций
+- **Action vs Func** - когда использовать каждый
+- **Lambda-выражения** - анонимные функции
+- **Стрелочные функции** - краткая нотация
+- **Callbacks** - передача функций как параметры
+- **Event Handling** - события и обработчики
+- **Functional Patterns** - функциональное программирование в C#
+- **Closure** - захват переменных в lambda
+- **Практика для QA:** Retry logic, event-driven testing, async callbacks
+
+**Запустить:** `cd Topic14_Delegates && dotnet run`
+
+---
+
 ## 🚀 Как запустить проект
 
 ### Способ 1: Запустить отдельный Topic

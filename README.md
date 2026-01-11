@@ -1,6 +1,6 @@
 # DotNetStudy - Complete C# Course for QA Automation
 
-**✅ 13 Topics • 120+ Questions • 100% Complete**
+**✅ 17 Topics • 150+ Questions • 100% Complete**
 
 A comprehensive C# learning resource for QA automation engineers with practical examples, interview preparation, and design principles.
 
@@ -26,26 +26,30 @@ cd Topic1_Classes
 dotnet run
 ```
 
-### All 13 Topics
+### All 17 Topics
 
 - **1-11:** Core C# concepts
 - **12:** Debugging ⭐ NEW
-- **13:** SOLID/KISS/DRY ⭐ NEW
-
-Run each with `cd TopicN_Name && dotnet run`
+- **13:** SOLID/KISS/DRY ⭐ NEW  
+- **14:** Delegates & Functional Programming ⭐ NEW
+- **15:** Async/Await Patterns ⭐ NEW
+- **16:** NuGet Packages ⭐ NEW
+- **17:** File I/O, JSON, XML & RegEx ⭐ NEW
 
 ---
 
 ## 📊 What's Included
 
-- ✅ 13 complete Topics
-- ✅ 120+ interview questions
-- ✅ 100+ code examples
-- ✅ 10,000+ lines of docs
+- ✅ 17 complete Topics
+- ✅ 140+ interview questions
+- ✅ 120+ code examples
+- ✅ 15,000+ lines of docs
 - ✅ 100% study.txt coverage
 - ✅ QA/automation examples
 - ✅ SOLID principles
 - ✅ Debugging guide
+- ✅ Async/Await patterns
+- ✅ File I/O & Regex
 
 ---
 
@@ -66,6 +70,7 @@ Run each with `cd TopicN_Name && dotnet run`
 | 11     | Basics             |     | Foundation |
 | **12** | **Debugging**      | ⭐  | Debug      |
 | **13** | **Principles**     | ⭐  | Design     |
+| **14** | **Delegates**      | ⭐  | Functions  |
 
 ---
 
