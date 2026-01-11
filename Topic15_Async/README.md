@@ -118,11 +118,11 @@ await DoWorkAsync();
 
 ### Таблица сравнения
 
-| Способ | Сложность | Производительность | Управление | Рекомендация |
-|--------|-----------|-------------------|-----------|---|
-| **Thread** | Высокая | ❌ Плохая | Трудно | ❌ Не используйте |
-| **Task** | Средняя | ✅ Хорошая | Средне | 🟡 Для фонового кода |
-| **Async/Await** | Низкая | ✅ Отличная | Легко | ✅ ИСПОЛЬЗУЙТЕ |
+| Способ          | Сложность | Производительность | Управление | Рекомендация         |
+| --------------- | --------- | ------------------ | ---------- | -------------------- |
+| **Thread**      | Высокая   | ❌ Плохая          | Трудно     | ❌ Не используйте    |
+| **Task**        | Средняя   | ✅ Хорошая         | Средне     | 🟡 Для фонового кода |
+| **Async/Await** | Низкая    | ✅ Отличная        | Легко      | ✅ ИСПОЛЬЗУЙТЕ       |
 
 ---
 
@@ -256,7 +256,7 @@ async Task<string> FetchUrlAsync(string url)
     // Имитируем ошибку сети
     if (url.Contains("invalid"))
         throw new HttpRequestException("Invalid URL");
-    
+
     await Task.Delay(500);
     return "Success";
 }
@@ -305,10 +305,10 @@ async Task<(string, string, string)> FetchMultipleAsync()
     var task1 = FetchUserAsync();
     var task2 = FetchPostsAsync();
     var task3 = FetchCommentsAsync();
-    
+
     // Выполняются ПАРАЛЛЕЛЬНО, ждём всех
     await Task.WhenAll(task1, task2, task3);
-    
+
     return (task1.Result, task2.Result, task3.Result);
 }
 
@@ -324,16 +324,16 @@ async Task<string> FetchWithTimeoutAsync()
 {
     var fetchTask = FetchUserAsync();
     var timeoutTask = Task.Delay(5000);  // Таймаут 5 сек
-    
+
     // Кто первый завершится?
     var completed = await Task.WhenAny(fetchTask, timeoutTask);
-    
+
     if (completed == timeoutTask)
     {
         Console.WriteLine("❌ Таймаут!");
         return null;
     }
-    
+
     return fetchTask.Result;
 }
 
@@ -379,7 +379,7 @@ public class AsyncWebDriver
     async Task<string> FindAndGetTextAsync(string xpath, int timeoutSeconds = 10)
     {
         var startTime = DateTime.Now;
-        
+
         while ((DateTime.Now - startTime).TotalSeconds < timeoutSeconds)
         {
             try
@@ -387,7 +387,7 @@ public class AsyncWebDriver
                 // Имитируем поиск элемента
                 if (xpath.Contains("found"))
                     return "Button Text";
-                
+
                 await Task.Delay(500);  // Ждём 500ms и пробуем снова
             }
             catch (Exception ex)
@@ -396,7 +396,7 @@ public class AsyncWebDriver
                 await Task.Delay(500);
             }
         }
-        
+
         throw new TimeoutException($"Element {xpath} not found after {timeoutSeconds}s");
     }
 }
@@ -419,10 +419,10 @@ async Task RunAllTestsInParallelAsync()
         TestCheckoutAsync(),
         TestProfileAsync()
     };
-    
+
     // Все тесты работают одновременно!
     await Task.WhenAll(tests);
-    
+
     Console.WriteLine("✅ Все тесты пройдены!");
 }
 
@@ -449,7 +449,7 @@ async Task<T> RetryAsync<T>(Func<Task<T>> operation, int maxAttempts = 3, int de
             await Task.Delay(delayMs);
         }
     }
-    
+
     throw new Exception($"Operation failed after {maxAttempts} attempts");
 }
 

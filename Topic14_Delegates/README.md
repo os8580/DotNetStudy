@@ -19,7 +19,7 @@
 1. [Что такое делегат?](#1-что-такое-делегат)
 2. [Named vs Lambda vs Arrow](#2-named-vs-lambda-vs-arrow)
 3. [Action<T> и Func<T>](#3-actiont-и-funct)
-4. [Predicate и委托 patterns](#4-predicate-и-custom-delegates)
+4. [Predicate и 委托 patterns](#4-predicate-и-custom-delegates)
 5. [Callbacks и Event Handling](#5-callbacks-и-event-handling)
 6. [Практические примеры для QA](#6-практические-примеры-для-qa)
 7. [LINQ и функциональное программирование](#7-linq-и-функциональное-программирование)
@@ -199,12 +199,12 @@ int product = multiply(3, 4);  // product = 12
 
 ### Action vs Func — Таблица
 
-| Что | Action | Func |
-|-----|--------|------|
-| Возвращает значение? | ❌ Нет | ✅ Да |
-| Return type | `void` | Указывается последним |
-| Пример | `Action<int> p = x => Print(x);` | `Func<int, bool> e = x => x > 5;` |
-| Использование | Выполнение побочных эффектов | Вычисления и трансформации |
+| Что                  | Action                           | Func                              |
+| -------------------- | -------------------------------- | --------------------------------- |
+| Возвращает значение? | ❌ Нет                           | ✅ Да                             |
+| Return type          | `void`                           | Указывается последним             |
+| Пример               | `Action<int> p = x => Print(x);` | `Func<int, bool> e = x => x > 5;` |
+| Использование        | Выполнение побочных эффектов     | Вычисления и трансформации        |
 
 ---
 
@@ -243,10 +243,10 @@ decimal orderWholesale = wholesalePrice(100, 5);  // 400
 // Делегат с несколькими параметрами
 public delegate void NotificationDelegate(string title, string message, int priority);
 
-NotificationDelegate sendEmail = (t, m, p) => 
+NotificationDelegate sendEmail = (t, m, p) =>
     Console.WriteLine($"[{p}] Email: {t} - {m}");
 
-NotificationDelegate sendSMS = (t, m, p) => 
+NotificationDelegate sendSMS = (t, m, p) =>
     Console.WriteLine($"[{p}] SMS: {t}");
 
 sendEmail("Alert", "Server down!", 1);  // [1] Email: Alert - Server down!
@@ -370,7 +370,7 @@ public class WebDriver
     {
         // Имитируем поиск элемента
         bool exists = xpath.Contains("login");
-        
+
         if (exists)
             onElementFound($"✅ Элемент найден: {xpath}");
         else
@@ -381,7 +381,7 @@ public class WebDriver
 // Использование
 var driver = new WebDriver(
     found => Console.WriteLine(found),
-    notFound => { 
+    notFound => {
         Console.WriteLine(notFound);
         throw new Exception("Element not found");
     }
@@ -428,7 +428,7 @@ client.MakeRequest(
 // ✅ Запрос успешен
 ```
 
-### Пример 3: Chain of Handlers (паттерн责任链)
+### Пример 3: Chain of Handlers (паттерн 责任链)
 
 ```csharp
 public class RequestHandler
@@ -539,7 +539,7 @@ var sum2 = numbers.Sum();
 ```csharp
 // Функция, которая "склеивает" две функции
 public static Func<TIn, TOut> Compose<TIn, TMid, TOut>(
-    Func<TIn, TMid> f1, 
+    Func<TIn, TMid> f1,
     Func<TMid, TOut> f2)
 {
     return x => f2(f1(x));
@@ -602,7 +602,7 @@ public void FetchData(
 ```csharp
 // 1. Не используйте lambda в сложных ситуациях
 var users = data.Where(u => {  // ❌ Два { }? Используйте named function!
-    if (u.Age > 18 && u.Status == "active" && u.Department == "IT") 
+    if (u.Age > 18 && u.Status == "active" && u.Department == "IT")
         return true;
     return false;
 });
@@ -615,7 +615,7 @@ action?.Invoke(data);  // ✅ Безопасно
 public delegate void CustomAction();  // ❌ Используйте Action вместо этого
 
 // 4. Не перегружайте callback-цепи
-FetchData(url, 
+FetchData(url,
     onSuccess: d => ProcessData(d),
     onError: e => HandleError(e),
     onTimeout: () => Retry(),

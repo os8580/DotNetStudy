@@ -442,7 +442,7 @@ foreach (var line in logLines)
         string timestamp = match.Groups[1].Value;   // 2024-01-15 10:23:45
         string level = match.Groups[2].Value;       // INFO, ERROR, WARNING
         string message = match.Groups[3].Value;     // Login successful
-        
+
         Console.WriteLine($"{timestamp} | {level} | {message}");
     }
 }
@@ -512,7 +512,7 @@ if (response["status"].ToString() == "success")
 {
     string productName = response["data"]["name"].ToString();
     decimal price = response["data"]["price"].ToObject<decimal>();
-    
+
     Console.WriteLine($"✅ Product: {productName}, Price: ${price}");
 }
 ```

@@ -30,7 +30,7 @@ dotnet run
 
 - **1-11:** Core C# concepts
 - **12:** Debugging ⭐ NEW
-- **13:** SOLID/KISS/DRY ⭐ NEW  
+- **13:** SOLID/KISS/DRY ⭐ NEW
 - **14:** Delegates & Functional Programming ⭐ NEW
 - **15:** Async/Await Patterns ⭐ NEW
 - **16:** NuGet Packages ⭐ NEW
